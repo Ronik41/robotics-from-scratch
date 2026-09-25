@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "odometry_messages": 3,
+  "frames": "parcel_tray: \n  parent: 'base_link'\n  broadcaster: 'default_authority'\n  rate: 10000.000\n  most_recent_transform: 0.000000\n  oldest_transform: 0.000000\n  buffer_length: 0.000\nbase_link: \n  parent: 'odom'\n  broadcaster: 'default_authority'\n  rate: 75.000\n  most_recent_transform: 1.300000\n  oldest_transform: 1.260000\n  buffer_length: 0.040\nrear_support: \n  parent: 'base_link'\n  broadcaster: 'default_authority'\n  rate: 10000.000\n  most_recent_transform: 0.000000\n  oldest_transform: 0.000000\n  buffer_length: 0.000\nleft_wheel: \n  parent: 'base_link'\n  broadcaster: 'default_authority'\n  rate: 66.667\n  most_recent_transform: 1.300000\n  oldest_transform: 1.240000\n  buffer_length: 0.060\nright_wheel: \n  parent: 'base_link'\n  broadcaster: 'default_authority'\n  rate: 66.667\n  most_recent_transform: 1.300000\n  oldest_transform: 1.240000\n  buffer_length: 0.060\n"
+}

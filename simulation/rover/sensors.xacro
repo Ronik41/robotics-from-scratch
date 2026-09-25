@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Massless frame links merge into the chassis in Gazebo; URDF retains TF.
+       No sensor mass/collision changes to the established rover dynamics. -->
+  <xacro:macro name="sensor_frame" params="name xyz">
+    <link name="${name}"/>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/><child link="${name}"/><origin xyz="${xyz}"/>
+    </joint>
+  </xacro:macro>
+  <xacro:sensor_frame name="lidar_link" xyz="0.20 0 0.34"/>
+  <xacro:sensor_frame name="camera_link" xyz="0.33 0 0.16"/>
+  <xacro:sensor_frame name="imu_link" xyz="0 0 0"/>
+  <link name="camera_optical_frame"/>
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/><child link="camera_optical_frame"/>
+    <origin rpy="${-pi/2} 0 ${-pi/2}"/>
+  </joint>
+  <gazebo reference="lidar_link">
+    <sensor name="lidar" type="gpu_lidar">
+      <topic>/sensors/lidar</topic><gz_frame_id>lidar_link</gz_frame_id>
+      <always_on>true</always_on><update_rate>10</update_rate>
+      <lidar>
+        <scan><horizontal><samples>361</samples><resolution>1</resolution>
+          <min_angle>${-pi}</min_angle><max_angle>${pi}</max_angle>
+        </horizontal></scan>
+        <range><min>0.12</min><max>8.0</max><resolution>0.01</resolution></range>
+        <noise><type>gaussian</type><mean>0</mean><stddev>0.01</stddev></noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+  <gazebo reference="camera_link">
+    <sensor name="rgb_camera" type="camera">
+      <topic>/sensors/camera/image</topic><gz_frame_id>camera_optical_frame</gz_frame_id>
+      <always_on>true</always_on><update_rate>10</update_rate>
+      <camera>
+        <camera_info_topic>/sensors/camera/camera_info</camera_info_topic>
+        <optical_frame_id>camera_optical_frame</optical_frame_id>
+        <horizontal_fov>1.0471975512</horizontal_fov>
+        <image><width>320</width><height>240</height><format>R8G8B8</format></image>
+        <clip><near>0.05</near><far>12</far></clip>
+        <noise><type>gaussian</type><mean>0</mean><stddev>0.007</stddev></noise>
+      </camera>
+    </sensor>
+  </gazebo>
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <topic>/sensors/imu_native</topic><gz_frame_id>imu_link</gz_frame_id>
+      <always_on>true</always_on><update_rate>100</update_rate>
+    </sensor>
+  </gazebo>
+</robot>

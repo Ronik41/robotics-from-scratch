@@ -1,0 +1,9 @@
+# Seeded measurement imperfections; units are SI except encoder counts.
+seed: 42
+imu_delay_s: 0.010
+encoder_delay_s: 0.010
+imu_gyro_stddev: 0.002
+imu_accel_stddev: 0.02
+imu_gyro_bias: [0.001, -0.001, 0.003]
+imu_accel_bias: [0.02, -0.01, 0.03]
+encoder_counts_per_revolution: 2048

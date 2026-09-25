@@ -1,0 +1,28 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-19-07-31-556806-3852fd099bf4-48
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [parameter_bridge-1]: process started with pid [93]
+[INFO] [robot_state_publisher-2]: process started with pid [94]
+[INFO] [python3-3]: process started with pid [95]
+[INFO] [rviz2-4]: process started with pid [96]
+[INFO] [xterm-5]: process started with pid [97]
+[xterm-5] xterm: cannot load font "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+[robot_state_publisher-2] [WARN] [1790363251.753176341] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1790363251.753281257] [robot_state_publisher]: Robot initialized
+[rviz2-4] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[rviz2-4] [INFO] [1790363251.946949549] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-4] [INFO] [1790363251.947185757] [rviz2]: OpenGl version: 4.5 (GLSL 4.5)
+[rviz2-4] [INFO] [1790363252.006611383] [rviz2]: Stereo is NOT SUPPORTED
+[parameter_bridge-1] [INFO] [1790363252.784009008] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363252.785897508] [rover_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /model/delivery_rover/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363252.788451341] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363303.506186337] [rover_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[xterm-5] xterm: fatal IO error 104 (Connection reset by peer) or KillClient on X server ":99"
+[rviz2-4] The X11 connection broke: I/O error (code 1)
+[rviz2-4] X connection to :99 broken (explicit kill or server shutdown).
+[ERROR] [xterm-5]: process has died [pid 97, exit code 84, cmd 'xterm -T Rover teleop: i forward / comma reverse / j,l turn / k stop -geometry 80x16+20+590 -e ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p speed:=0.2 -p turn:=0.5 -p use_sim_time:=true'].
+[ERROR] [rviz2-4]: process has died [pid 96, exit code -11, cmd '/opt/ros/jazzy/lib/rviz2/rviz2 -d /workspace/simulation/config/rover.rviz --ros-args -r __node:=rviz2 --params-file /tmp/launch_params_hk_qhm5n'].
+[INFO] [python3-3]: sending signal 'SIGINT' to process[python3-3]
+[INFO] [robot_state_publisher-2]: sending signal 'SIGINT' to process[robot_state_publisher-2]
+[INFO] [parameter_bridge-1]: sending signal 'SIGINT' to process[parameter_bridge-1]
+[robot_state_publisher-2] [INFO] [1790363399.922862756] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-1] [INFO] [1790363399.924015756] [rclcpp]: signal_handler(SIGINT/SIGTERM)

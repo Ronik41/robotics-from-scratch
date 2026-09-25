@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "clock_messages": 101,
+  "first_sim_time_ns": 2000000,
+  "last_sim_time_ns": 102000000,
+  "advance_ns": 100000000
+}

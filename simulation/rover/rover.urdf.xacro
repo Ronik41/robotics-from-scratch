@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="delivery_rover">
+  <xacro:arg name="drive" default="false"/>
+  <xacro:arg name="sensors" default="false"/>
+  <!-- SI units. base_link: body centre, x forward, y left, z up. -->
+  <xacro:property name="wheel_radius" value="0.14"/>
+  <xacro:property name="wheel_width" value="0.06"/>
+  <xacro:property name="track" value="0.48"/>
+  <material name="teal"><color rgba="0.04 0.55 0.58 1"/></material>
+  <material name="rubber"><color rgba="0.07 0.09 0.12 1"/></material>
+  <material name="parcel"><color rgba="0.95 0.57 0.16 1"/></material>
+  <material name="white"><color rgba="0.9 0.96 0.98 1"/></material>
+
+  <xacro:macro name="box_inertia" params="mass x y z">
+    <inertial><mass value="${mass}"/>
+      <inertia ixx="${mass*(y*y+z*z)/12}" ixy="0" ixz="0"
+               iyy="${mass*(x*x+z*z)/12}" iyz="0" izz="${mass*(x*x+y*y)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <link name="base_link">
+    <xacro:box_inertia mass="8.0" x="0.64" y="0.40" z="0.18"/>
+    <visual><geometry><box size="0.64 0.40 0.18"/></geometry><material name="teal"/></visual>
+    <collision><geometry><box size="0.64 0.40 0.18"/></geometry></collision>
+    <!-- Front stripe is only a visual cue, not a sensor. -->
+    <visual name="front_stripe"><origin xyz="0.321 0 0.02"/>
+      <geometry><box size="0.004 0.30 0.045"/></geometry><material name="white"/>
+    </visual>
+  </link>
+
+  <xacro:macro name="wheel" params="side sign">
+    <link name="${side}_wheel">
+      <inertial><mass value="0.6"/>
+        <inertia ixx="${0.6*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12}"
+                 ixy="0" ixz="0" iyy="${0.6*wheel_radius*wheel_radius/2}" iyz="0"
+                 izz="${0.6*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12}"/>
+      </inertial>
+      <visual><origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        <material name="rubber"/>
+      </visual>
+      <collision><origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+    </link>
+    <joint name="${side}_wheel_joint" type="continuous">
+      <parent link="base_link"/><child link="${side}_wheel"/>
+      <origin xyz="0.14 ${sign*track/2} -0.10"/><axis xyz="0 1 0"/>
+      <dynamics damping="0.02" friction="0.0"/>
+      <limit effort="10" velocity="20"/>
+    </joint>
+    <gazebo reference="${side}_wheel"><mu1>1.0</mu1><mu2>1.0</mu2></gazebo>
+  </xacro:macro>
+  <xacro:wheel side="left" sign="1"/>
+  <xacro:wheel side="right" sign="-1"/>
+
+  <!-- A low-friction sphere approximates a passive caster, not its swivel mechanics. -->
+  <link name="rear_support">
+    <inertial><mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual><geometry><sphere radius="0.05"/></geometry><material name="white"/></visual>
+    <collision><geometry><sphere radius="0.05"/></geometry></collision>
+  </link>
+  <joint name="rear_support_joint" type="fixed">
+    <parent link="base_link"/><child link="rear_support"/><origin xyz="-0.23 0 -0.19"/>
+  </joint>
+  <gazebo reference="rear_support_joint"><preserveFixedJoint>true</preserveFixedJoint></gazebo>
+  <gazebo reference="rear_support"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+
+  <link name="parcel_tray">
+    <xacro:box_inertia mass="1.0" x="0.34" y="0.30" z="0.19"/>
+    <visual><geometry><box size="0.34 0.30 0.19"/></geometry><material name="parcel"/></visual>
+    <collision><geometry><box size="0.34 0.30 0.19"/></geometry></collision>
+  </link>
+  <joint name="parcel_tray_joint" type="fixed">
+    <parent link="base_link"/><child link="parcel_tray"/><origin xyz="-0.04 0 0.185"/>
+  </joint>
+  <!-- Opt in to M3; the M2 passive baseline stays unchanged. -->
+  <xacro:if value="$(arg drive)">
+    <gazebo>
+      <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+        <left_joint>left_wheel_joint</left_joint><right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>${track}</wheel_separation><wheel_radius>${wheel_radius}</wheel_radius>
+        <topic>/model/delivery_rover/cmd_vel</topic>
+        <!-- These native outputs are deliberately NOT bridged into ROS. -->
+        <odom_topic>/model/delivery_rover/unused_native_odom</odom_topic>
+        <tf_topic>/model/delivery_rover/unused_native_tf</tf_topic>
+      </plugin>
+      <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+        <topic>/model/delivery_rover/joint_state</topic>
+        <joint_name>left_wheel_joint</joint_name><joint_name>right_wheel_joint</joint_name>
+        <update_rate>50</update_rate>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+  <xacro:if value="$(arg sensors)">
+    <xacro:include filename="sensors.xacro"/>
+  </xacro:if>
+</robot>

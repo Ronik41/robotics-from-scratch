@@ -1,0 +1,7 @@
+ Network hardwareless-robotics_default Creating 
+ Network hardwareless-robotics_default Created 
+ Container hardwareless-robotics-robotics-run-15843bcbbd16 Creating 
+ Container hardwareless-robotics-robotics-run-15843bcbbd16 Created 
+8.15.0
+{"example": "/opt/ros/jazzy/opt/gz_sim_vendor/share/gz/gz-sim8/worlds/shapes.sdf", "sha256": "b30d0a3f8cd00af62e87813feec1b619efa02364ec39a726f113c164d479da9e", "world": "shapes", "models": ["ground_plane", "box", "cylinder", "sphere", "capsule", "ellipsoid", "cone"]}
+{"status": "PASS", "clock_messages": 101, "first_sim_time_ns": 2000000, "last_sim_time_ns": 102000000, "advance_ns": 100000000}

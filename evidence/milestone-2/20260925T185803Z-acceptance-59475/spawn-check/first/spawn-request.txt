@@ -1,0 +1,12 @@
+sdf_filename: "/workspace/evidence/milestone-2/20260925T185803Z-acceptance-59475/spawn-check/first/rover.urdf"
+pose {
+  position {
+    x: -2.5
+    y: -1.5
+    z: 0.25
+  }
+  orientation {
+    w: 1.0
+  }
+}
+name: "delivery_rover"

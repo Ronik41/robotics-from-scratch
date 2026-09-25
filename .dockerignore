@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!src/
+!src/rover_interfaces/
+!src/rover_interfaces/**
+!scripts/
+!scripts/ros-entrypoint.sh

@@ -1,0 +1,9 @@
+[
+  "gz",
+  "sim",
+  "-g",
+  "-v",
+  "3",
+  "--gui-config",
+  "/workspace/simulation/config/gui.config"
+]

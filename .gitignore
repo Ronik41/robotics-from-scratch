@@ -1,0 +1,18 @@
+# ROS 2 / colcon build products
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editors and macOS
+.DS_Store
+.vscode/
+
+# Captured simulation outputs (keep intentional, curated media only)
+media/recordings/
+*.bag
+*.db3

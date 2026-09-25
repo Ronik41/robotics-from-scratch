@@ -1,0 +1,10 @@
+ Container hardwareless-robotics-robotics-run-b9c40fe87b61 Creating 
+ Container hardwareless-robotics-robotics-run-b9c40fe87b61 Created 
+test_half_count_error_bound (test_sensor_models.Encoders.test_half_count_error_bound) ... ok
+test_invalid_measurement (test_sensor_models.Encoders.test_invalid_measurement) ... ok
+test_signed_revolutions_and_origin (test_sensor_models.Encoders.test_signed_revolutions_and_origin) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK

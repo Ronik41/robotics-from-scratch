@@ -1,0 +1,16 @@
+ Container hardwareless-robotics-robotics-run-9f0f08d8e2f0 Creating 
+ Container hardwareless-robotics-robotics-run-9f0f08d8e2f0 Created 
+{"status": "FAIL", "error": "Perfect orientation leaked"}
+Traceback (most recent call last):
+  File "/workspace/tests/check_milestone_4.py", line 233, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/tests/check_milestone_4.py", line 199, in main
+    result['stationary']=probe.stationary()
+                         ^^^^^^^^^^^^^^^^^^
+  File "/workspace/tests/check_milestone_4.py", line 145, in stationary
+    require(m.orientation_covariance[0]==-1 and m.orientation.w==0, 'Perfect orientation leaked')
+  File "/workspace/tests/check_milestone_4.py", line 37, in require
+    raise AssertionError(message)
+AssertionError: Perfect orientation leaked
+

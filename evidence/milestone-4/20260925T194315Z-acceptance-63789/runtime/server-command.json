@@ -1,0 +1,11 @@
+[
+  "gz",
+  "sim",
+  "-s",
+  "-v",
+  "4",
+  "--seed",
+  "42",
+  "--headless-rendering",
+  "/workspace/evidence/milestone-4/20260925T194315Z-acceptance-63789/runtime/sensor-world.sdf"
+]

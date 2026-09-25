@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scripts/rover_sim.py", line 277, in <module>
+    main()
+  File "/workspace/scripts/rover_sim.py", line 233, in main
+    result = spawn(node, urdf, evidence)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scripts/rover_sim.py", line 116, in spawn
+    raise RuntimeError("delivery_rover already exists; restart the scenario to reset it")
+RuntimeError: delivery_rover already exists; restart the scenario to reset it

@@ -1,0 +1,25 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1790365412.413191216] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1790365412.413271258] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1790365412.424646133] [rosbag2_recorder]: Starting recording to '/workspace/evidence/milestone-4/20260925T194315Z-acceptance-63789/sensors-bag'
+[INFO] [1790365412.435323883] [rosbag2_recorder]: Listening for topics...
+[INFO] [1790365412.435652299] [rosbag2_recorder]: Recording...
+[INFO] [1790365412.435401466] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1790365412.436201258] [rosbag2_recorder]: use_sim_time set, waiting for /clock before starting recording...
+[INFO] [1790365412.501588883] [rosbag2_recorder]: Sim time /clock found, starting recording.
+[INFO] [1790365412.512597591] [rosbag2_recorder]: Subscribed to topic '/camera/camera_info'
+[INFO] [1790365412.519722133] [rosbag2_recorder]: Subscribed to topic '/odom'
+[INFO] [1790365412.521117966] [rosbag2_recorder]: Subscribed to topic '/camera/image_raw'
+[INFO] [1790365412.523294841] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1790365412.527442299] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1790365412.528642091] [rosbag2_recorder]: Subscribed to topic '/imu/data_raw'
+[INFO] [1790365412.529911258] [rosbag2_recorder]: Subscribed to topic '/joint_states'
+[INFO] [1790365412.531624549] [rosbag2_recorder]: Subscribed to topic '/robot_description'
+[INFO] [1790365412.532947716] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1790365412.535444924] [rosbag2_recorder]: Subscribed to topic '/wheel/encoders'
+[INFO] [1790365412.536609049] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1790365412.536833049] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1790365412.537043174] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1790365418.741396427] [rosbag2_recorder]: Pausing recording.
+[INFO] [1790365418.745449094] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1790365418.759667011] [rosbag2_recorder]: Recording stopped
+[INFO] [1790365418.762085511] [rosbag2_recorder]: Event publisher thread: Exited

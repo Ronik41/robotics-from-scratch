@@ -1,0 +1,16 @@
+ Container hardwareless-robotics-robotics-run-95d71b3430d8 Creating 
+ Container hardwareless-robotics-robotics-run-95d71b3430d8 Created 
+{"status": "FAIL", "phases": {}, "error": "\"parcel_tray\" passed to lookupTransform argument source_frame does not exist. "}
+Traceback (most recent call last):
+  File "/workspace/tests/check_milestone_3.py", line 237, in <module>
+    main()
+  File "/workspace/tests/check_milestone_3.py", line 143, in main
+    initial = probe.sample()
+              ^^^^^^^^^^^^^^
+  File "/workspace/tests/check_milestone_3.py", line 119, in sample
+    self.buffer.lookup_transform('odom', frame, Time.from_msg(m.header.stamp))
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/tf2_ros/buffer.py", line 150, in lookup_transform
+    return self.lookup_transform_core(target_frame, source_frame, time)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tf2.LookupException: "parcel_tray" passed to lookupTransform argument source_frame does not exist. 
+

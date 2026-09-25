@@ -1,0 +1,11 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-19-33-25-925670-9bdf1d3a723f-58
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [parameter_bridge-1]: process started with pid [61]
+[INFO] [robot_state_publisher-2]: process started with pid [62]
+[INFO] [python3-3]: process started with pid [63]
+[robot_state_publisher-2] [WARN] [1790364806.077274338] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1790364806.077378213] [robot_state_publisher]: Robot initialized
+[parameter_bridge-1] [INFO] [1790364807.110786755] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790364807.130337047] [rover_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /model/delivery_rover/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790364807.137334755] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790364808.737217339] [rover_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)

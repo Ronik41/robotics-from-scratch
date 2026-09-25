@@ -1,0 +1,21 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-19-10-05-033273-55b8335e6f84-48
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [parameter_bridge-1]: process started with pid [99]
+[INFO] [robot_state_publisher-2]: process started with pid [100]
+[INFO] [python3-3]: process started with pid [101]
+[INFO] [rviz2-4]: process started with pid [102]
+[INFO] [xterm-5]: process started with pid [103]
+[robot_state_publisher-2] [WARN] [1790363405.193426509] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1790363405.193534842] [robot_state_publisher]: Robot initialized
+[rviz2-4] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[rviz2-4] [INFO] [1790363405.348982009] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-4] [INFO] [1790363405.349152884] [rviz2]: OpenGl version: 4.5 (GLSL 4.5)
+[rviz2-4] [INFO] [1790363405.389418634] [rviz2]: Stereo is NOT SUPPORTED
+[parameter_bridge-1] [INFO] [1790363406.228837968] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363406.230658093] [rover_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /model/delivery_rover/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363406.232990218] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790363479.539310710] [rover_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[xterm-5] xterm: fatal IO error 104 (Connection reset by peer) or KillClient on X server ":99"
+[rviz2-4] The X11 connection broke: I/O error (code 1)
+[rviz2-4] X connection to :99 broken (explicit kill or server shutdown).
+[ERROR] [xterm-5]: process has died [pid 103, exit code 84, cmd 'xterm -T Rover teleop: i forward / comma reverse / j,l turn / k stop -fa monospace -fs 11 -geometry 80x18+20+560 -e ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p speed:=0.2 -p turn:=0.5 -p use_sim_time:=true'].

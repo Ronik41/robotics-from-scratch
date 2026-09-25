@@ -1,0 +1,10 @@
+[
+  "gz",
+  "sim",
+  "-s",
+  "-v",
+  "4",
+  "--seed",
+  "42",
+  "/workspace/simulation/worlds/delivery_room.sdf"
+]

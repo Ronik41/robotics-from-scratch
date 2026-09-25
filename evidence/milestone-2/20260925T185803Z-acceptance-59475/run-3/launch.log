@@ -1,0 +1,3 @@
+ Container hardwareless-robotics-robotics-run-0d087e5a56f8 Creating 
+ Container hardwareless-robotics-robotics-run-0d087e5a56f8 Created 
+{"models": ["crate_a", "crate_b", "delivery_pad", "delivery_rover", "east_wall", "floor", "north_wall", "pickup_pad", "sorting_table", "south_wall", "west_wall"], "initial_pose_xyz_xyzw": [-2.5, -1.5, 0.25, 0.0, 0.0, 0.0, 1.0], "settled": {"pose": [-2.500000000581031, -1.5, 0.23999999307732806, -1.4200824172059167e-17, -3.9403434569791846e-09, 1.9907071640302676e-20, 1.0], "pose_time_ns": 2000000000, "iterations": 2000, "paused": true, "sim_time_ns": 2000000000}, "status": "PASS"}

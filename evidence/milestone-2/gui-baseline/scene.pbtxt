@@ -1,0 +1,509 @@
+ambient {
+  r: 1
+  g: 1
+  b: 1
+  a: 1
+}
+background {
+  r: 0.8
+  g: 0.8
+  b: 0.8
+  a: 1
+}
+shadows: true
+grid: true
+model {
+  name: "ground_plane"
+  id: 4
+  pose {
+    position {
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 5
+    name: "link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "visual"
+      id: 6
+      parent_id: 5
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: PLANE
+        plane {
+          normal {
+            z: 1
+          }
+          size {
+            x: 100
+            y: 100
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.8
+          g: 0.8
+          b: 0.8
+          a: 1
+        }
+        diffuse {
+          r: 0.8
+          g: 0.8
+          b: 0.8
+          a: 1
+        }
+        specular {
+          r: 0.8
+          g: 0.8
+          b: 0.8
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "box"
+  id: 8
+  pose {
+    position {
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 9
+    name: "box_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "box_visual"
+      id: 10
+      parent_id: 9
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 1
+            y: 1
+            z: 1
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 1
+          a: 1
+        }
+        diffuse {
+          r: 1
+          a: 1
+        }
+        specular {
+          r: 1
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "cylinder"
+  id: 12
+  pose {
+    position {
+      y: -1.5
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 13
+    name: "cylinder_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "cylinder_visual"
+      id: 14
+      parent_id: 13
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: CYLINDER
+        cylinder {
+          radius: 0.5
+          length: 1
+        }
+      }
+      material {
+        ambient {
+          g: 1
+          a: 1
+        }
+        diffuse {
+          g: 1
+          a: 1
+        }
+        specular {
+          g: 1
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "sphere"
+  id: 16
+  pose {
+    position {
+      y: 1.5
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 17
+    name: "sphere_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "sphere_visual"
+      id: 18
+      parent_id: 17
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: SPHERE
+        sphere {
+          radius: 0.5
+        }
+      }
+      material {
+        ambient {
+          b: 1
+          a: 1
+        }
+        diffuse {
+          b: 1
+          a: 1
+        }
+        specular {
+          b: 1
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "capsule"
+  id: 20
+  pose {
+    position {
+      y: -3
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 21
+    name: "capsule_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "capsule_visual"
+      id: 22
+      parent_id: 21
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: CAPSULE
+        capsule {
+          radius: 0.2
+          length: 0.6
+        }
+      }
+      material {
+        ambient {
+          r: 1
+          g: 1
+          a: 1
+        }
+        diffuse {
+          r: 1
+          g: 1
+          a: 1
+        }
+        specular {
+          r: 1
+          g: 1
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "ellipsoid"
+  id: 24
+  pose {
+    position {
+      y: 3
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 25
+    name: "ellipsoid_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "ellipsoid_visual"
+      id: 26
+      parent_id: 25
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: ELLIPSOID
+        ellipsoid {
+          radii {
+            x: 0.2
+            y: 0.3
+            z: 0.5
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 1
+          b: 1
+          a: 1
+        }
+        diffuse {
+          r: 1
+          b: 1
+          a: 1
+        }
+        specular {
+          r: 1
+          b: 1
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "cone"
+  id: 28
+  pose {
+    position {
+      y: 4.5
+      z: 0.5
+    }
+    orientation {
+      w: 1
+    }
+  }
+  link {
+    id: 29
+    name: "cone_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1
+      }
+    }
+    visual {
+      name: "cone_visual"
+      id: 30
+      parent_id: 29
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1
+        }
+      }
+      geometry {
+        type: CONE
+        cone {
+          radius: 0.5
+          length: 1
+        }
+      }
+      material {
+        ambient {
+          r: 1
+          g: 0.47
+          a: 1
+        }
+        diffuse {
+          r: 1
+          g: 0.47
+          a: 1
+        }
+        specular {
+          r: 1
+          g: 0.47
+          a: 1
+        }
+        emissive {
+          a: 1
+        }
+        lighting: true
+      }
+    }
+  }
+}
+light {
+  name: "sun"
+  type: DIRECTIONAL
+  pose {
+    position {
+      z: 10
+    }
+    orientation {
+      w: 1
+    }
+  }
+  diffuse {
+    r: 0.8
+    g: 0.8
+    b: 0.8
+    a: 1
+  }
+  specular {
+    r: 0.2
+    g: 0.2
+    b: 0.2
+    a: 1
+  }
+  attenuation_constant: 0.9
+  attenuation_linear: 0.01
+  attenuation_quadratic: 0.001
+  direction {
+    x: -0.5
+    y: 0.1
+    z: -0.9
+  }
+  range: 1000
+  cast_shadows: true
+  id: 32
+  parent_id: 1
+  intensity: 1
+  visualize_visual: true
+}
+origin_visual: true
+

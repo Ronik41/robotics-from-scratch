@@ -1,0 +1,251 @@
+<sdf version="1.9">
+  <world name="delivery_room">
+    <physics name="fixed_1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <gravity>0 0 -9.81</gravity>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <light name="sun" type="directional">
+      <pose>0 0 8 0 0 0</pose>
+      <diffuse>0.95 0.95 0.95 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.4 0.2 -0.9</direction>
+      <cast_shadows>true</cast_shadows>
+      <attenuation>
+        <range>100</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+    <model name="floor">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 6 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 6 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.65 0.70 0.73 1</ambient>
+            <diffuse>0.65 0.70 0.73 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="north_wall">
+      <static>true</static>
+      <pose>0 3 0.4 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8.2 0.12 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8.2 0.12 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.25 0.33 0.42 1</ambient>
+            <diffuse>0.25 0.33 0.42 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="south_wall">
+      <static>true</static>
+      <pose>0 -3 0.15 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8.2 0.12 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8.2 0.12 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.25 0.33 0.42 1</ambient>
+            <diffuse>0.25 0.33 0.42 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="east_wall">
+      <static>true</static>
+      <pose>4 0 0.4 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.12 6 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.12 6 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.25 0.33 0.42 1</ambient>
+            <diffuse>0.25 0.33 0.42 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="west_wall">
+      <static>true</static>
+      <pose>-4 0 0.15 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.12 6 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.12 6 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.25 0.33 0.42 1</ambient>
+            <diffuse>0.25 0.33 0.42 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pickup_pad">
+      <static>true</static>
+      <pose>-2.5 -1.5 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.25 1.1 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.60 0.63 1</ambient>
+            <diffuse>0.12 0.60 0.63 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="delivery_pad">
+      <static>true</static>
+      <pose>2.5 1.5 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.25 1.1 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.94 0.60 0.15 1</ambient>
+            <diffuse>0.94 0.60 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="sorting_table">
+      <static>true</static>
+      <pose>0 0.6 0.4 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.7 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.7 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.37 0.46 0.55 1</ambient>
+            <diffuse>0.37 0.46 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="crate_a">
+      <static>true</static>
+      <pose>1.9 -1.1 0.25 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.63 0.37 0.19 1</ambient>
+            <diffuse>0.63 0.37 0.19 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="crate_b">
+      <static>true</static>
+      <pose>-1.8 1.6 0.2 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.5 0.4</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.5 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.63 0.37 0.19 1</ambient>
+            <diffuse>0.63 0.37 0.19 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors"><render_engine>ogre2</render_engine></plugin><plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu" /></world>
+</sdf>

@@ -1,0 +1,60 @@
+ Image hardwareless-robotics:jazzy-harmonic Building 
+ Image hardwareless-robotics:jazzy-harmonic-desktop Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.29kB done
+#1 DONE 0.0s
+
+#2 [desktop internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.31kB 0.0s done
+#2 DONE 0.0s
+
+#3 [robotics internal] load metadata for docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#3 DONE 0.6s
+
+#4 [desktop internal] load .dockerignore
+#4 transferring context: 54B done
+#4 DONE 0.0s
+
+#5 [desktop robotics 1/6] FROM docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#5 resolve docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8 0.0s done
+#5 DONE 0.0s
+
+#6 [desktop robotics 2/6] RUN apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-ros-gz     ros-jazzy-rviz2     ros-jazzy-xacro     ros-jazzy-robot-state-publisher     ros-jazzy-teleop-twist-keyboard     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [desktop internal] load build context
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [robotics robotics 3/6] COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces
+#8 ERROR: failed to calculate checksum of ref kogutdlbebafvhgfqfsitqont::57k9i70vbqavtgbr8i52k7osd: "/src/rover_interfaces": not found
+
+#9 [desktop robotics 4/6] RUN source /opt/ros/jazzy/setup.bash && cd /opt/rover_interfaces && colcon build --event-handlers console_direct+
+#9 CACHED
+
+#10 [desktop robotics 5/6] COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh
+#10 ERROR: failed to calculate checksum of ref kogutdlbebafvhgfqfsitqont::57k9i70vbqavtgbr8i52k7osd: "/scripts/ros-entrypoint.sh": not found
+------
+ > [robotics robotics 3/6] COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces:
+------
+------
+ > [desktop robotics 5/6] COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh:
+------
+Dockerfile:16
+
+--------------------
+
+  14 |     
+
+  15 |     # Compile only the small ROS message package; no host installation.
+
+  16 | >>> COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces
+
+  17 |     RUN source /opt/ros/jazzy/setup.bash && cd /opt/rover_interfaces && colcon build --event-handlers console_direct+
+
+  18 |     COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh
+
+--------------------
+
+target desktop: failed to solve: failed to compute cache key: failed to calculate checksum of ref kogutdlbebafvhgfqfsitqont::57k9i70vbqavtgbr8i52k7osd: "/src/rover_interfaces": not found
+

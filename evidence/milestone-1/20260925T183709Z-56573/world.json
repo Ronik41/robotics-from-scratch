@@ -1,0 +1,14 @@
+{
+  "example": "/opt/ros/jazzy/opt/gz_sim_vendor/share/gz/gz-sim8/worlds/shapes.sdf",
+  "sha256": "b30d0a3f8cd00af62e87813feec1b619efa02364ec39a726f113c164d479da9e",
+  "world": "shapes",
+  "models": [
+    "ground_plane",
+    "box",
+    "cylinder",
+    "sphere",
+    "capsule",
+    "ellipsoid",
+    "cone"
+  ]
+}

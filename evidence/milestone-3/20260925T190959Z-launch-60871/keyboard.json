@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "linear_x": 0.2,
+      "angular_z": 0.0,
+      "wall_time": 1790363479.53221
+    },
+    {
+      "linear_x": 0.0,
+      "angular_z": 0.0,
+      "wall_time": 1790363482.8617544
+    }
+  ],
+  "distance_m": 0.4125988511232662,
+  "final_linear_x": 0.0,
+  "odometry_messages": 257
+}

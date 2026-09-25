@@ -1,0 +1,12 @@
+ Container hardwareless-robotics-robotics-run-95476f76dbbd Creating 
+ Container hardwareless-robotics-robotics-run-95476f76dbbd Created 
+test_arc (test_wheel_odometry.KinematicsTests.test_arc) ... ok
+test_forward_reverse (test_wheel_odometry.KinematicsTests.test_forward_reverse) ... ok
+test_quarter_turn_about_offset_axle (test_wheel_odometry.KinematicsTests.test_quarter_turn_about_offset_axle) ... ok
+test_reject_bad_or_stale_samples_without_changing_reference (test_wheel_odometry.KinematicsTests.test_reject_bad_or_stale_samples_without_changing_reference) ... ok
+test_stationary (test_wheel_odometry.KinematicsTests.test_stationary) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK

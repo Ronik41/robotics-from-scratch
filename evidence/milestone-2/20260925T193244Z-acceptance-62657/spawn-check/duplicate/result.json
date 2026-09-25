@@ -1,0 +1,4 @@
+{
+  "status": "FAIL",
+  "error": "delivery_rover already exists; restart the scenario to reset it"
+}

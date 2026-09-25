@@ -1,0 +1,16 @@
+ Container hardwareless-robotics-robotics-run-77ad5930242c Creating 
+ Container hardwareless-robotics-robotics-run-77ad5930242c Created 
+{"status": "FAIL", "error": "Camera calibration"}
+Traceback (most recent call last):
+  File "/workspace/tests/check_milestone_4.py", line 233, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/tests/check_milestone_4.py", line 199, in main
+    result['stationary']=probe.stationary()
+                         ^^^^^^^^^^^^^^^^^^
+  File "/workspace/tests/check_milestone_4.py", line 141, in stationary
+    require(abs(c.k[0]-160/math.tan(math.pi/6))<.1 and c.k[0]==c.k[4] and c.k[8]==1, 'Camera calibration')
+  File "/workspace/tests/check_milestone_4.py", line 37, in require
+    raise AssertionError(message)
+AssertionError: Camera calibration
+

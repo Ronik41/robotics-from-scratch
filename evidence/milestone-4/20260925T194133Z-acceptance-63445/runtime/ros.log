@@ -1,0 +1,15 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-19-41-41-596828-ab1ac95ca39c-59
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [parameter_bridge-1]: process started with pid [121]
+[INFO] [robot_state_publisher-2]: process started with pid [122]
+[INFO] [python3-3]: process started with pid [123]
+[INFO] [python3-4]: process started with pid [124]
+[robot_state_publisher-2] [WARN] [1790365301.832151679] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1790365301.832293012] [robot_state_publisher]: Robot initialized
+[parameter_bridge-1] [INFO] [1790365302.946757513] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365302.948702638] [rover_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /model/delivery_rover/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365302.951947388] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365302.959017554] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365302.961430638] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365302.965926929] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365306.032239291] [rover_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)

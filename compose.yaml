@@ -1,0 +1,38 @@
+name: hardwareless-robotics
+services:
+  robotics:
+    image: hardwareless-robotics:jazzy-harmonic
+    platform: linux/arm64
+    build:
+      context: .
+      target: robotics
+    init: true
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    environment:
+      ROS_DOMAIN_ID: "42"
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      ROS_AUTOMATIC_DISCOVERY_RANGE: LOCALHOST
+      GZ_PARTITION: hardwareless-robotics
+    # All ROS and Gazebo processes live in the same container for this milestone.
+    # No host networking, privileged mode, device mounts, or exposed ports.
+    shm_size: 512m
+    command: ["bash"]
+  desktop:
+    extends: robotics
+    image: hardwareless-robotics:jazzy-harmonic-desktop
+    build:
+      context: .
+      target: desktop
+    profiles: [gui]
+    ports:
+      - "127.0.0.1:6080:6080"
+    environment:
+      DISPLAY: ":99"
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      QT_X11_NO_MITSHM: "1"
+      GZ_PARTITION: hardwareless-robotics-desktop
+      ROVER_EVIDENCE: "${ROVER_EVIDENCE:-}"
+      ROVER_MILESTONE: "${ROVER_MILESTONE:-2}"
+    command: ["python3", "scripts/desktop.py"]

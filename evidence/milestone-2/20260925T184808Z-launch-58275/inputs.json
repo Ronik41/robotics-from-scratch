@@ -1,0 +1,36 @@
+{
+  "scenario": {
+    "world": "delivery_room",
+    "model": "delivery_rover",
+    "seed": 42,
+    "pose": {
+      "x": -2.5,
+      "y": -1.5,
+      "z": 0.25,
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 0.0
+    },
+    "settle_steps": 2000,
+    "expected_models": [
+      "floor",
+      "north_wall",
+      "south_wall",
+      "east_wall",
+      "west_wall",
+      "pickup_pad",
+      "delivery_pad",
+      "sorting_table",
+      "crate_a",
+      "crate_b",
+      "delivery_rover"
+    ]
+  },
+  "sha256": {
+    "simulation/rover/rover.urdf.xacro": "5a3f41eab213a05180b9166d832774bda72161e443c2bfe1dccfe65e01202505",
+    "simulation/worlds/delivery_room.sdf": "711f5da7ab541ac84f280d5077377da67f4e8dc4255d382068df5cd9785a5c21",
+    "simulation/config/scenario.json": "27904d24f9a601598c3983ff33fddc348993954e8588475376f3d31574e3b0d6",
+    "simulation/config/gui.config": "fd9e905a6d150a1c4b626b5c1b8fb458060f44701ebfad0fa4d04e6733bdc3f5",
+    "scripts/rover_sim.py": "e9da2182e2470a80143475432e5c39b497039cbf4fc546ffbf852664549a20f0"
+  }
+}

@@ -1,0 +1,15 @@
+ Container hardwareless-robotics-robotics-run-7afddda1c7a8 Creating 
+ Container hardwareless-robotics-robotics-run-7afddda1c7a8 Created 
+Traceback (most recent call last):
+  File "/workspace/scripts/rover_sim.py", line 287, in <module>
+    main()
+  File "/workspace/scripts/rover_sim.py", line 245, in main
+    result["settled"] = settle(node, processes, evidence)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scripts/rover_sim.py", line 169, in settle
+    response = request(node, "/control", WorldControl(pause=True, multi_step=target), Boolean, 10000)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scripts/rover_sim.py", line 53, in request
+    raise RuntimeError(f"Service failed or timed out: {PREFIX + suffix}")
+RuntimeError: Service failed or timed out: /world/delivery_room/control
+
