@@ -11,7 +11,8 @@ You are helping build and teach an industry-style, hardware-free robotics projec
 - Keep a clear boundary between simulation and real hardware. Record relevant differences in `docs/`.
 - Update `STATUS.md` after meaningful implementation or investigation. Record durable choices in `docs/decisions/`.
 - Preserve an honest build-in-public record: claims must be supported by a test, log, screenshot, or demo clip.
-- Do not publish externally, push Git changes, install system-wide software, or make destructive changes unless the user explicitly asks.
+- This repository is public at `https://github.com/Ronik41/robotics-from-scratch`. After a milestone is verifiably complete, make a focused Git commit that includes its implementation, documentation, and curated evidence, then push it to `origin/main`. Do not commit partial or failing work; record retained failure evidence only when it explains a resolved engineering issue.
+- Do not publish externally beyond the repository, install system-wide software, or make destructive changes unless the user explicitly asks.
 - Keep changes scoped. Run the relevant checks and fix failures before reporting a milestone complete.
 
 ## Teaching style
