@@ -31,3 +31,14 @@ Only describe a feature as working when there is an attached test result, log, s
 ## Published posts
 
 None yet.
+
+## 2026-09-25 — M4 sensor interfaces verified locally
+
+Added native simulated planar LiDAR/RGB, imperfect raw IMU and explicit stamped
+encoder counts. M1–M3 baselines/regressions passed. M4 checks physical observations,
+message contracts and encoder motion, with actual RViz evidence and a 5.878 s
+rosbag whose sensor fields replayed unchanged. The LiDAR misses low crates because
+its scan plane is above them; this is a demonstrated limitation. No autonomy,
+localization or low-level safety claim. No external publication performed.
+
+Evidence and retained failures: `evidence/milestone-4/README.md`.

@@ -7,3 +7,9 @@
 
 Launch and verification commands are in [the setup guide](../docs/setup.md).
 Generated URDF/SDF and observations are stored with each run's evidence, not edited here.
+
+M4 opts into `rover/sensors.xacro`, `config/bridge-sensors.yaml`,
+`config/sensors.yaml` and `config/sensors.rviz`. The supervisor generates a copy
+of the room with Gazebo sensor systems in each evidence directory; M2/M3 still
+use the original world. Native LiDAR/camera require rendering, including headless
+Ogre 2/EGL. See the sensor concept note for mounts and measurement limitations.

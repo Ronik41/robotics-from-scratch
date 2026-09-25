@@ -1,0 +1,10 @@
+ Container hardwareless-robotics-robotics-run-f88e0882002b Creating 
+ Container hardwareless-robotics-robotics-run-f88e0882002b Created 
+Traceback (most recent call last):
+  File "/workspace/tests/check_sensor_replay.py", line 63, in <module>
+{"status": "FAIL", "error": "Replay message loss /imu/data_raw: 308/582"}
+    require(len(seen[topic])>=len(expected[topic])*.9,f'Replay message loss {topic}: {len(seen[topic])}/{len(expected[topic])}')
+  File "/workspace/tests/check_milestone_4.py", line 37, in require
+    raise AssertionError(message)
+AssertionError: Replay message loss /imu/data_raw: 308/582
+

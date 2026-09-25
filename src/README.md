@@ -7,3 +7,9 @@ the existing axle-to-chassis offset. `node.py` adapts actual `/joint_states` to
 The ROS launch file is `simulation/launch/teleop.launch.py`; it uses installed
 ROS packages and executes this small Python node directly from the mounted
 workspace. No colcon build is required at M3. See ADR 0003 for this scope choice.
+
+M4 adds `rover_sensors/`: a simulation device adapter that emits imperfect raw
+IMU measurements and quantized wheel counts, with no estimator or control output.
+`rover_interfaces/` is the small colcon-built message package baked into both
+Docker images. Rebuild when its message schema changes. The driver and launch
+source remain mounted. Existing `rover_odometry` is unchanged.

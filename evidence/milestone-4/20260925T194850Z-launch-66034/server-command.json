@@ -1,0 +1,10 @@
+[
+  "gz",
+  "sim",
+  "-s",
+  "-v",
+  "4",
+  "--seed",
+  "42",
+  "/workspace/evidence/milestone-4/20260925T194850Z-launch-66034/sensor-world.sdf"
+]

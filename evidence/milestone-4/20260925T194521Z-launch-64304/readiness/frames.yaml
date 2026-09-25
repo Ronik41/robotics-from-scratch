@@ -1,0 +1,63 @@
+base_link: 
+  parent: 'odom'
+  broadcaster: 'default_authority'
+  rate: 50.236
+  most_recent_transform: 4.800000
+  oldest_transform: 0.560000
+  buffer_length: 4.240
+left_wheel: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 50.286
+  most_recent_transform: 4.820000
+  oldest_transform: 1.320000
+  buffer_length: 3.500
+right_wheel: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 50.286
+  most_recent_transform: 4.820000
+  oldest_transform: 1.320000
+  buffer_length: 3.500
+camera_link: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+camera_optical_frame: 
+  parent: 'camera_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+imu_link: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+lidar_link: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+parcel_tray: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+rear_support: 
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000

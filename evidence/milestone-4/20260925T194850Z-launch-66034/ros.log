@@ -1,0 +1,23 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-19-48-56-676589-dd0ed96ff635-61
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [parameter_bridge-1]: process started with pid [172]
+[INFO] [robot_state_publisher-2]: process started with pid [173]
+[INFO] [python3-3]: process started with pid [174]
+[INFO] [python3-4]: process started with pid [175]
+[INFO] [rviz2-5]: process started with pid [176]
+[INFO] [xterm-6]: process started with pid [177]
+[robot_state_publisher-2] [WARN] [1790365736.842890005] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1790365736.843381422] [robot_state_publisher]: Robot initialized
+[rviz2-5] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[rviz2-5] [INFO] [1790365737.111928880] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-5] [INFO] [1790365737.112409588] [rviz2]: OpenGl version: 4.5 (GLSL 4.5)
+[rviz2-5] [INFO] [1790365737.154858047] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-5] [INFO] [1790365737.800098797] [rviz2]: Stereo is NOT SUPPORTED
+[parameter_bridge-1] [INFO] [1790365737.881649630] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365737.889226755] [rover_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /model/delivery_rover/cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365737.893386672] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365737.896826755] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365737.897947714] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365737.898632547] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-1] [INFO] [1790365740.411543048] [rover_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[rviz2-5] [INFO] [1790365754.447711097] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 0.399 for reason 'the timestamp on the message is earlier than all the data in the transform cache'

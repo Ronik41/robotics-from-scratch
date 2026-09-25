@@ -1,7 +1,7 @@
 # ADR 0004: Explicit sensor contracts and imperfect simulated measurements
 
 - Date: 2026-09-25
-- Status: Implementation under acceptance
+- Status: Accepted; headless, desktop and isolated replay acceptance passed
 - Scope: Milestone 4 only
 
 ## Decision
@@ -48,11 +48,13 @@ assumptions and will require hardware calibration later.
 
 ## Verification
 
+Results and retained failures: [M4 evidence](../../evidence/milestone-4/README.md).
+
 Rerun M1–M3 before implementation and after rebuilding. M4 automated acceptance
 checks message contracts, timestamps/rates, TF, camera calibration, known surface
 ranges and occlusion, stationary IMU statistics, encoder motion/quantization and
 odometry input ownership. Record a short MCAP rosbag, replay in a separate ROS
-domain, verify message payload identity and TF. Capture and inspect actual RViz
+domain, verify decoded message-field identity and TF. Capture and inspect actual RViz
 rendering. Evidence index records results and retained failures.
 
 No mapping, localization, navigation, perception, firmware PID, watchdog or e-stop

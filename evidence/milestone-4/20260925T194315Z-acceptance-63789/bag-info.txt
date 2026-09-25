@@ -1,0 +1,22 @@
+
+Files:             sensors-bag_0.mcap
+Bag size:          14.0 MiB
+Storage id:        mcap
+ROS Distro:        jazzy
+Duration:          5.823000000s
+Start:             Jan  1 1970 00:00:05.180000000 (5.180000000)
+End:               Jan  1 1970 00:00:11.003000000 (11.003000000)
+Messages:          8035
+Topic information: Topic: /camera/camera_info | Type: sensor_msgs/msg/CameraInfo | Count: 59 | Serialization Format: cdr
+                   Topic: /camera/image_raw | Type: sensor_msgs/msg/Image | Count: 58 | Serialization Format: cdr
+                   Topic: /clock | Type: rosgraph_msgs/msg/Clock | Count: 5821 | Serialization Format: cdr
+                   Topic: /imu/data_raw | Type: sensor_msgs/msg/Imu | Count: 582 | Serialization Format: cdr
+                   Topic: /joint_states | Type: sensor_msgs/msg/JointState | Count: 291 | Serialization Format: cdr
+                   Topic: /odom | Type: nav_msgs/msg/Odometry | Count: 292 | Serialization Format: cdr
+                   Topic: /robot_description | Type: std_msgs/msg/String | Count: 1 | Serialization Format: cdr
+                   Topic: /scan | Type: sensor_msgs/msg/LaserScan | Count: 58 | Serialization Format: cdr
+                   Topic: /tf | Type: tf2_msgs/msg/TFMessage | Count: 582 | Serialization Format: cdr
+                   Topic: /tf_static | Type: tf2_msgs/msg/TFMessage | Count: 1 | Serialization Format: cdr
+                   Topic: /wheel/encoders | Type: rover_interfaces/msg/WheelEncoders | Count: 290 | Serialization Format: cdr
+Service:           0
+Service information: 

@@ -2,103 +2,98 @@
 
 ## Current milestone
 
-**Milestone 4 — Implementation and acceptance in progress (2026-09-25).**
+**Milestone 4 — Complete (2026-09-25). No acceptance checks blocked.**
 
-M1–M3 baseline passed before M4 changes: M1 `20260925T193238Z-62607`,
-M2 `20260925T193244Z-acceptance-62657`, M3 `20260925T193319Z-acceptance-62606`.
-M4 adds opt-in native sensors, an explicit count message, and a separate imperfect
-sensor driver. Headless sensors publish; acceptance exposed an overstrict camera
-floating-point comparison, now under retest. No later milestone is implemented.
-The sections below retain the prior M3 completion record pending M4 final results.
-
-Milestones 1 and 2 were rerun successfully before implementation and again after
-rebuilding the images. Only Milestone 3 was implemented in this task.
+Milestones 1–3 passed before implementation and again on the rebuilt image.
+Only M4 was implemented. [Evidence index](evidence/milestone-4/README.md) links
+measurements, logs, rosbag, replay results, RViz screenshot and retained failures.
 
 ## Current state
 
-The differential-drive rover accepts ROS 2 `geometry_msgs/Twist` commands on
-`/cmd_vel`. Gazebo's drive plugin moves the wheel joints; actual joint angles are
-bridged to `/joint_states`. A small wheel-only estimator integrates those angles
-into `/odom` and `odom -> base_link`, accounting for the axle 0.14 m ahead of the
-chassis centre. `robot_state_publisher` supplies wheel and fixed-link transforms.
-No Gazebo pose is bridged into ROS or consumed by the estimator.
+The opt-in M4 stack publishes native Gazebo 2D LiDAR and RGB camera observations,
+raw IMU measurements with explicit noise/bias, and a separate stamped encoder
+count interface. Every stream has a documented frame and simulation-time rate.
 
-The live tree is `odom -> base_link -> left_wheel/right_wheel/rear_support/parcel_tray`.
-`map -> odom` remains absent until localization. RViz shows the robot model,
-coordinate frames/tree and wheel-odometry arrows in the existing browser desktop.
-Keyboard teleoperation is available in its xterm window. All nodes use simulation
-time; communication stays inside one container.
+| Interface | Type | Rate | Frame |
+| --- | --- | --- | --- |
+| `/scan` | sensor_msgs/LaserScan | 10 Hz | lidar_link |
+| `/camera/image_raw` | sensor_msgs/Image (320×240 RGB8) | 10 Hz | camera_optical_frame |
+| `/camera/camera_info` | sensor_msgs/CameraInfo | 10 Hz | camera_optical_frame |
+| `/imu/data_raw` | sensor_msgs/Imu | 100 Hz | imu_link |
+| `/wheel/encoders` | rover_interfaces/WheelEncoders | 50 Hz | base_link; explicit wheel joint names |
 
-The desktop is running with the rover stopped after verification. Open
-[the local desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
-The final scene includes the keyboard/acceptance route. Repeat the launcher below
-for a fresh initial scene. Stop with `docker compose stop desktop`.
+Encoders use 2048 decoded counts/wheel revolution and signed cumulative counts
+since driver startup. IMU and encoder delivery have a minimum modeled 10 ms delay;
+headers preserve acquisition stamps. Native IMU orientation is dropped before ROS
+publication and explicitly marked unavailable. The new driver publishes no pose,
+TF, odometry or commands. Sensor mounts add no physical mass or collision.
+
+M3 `wheel_odometry` source is unchanged and still consumes only `/joint_states`
+and clock. It owns `/odom` and `odom -> base_link`; robot_state_publisher owns all
+mechanical and sensor transforms. There is no `map -> odom` or localization/fusion.
+Simulator pose/native odometry is not bridged to ROS. Ground truth stays a test oracle.
 
 ## Acceptance results
 
-| Check | Result | Evidence |
-| --- | --- | --- |
-| M1 before implementation | PASS: 101 clock messages | `evidence/milestone-1/20260925T185759Z-59476/result.json` |
-| M2 before implementation | PASS: three fresh starts, identical initial/settled poses, duplicate guard | `evidence/milestone-2/20260925T185803Z-acceptance-59475/` |
-| Rebuilt container images | PASS; dependencies stay inside Linux | `evidence/milestone-3/build.log` |
-| M1/M2 regression after rebuild | PASS | `evidence/milestone-1/20260925T190822Z-60584/`, `evidence/milestone-2/20260925T190828Z-acceptance-60583/` |
-| Wheel-integration maths | PASS: five independent analytic cases | Final headless `unit.log` |
-| Headless motion, wheel feedback, odometry and TF | PASS: forward/reverse/left/right/arc/zero, 601 odom messages at 50 Hz, complete tree, matched timestamps and wheel rotations, single authorities | `evidence/milestone-3/20260925T191023Z-acceptance-60960/` |
-| Browser keyboard to actual ROS motion | PASS: `i` -> 0.2 m/s, `k` -> zero; 0.413 m travel, final zero speed | Final desktop `keyboard.json` |
-| Motion acceptance with GUI and RViz running | PASS | Final desktop `desktop-check/result.json` |
-| RViz visual evidence | PASS: robot, labels/axes, transform tree and odom trail; global/TF OK | Final desktop `rviz-browser.png` |
-| Documentation, frame contract, real-hardware boundary | Complete | Setup guide, concept note, ADR 0003 |
+- **Baseline M1–M3:** clock smoke, three deterministic loads/duplicate guard,
+  five odometry analytic tests, forward/reverse/turn/arc/zero route and TF passed.
+- **Rebuilt-image regression:** M1–M3 passed. An M2 stepping timeout during concurrent
+  rendering was retained; the isolated rerun passed without changing its thresholds.
+- **Fresh M4 test:** `evidence/milestone-4/20260925T194706Z-acceptance-65403/`.
+  All stream frame/timestamp/rate checks passed, with camera calibration pairing,
+  LiDAR surface ranges/occlusion, stationary IMU statistics, physical turn response,
+  signed encoder motion and 514 matched joint/count acquisitions.
+- **Measured noise:** LiDAR σ=9.36 mm versus 10 mm configured; IMU gyro σ=.002005
+  rad/s versus .002 configured. IMU z acceleration mean=9.8387 m/s² versus 9.84
+  expected with bias. These are nominal checks, not calibration.
+- **Rosbag:** 5.878 simulation seconds, 14.2 MiB, 8,107 total messages. Isolated
+  replay received all recorded sensor samples: 587 IMU, 293 encoders, 59 RGB,
+  59 CameraInfo and 58 scans. Decoded fields/image bytes and timestamps matched;
+  static/dynamic TF resolved correctly.
+- **Desktop:** sensor acceptance passed; actual RViz screenshot shows Global,
+  LiDAR and RGB status OK. IMU, encoder and calibration samples are retained.
+- **Documentation:** setup, concept notes, architecture and accepted ADR 0004 updated.
 
-Final desktop evidence directory:
-`evidence/milestone-3/20260925T190959Z-launch-60871/`.
-[Full evidence index](evidence/milestone-3/README.md) includes logs, hashes, image
-identity, measurements and retained failures.
-
-## Findings and limitations
-
-- Wheel odometry is not ground truth. The final headless route differed from
-  Gazebo pose by up to **2.62 cm and 0.1754 rad (10.1 degrees)**; desktop results
-  were similar. The nominal test budgets are 10 cm / 0.20 rad. An initial 0.08 rad
-  heading budget failed; the rolling-model/physics mismatch remains reported,
-  not corrected with privileged pose. Finite-width contact/slip is a likely cause.
-- A test startup race queried the tray before static TF arrived. Acceptance now
-  waits for every required transform; subsequent headless and desktop runs passed.
-- Covariance values are nonzero placeholders, not calibrated sensor uncertainty.
-  The estimate is planar and ignores chassis bounce, pitch and roll. The odom
-  origin is at nominal chassis height; RViz's floor grid is 0.24 m below it.
-- Gazebo DiffDrive is ideal actuation. Explicit zero Twist stops motion, but there
-  is **no command watchdog, e-stop, motor PID or low-level safety implementation**.
-  Key release or browser disconnection is not a stop. Those features belong to M5.
-- Reset by restarting the complete launcher. In-place Gazebo time resets are
-  unsupported because the wheel estimator rejects backwards timestamps.
-- KDL root-inertia and software-rendering warnings are documented. They did not
-  prevent correct TF, physics checks or the inspected rendering.
-- The supported environment remains Ubuntu 24.04 ARM64 / ROS 2 Jazzy / Gazebo
-  Harmonic on the existing Docker Desktop. Image IDs and package manifests are
-  recorded; apt versions are not fully pinned. Browser port stays on localhost.
-
-## Repeat Milestone 3
+## Repeat
 
 ```bash
 docker compose --profile gui build robotics desktop
-./scripts/smoke-test.sh
-./scripts/test-milestone-2.sh
-./scripts/test-milestone-3.sh
-./scripts/launch-milestone-3.sh gui
+./scripts/test-milestone-4.sh
+./scripts/launch-milestone-4.sh gui
 ```
 
-In the browser, click inside the teleop terminal: `i` forward, `,` reverse,
-`j/l` turn, `k` stop. See [setup and inspection commands](docs/setup.md),
-[ROS/TF/odometry concepts](docs/concepts/teleop-tf-odometry.md), and
-[ADR 0003](docs/decisions/0003-wheel-feedback-and-tf.md).
+[Open the local desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
+Final desktop evidence: `evidence/milestone-4/20260925T194850Z-launch-66034/`.
+The rover is stopped after verification. RViz displays scans, the RGB view, TF
+and wheel odometry. Keyboard teleop remains available: `i` forward, `,` reverse,
+`j/l` turn, `k` explicit stop. Stop the desktop with `docker compose stop desktop`.
+Headless live launch: `./scripts/launch-milestone-4.sh headless`.
 
-## Scope boundary
+See [setup and bag commands](docs/setup.md), [sensor concepts and contracts](docs/concepts/sensors.md),
+[architecture](docs/architecture.md), and [ADR 0004](docs/decisions/0004-sensor-contracts-and-simulation-boundary.md).
+M2 and M3 launch/test commands remain available as earlier baselines.
 
-Milestone 4 sensors and Milestone 5 firmware safety have not begun. There is no
-LiDAR, camera, IMU, encoder noise/quantization model, mapping, localization,
-navigation or perception. Gazebo pose is a test oracle only. No new macOS software,
-external publication, Git commit or push was performed. Existing unrelated
-containers and the Mininet VM were not modified.
+## Findings and boundaries
 
-Prior milestone records remain in [M1 evidence](evidence/milestone-1/README.md),
-[M2 evidence](evidence/milestone-2/README.md), and ADRs 0001–0002.
+- The LiDAR plane is about 0.58 m above the floor, so it misses low crates while
+  the camera can see them. The table blocks rays to the wall behind it. Both
+  properties are checked; no privileged obstacle list fills sensor blind spots.
+- Whole-run rates include discovery/startup losses: final headless IMU 94.38 Hz,
+  encoder 49.52 Hz, rendered streams about 10.03 Hz. The desktop stationary window
+  measured 100/50 Hz. Rendering is CPU based; wall-time throughput differs.
+- Native rendering/transport age reached ~206 ms. The 10 ms modeled driver delay
+  is not an end-to-end guarantee. Replay uses deeper verifier queues and hashes
+  image bytes efficiently; CDR padding is excluded from semantic comparison.
+- Noise/bias/covariance values are initial assumptions. No rolling shutter,
+  spinning-scan distortion, material multipath, thermal drift, missed pulses or
+  hardware counter rollover is modeled. Full launch restart is the reset contract.
+- Wheel odometry remains an imperfect planar rolling estimate with the M3 drift
+  limitations. Encoder quantization does not measure or correct wheel slip.
+- No mapping, localization, navigation, perception, motor PID, watchdog or e-stop
+  was implemented. Gazebo DiffDrive remains ideal actuation. Key release/browser
+  disconnection does not stop a persistent command; use explicit `k`/zero Twist.
+- No host software was installed, no Git commit/push or external publication made.
+  Changes remain local. The repository initially contained untracked project files.
+
+Prior records: [M1](evidence/milestone-1/README.md), [M2](evidence/milestone-2/README.md),
+[M3](evidence/milestone-3/README.md), ADRs 0001–0003.

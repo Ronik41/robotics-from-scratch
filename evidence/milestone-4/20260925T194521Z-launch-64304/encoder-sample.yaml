@@ -1,0 +1,15 @@
+header:
+  stamp:
+    sec: 52
+    nanosec: 600000000
+  frame_id: base_link
+sample_index: 2603
+sample_period:
+  sec: 0
+  nanosec: 20000000
+left_joint_name: left_wheel_joint
+right_joint_name: right_wheel_joint
+counts_per_revolution: 2048
+left_count: 0
+right_count: 0
+---

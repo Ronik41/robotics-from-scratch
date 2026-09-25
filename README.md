@@ -48,4 +48,17 @@ docker compose --profile gui build robotics desktop
 Click the teleop terminal: `i` forward, `,` reverse, `j/l` turn, `k` stop.
 [Setup and checks](docs/setup.md) · [Frame/odometry concepts](docs/concepts/teleop-tf-odometry.md)
 · [Verified evidence](evidence/milestone-3/README.md). Wheel odometry drifts;
-watchdog/e-stop and sensors remain later milestones.
+watchdog/e-stop remain later milestones.
+
+
+Milestone 4 adds native simulated LiDAR, RGB camera, raw IMU and explicit wheel
+encoder counts, with frame/rate/noise contracts and rosbag recording/replay:
+
+```bash
+docker compose --profile gui build robotics desktop
+./scripts/test-milestone-4.sh
+./scripts/launch-milestone-4.sh gui
+```
+
+[Sensor concepts](docs/concepts/sensors.md) · [M4 evidence](evidence/milestone-4/README.md).
+No mapping, localization, navigation, perception or low-level safety is implemented.

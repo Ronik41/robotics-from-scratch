@@ -1,0 +1,25 @@
+{
+  "models": [
+    "crate_a",
+    "crate_b",
+    "delivery_pad",
+    "delivery_rover",
+    "east_wall",
+    "floor",
+    "north_wall",
+    "pickup_pad",
+    "sorting_table",
+    "south_wall",
+    "west_wall"
+  ],
+  "initial_pose_xyz_xyzw": [
+    -2.5,
+    -1.5,
+    0.25,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "status": "STARTED_M4"
+}

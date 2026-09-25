@@ -1,6 +1,6 @@
 # Development environment
 
-Milestones 1–3 use Docker Desktop on Apple Silicon, Ubuntu 24.04 ARM64,
+Milestones 1–4 use Docker Desktop on Apple Silicon, Ubuntu 24.04 ARM64,
 ROS 2 Jazzy, and Gazebo Harmonic. See [the decision](decisions/0001-ros-gazebo-environment.md).
 
 ## Prerequisites
@@ -369,7 +369,7 @@ stack. It checks:
   no native pose topic and no map frame.
 - A short MCAP bag includes all sensors, clock, static/dynamic TF, joint states,
   odometry and robot description. A fresh container in ROS domain 43 actually
-  replays it, checks matching serialized payloads, at least 90% delivery per sensor
+  replays it, checks matching decoded message fields and image bytes, at least 90% delivery per sensor
   and usable sensor TF paths. Recording is stopped cleanly with SIGINT.
 
 Observed ROS-clock age allows -0.15 to +0.5 s because independent subscription

@@ -1,0 +1,8 @@
+[
+  "ros2",
+  "launch",
+  "/workspace/simulation/launch/teleop.launch.py",
+  "urdf:=/workspace/evidence/milestone-4/20260925T194850Z-launch-66034/rover.urdf",
+  "rviz:=true",
+  "sensors:=true"
+]

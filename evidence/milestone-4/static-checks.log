@@ -1,0 +1,10 @@
+['python3', '-m', 'compileall', '-q', 'scripts', 'src', 'tests', 'simulation/launch']: exit 0
+['docker', 'compose', 'config', '--quiet']: exit 0
+['bash', '-n', 'scripts/launch-milestone-3.sh']: exit 0
+['bash', '-n', 'scripts/test-milestone-4.sh']: exit 0
+['bash', '-n', 'scripts/test-milestone-3.sh']: exit 0
+['bash', '-n', 'scripts/launch-rover.sh']: exit 0
+['bash', '-n', 'scripts/launch-milestone-4.sh']: exit 0
+['bash', '-n', 'scripts/test-milestone-2.sh']: exit 0
+['bash', '-n', 'scripts/ros-entrypoint.sh']: exit 0
+['bash', '-n', 'scripts/smoke-test.sh']: exit 0

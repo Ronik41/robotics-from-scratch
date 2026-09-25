@@ -1,0 +1,34 @@
+desktop-1  | The XKEYBOARD keymap compiler (xkbcomp) reports:
+desktop-1  | > Warning:          Could not resolve keysym XF86CameraAccessEnable
+desktop-1  | > Warning:          Could not resolve keysym XF86CameraAccessDisable
+desktop-1  | > Warning:          Could not resolve keysym XF86CameraAccessToggle
+desktop-1  | > Warning:          Could not resolve keysym XF86NextElement
+desktop-1  | > Warning:          Could not resolve keysym XF86PreviousElement
+desktop-1  | > Warning:          Could not resolve keysym XF86AutopilotEngageToggle
+desktop-1  | > Warning:          Could not resolve keysym XF86MarkWaypoint
+desktop-1  | > Warning:          Could not resolve keysym XF86Sos
+desktop-1  | > Warning:          Could not resolve keysym XF86NavChart
+desktop-1  | > Warning:          Could not resolve keysym XF86FishingChart
+desktop-1  | > Warning:          Could not resolve keysym XF86SingleRangeRadar
+desktop-1  | > Warning:          Could not resolve keysym XF86DualRangeRadar
+desktop-1  | > Warning:          Could not resolve keysym XF86RadarOverlay
+desktop-1  | > Warning:          Could not resolve keysym XF86TraditionalSonar
+desktop-1  | > Warning:          Could not resolve keysym XF86ClearvuSonar
+desktop-1  | > Warning:          Could not resolve keysym XF86SidevuSonar
+desktop-1  | > Warning:          Could not resolve keysym XF86NavInfo
+desktop-1  | Errors from xkbcomp are not fatal to the X server
+desktop-1  | Desktop ready: http://localhost:6080/vnc.html?autoconnect=true&resize=scale
+desktop-1  | Xlib:  extension "DPMS" missing on display ":99".
+desktop-1  | 
+desktop-1  | The VNC desktop is:      localhost:0
+desktop-1  | PORT=5900
+desktop-1  | Openbox-Message: Unable to find a valid menu file "/var/lib/openbox/debian-menu.xml"
+desktop-1  | WebSocket server settings:
+desktop-1  |   - Listen on :6080
+desktop-1  |   - Web server. Web root: /usr/share/novnc
+desktop-1  |   - No SSL/TLS support (no cert file)
+desktop-1  |   - proxying from :6080 to 127.0.0.1:5900
+desktop-1  | [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="delivery_rover"]/link[@name="base_link"]/sensor[@name="rgb_camera"]/gz_frame_id:/workspace/evidence/milestone-4/20260925T194850Z-launch-66034/rover.urdf:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+desktop-1  | [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="delivery_rover"]/link[@name="base_link"]/sensor[@name="imu"]/gz_frame_id:/workspace/evidence/milestone-4/20260925T194850Z-launch-66034/rover.urdf:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+desktop-1  | [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="delivery_rover"]/link[@name="base_link"]/sensor[@name="lidar"]/gz_frame_id:/workspace/evidence/milestone-4/20260925T194850Z-launch-66034/rover.urdf:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+desktop-1  | {"models": ["crate_a", "crate_b", "delivery_pad", "delivery_rover", "east_wall", "floor", "north_wall", "pickup_pad", "sorting_table", "south_wall", "west_wall"], "initial_pose_xyz_xyzw": [-2.5, -1.5, 0.25, 0.0, 0.0, 0.0, 1.0], "status": "STARTED_M4"}

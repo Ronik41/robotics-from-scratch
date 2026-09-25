@@ -4,12 +4,9 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Live coordinate frames1
-        - /Live coordinate frames1/Frames1
-        - /Live coordinate frames1/Tree1
-        - /Live coordinate frames1/Tree1/odom1
-        - /Live coordinate frames1/Tree1/odom1/base_link1
-      Splitter Ratio: 0.5
+        - /LiDAR measured ranges1
+        - /RGB camera1
+      Splitter Ratio: 0.65
     Tree Height: 627
   - Class: rviz_common/Views
     Expanded:

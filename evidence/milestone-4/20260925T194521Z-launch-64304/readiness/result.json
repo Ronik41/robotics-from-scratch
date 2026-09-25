@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "stationary": {
+    "lidar_east_mean_m": 6.236792548497518,
+    "lidar_noise_stddev_m": 0.007891960686027854,
+    "imu_accel_z_mean": 9.83867203350001,
+    "imu_gyro_z_mean": 0.0030125271352561566,
+    "imu_gyro_z_stddev": 0.0019997650380426998,
+    "synchronized_camera_samples": 30
+  },
+  "interfaces": {
+    "/scan": {
+      "messages": 43,
+      "rate_hz_sim": 10.079193664506839,
+      "frame": "lidar_link",
+      "first_stamp_ns": 533000000,
+      "last_stamp_ns": 4700000000,
+      "observed_age_s_min_max": [
+        0.021,
+        0.047
+      ]
+    },
+    "/camera/image_raw": {
+      "messages": 43,
+      "rate_hz_sim": 10.079193664506839,
+      "frame": "camera_optical_frame",
+      "first_stamp_ns": 533000000,
+      "last_stamp_ns": 4700000000,
+      "observed_age_s_min_max": [
+        0.012,
+        0.036000000000000004
+      ]
+    },
+    "/camera/camera_info": {
+      "messages": 44,
+      "rate_hz_sim": 10.077337707991564,
+      "frame": "camera_optical_frame",
+      "first_stamp_ns": 533000000,
+      "last_stamp_ns": 4800000000,
+      "observed_age_s_min_max": [
+        0.0,
+        0.008
+      ]
+    },
+    "/imu/data_raw": {
+      "messages": 319,
+      "rate_hz_sim": 100.0,
+      "frame": "imu_link",
+      "first_stamp_ns": 1610000000,
+      "last_stamp_ns": 4790000000,
+      "observed_age_s_min_max": [
+        0.007,
+        0.016
+      ]
+    },
+    "/wheel/encoders": {
+      "messages": 159,
+      "rate_hz_sim": 50.0,
+      "frame": "base_link",
+      "first_stamp_ns": 1620000000,
+      "last_stamp_ns": 4780000000,
+      "observed_age_s_min_max": [
+        0.008,
+        0.014
+      ]
+    }
+  },
+  "encoders": {
+    "matched_samples": 159,
+    "resolution_counts_per_rev": 2048,
+    "max_angle_error_rad": 0.0015339807878856412
+  }
+}
