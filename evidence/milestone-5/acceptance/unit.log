@@ -1,0 +1,14 @@
+test_estop_latch_release_reset_no_replay (test_motor_control.FirmwareTests.test_estop_latch_release_reset_no_replay) ... ok
+test_feedback_changes_effort_without_changing_target (test_motor_control.FirmwareTests.test_feedback_changes_effort_without_changing_target) ... ok
+test_missing_bad_and_reordered_encoder (test_motor_control.FirmwareTests.test_missing_bad_and_reordered_encoder) ... ok
+test_quantized_closed_loop_forward_reverse_turn (test_motor_control.FirmwareTests.test_quantized_closed_loop_forward_reverse_turn) ... ok
+test_reset_refused_while_moving_or_feedback_stale (test_motor_control.FirmwareTests.test_reset_refused_while_moving_or_feedback_stale) ... ok
+test_saturation_acceleration_and_antiwindup (test_motor_control.FirmwareTests.test_saturation_acceleration_and_antiwindup) ... ok
+test_stale_duplicate_future_nonfinite_wrong_frame_axes (test_motor_control.FirmwareTests.test_stale_duplicate_future_nonfinite_wrong_frame_axes) ... ok
+test_timeout_stops_without_new_feedback_and_wall_clock (test_motor_control.FirmwareTests.test_timeout_stops_without_new_feedback_and_wall_clock) ... ok
+test_zero_command_brakes_and_clears_integral (test_motor_control.FirmwareTests.test_zero_command_brakes_and_clears_integral) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.036s
+
+OK

@@ -1,0 +1,49 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-20-11-40-319691-7b4cd6a5dbd0-66
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [116]
+[INFO] [parameter_bridge-2]: process started with pid [117]
+[INFO] [robot_state_publisher-3]: process started with pid [118]
+[INFO] [python3-4]: process started with pid [119]
+[INFO] [python3-5]: process started with pid [120]
+[robot_state_publisher-3] [WARN] [1790367100.523154261] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1790367100.523293678] [robot_state_publisher]: Robot initialized
+[python3-1] [INFO] [1790367101.072549470] [sim_firmware]: Firmware limits: {"radius": 0.14, "track": 0.48, "max_speed": 4.0, "acceleration": 4.0, "torque": 2.0, "deadband": 0.04, "kp": 0.45, "ki": 0.8, "kd": 0.002, "integral_limit": 1.2, "command_timeout": 0.5, "feedback_timeout": 0.2, "wall_timeout": 1.0, "future_tolerance": 0.03}
+[python3-1] [INFO] [1790367101.074452053] [sim_firmware]: Safety state: WAIT_COMMAND
+[parameter_bridge-2] [INFO] [1790367101.589506803] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367101.591601012] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367101.596446720] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367101.597922512] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367101.599898720] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367101.600960928] [rover_bridge]: Creating GZ->ROS Bridge: [/motor/driver_state (gz.msgs.StringMsg) -> /motor/driver_state (std_msgs/msg/String)] (Lazy 0)
+[python3-1] [INFO] [1790367102.604728637] [sim_firmware]: Safety state: CLOCK_STALLED
+[python3-1] [INFO] [1790367103.397716263] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367103.710138638] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367106.615238083] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367107.240628667] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367110.074362710] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367110.688922460] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367114.330557670] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367114.951241004] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367116.994313588] [sim_firmware]: Safety state: COMMAND_TIMEOUT
+[python3-1] [INFO] [1790367118.370711255] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367119.398386756] [sim_firmware]: Safety state: ESTOP
+[python3-1] [INFO] [1790367121.621967257] [sim_firmware]: Safety state: WAIT_COMMAND
+[python3-1] [INFO] [1790367121.783148507] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367124.045515091] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367125.416941259] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367126.138856842] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367127.517317551] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367128.231899677] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367129.607521469] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367130.319422386] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367131.700211970] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367132.417882929] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367133.814444054] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367135.004255055] [sim_firmware]: Safety state: ENCODER_TIMEOUT
+[python3-1] [INFO] [1790367135.684260472] [sim_firmware]: Safety state: COMMAND_TIMEOUT
+[python3-1] [INFO] [1790367136.546938958] [sim_firmware]: Safety state: ENCODER_TIMEOUT
+[python3-1] [INFO] [1790367136.574472000] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367137.364867250] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367137.675496875] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367140.756991752] [sim_firmware]: Safety state: COMMAND_TIMEOUT
+[python3-1] [INFO] [1790367142.408186086] [sim_firmware]: Safety state: IDLE

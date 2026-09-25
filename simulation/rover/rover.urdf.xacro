@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="delivery_rover">
+  <xacro:arg name="firmware" default="false"/>
   <xacro:arg name="drive" default="false"/>
   <xacro:arg name="sensors" default="false"/>
   <!-- SI units. base_link: body centre, x forward, y left, z up. -->
@@ -79,6 +80,7 @@
   <!-- Opt in to M3; the M2 passive baseline stays unchanged. -->
   <xacro:if value="$(arg drive)">
     <gazebo>
+      <xacro:unless value="$(arg firmware)">
       <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
         <left_joint>left_wheel_joint</left_joint><right_joint>right_wheel_joint</right_joint>
         <wheel_separation>${track}</wheel_separation><wheel_radius>${wheel_radius}</wheel_radius>
@@ -87,6 +89,10 @@
         <odom_topic>/model/delivery_rover/unused_native_odom</odom_topic>
         <tf_topic>/model/delivery_rover/unused_native_tf</tf_topic>
       </plugin>
+      </xacro:unless>
+      <xacro:if value="$(arg firmware)">
+        <plugin filename="librover_motor_driver.so" name="rover::MotorDriver"/>
+      </xacro:if>
       <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
         <topic>/model/delivery_rover/joint_state</topic>
         <joint_name>left_wheel_joint</joint_name><joint_name>right_wheel_joint</joint_name>

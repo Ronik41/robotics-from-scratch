@@ -66,3 +66,40 @@ runs without Gazebo or sensor drivers in ROS domain 43. Test processes may use
 room geometry and simulator pose as an oracle; autonomy must never subscribe to
 those privileged outputs. [ADR 0004](decisions/0004-sensor-contracts-and-simulation-boundary.md)
 records the design boundary and alternatives.
+
+## Implemented in Milestone 5
+
+M5 is selected with `--firmware --sensors --drive` (or its dedicated launcher).
+Earlier launch modes retain their original interfaces for regression testing.
+
+```text
+/cmd_vel (TwistStamped, base_link, acquisition stamp)
+    -> sim_firmware [validation, wheel ramp, PID, watchdog, e-stop]
+       ^ /wheel/encoders (M4 quantized/delayed counts)
+       |                                    |
+       |                 native /motor/effort [timestamp, L Nm, R Nm, mode]
+       |                                    v
+       |                    rover::MotorDriver [independent lease + latch]
+       |                                    |
+       |                              torque + deadband / brake
+       |                                    v
+       +----- sim_sensor_driver <------ Gazebo joint physics
+
+/safety/estop + /safety/reset -> sim_firmware -> motor latch/reset protocol
+/firmware/state <- sim_firmware       /motor/driver_state <- MotorDriver
+```
+
+`bridge-firmware.yaml` contains no body-velocity command bridge. The M5 model
+contains no DiffDrive. The motor plugin is the sole wheel-effort writer and reads
+joint speed only to implement its physical damping-brake model. Firmware has no
+Gazebo state subscription and derives velocity exclusively from encoder counts.
+Native driver telemetry is bridged for inspection, not controller feedback.
+Firmware is a separate Linux process modeling the MCU role; driver watchdog checks
+run inside Gazebo even when that process is suspended. All runtime components
+still use simulation time for data acquisition and physics progression, with
+additional monotonic receive deadlines for stalls.
+
+Wheel odometry, TF and sensor ownership remain as in M3/M4. No map, localization,
+planner or perception node is added. Simulator pose remains available only to
+acceptance processes. See [controller contracts and hardware gaps](concepts/firmware-safety.md)
+and [ADR 0005](decisions/0005-encoder-pid-and-independent-motor-watchdog.md).

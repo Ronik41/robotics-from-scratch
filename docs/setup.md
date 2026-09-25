@@ -423,3 +423,110 @@ recreates only this project's desktop. No new macOS software is needed.
   topics and `--use-sim-time`, and stop recording gracefully. Inspect `record.log`.
 - **Camera calibration almost equal values:** focal lengths use floating point;
   compare with a small numerical tolerance, not exact equality.
+
+## Milestone 5: simulated firmware and motor safety
+
+M5 adds a compiled simulation motor driver inside the Docker images. Rebuild both
+images when its C++ source changes. Python control/launch changes load on restart.
+
+```bash
+docker compose --profile gui build robotics desktop
+./scripts/smoke-test.sh
+./scripts/test-milestone-2.sh
+./scripts/test-milestone-3.sh
+./scripts/test-milestone-4.sh
+./scripts/test-milestone-5.sh
+./scripts/launch-milestone-5.sh gui
+```
+
+[Open the desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
+Gazebo, RViz, keyboard teleop and a read-only motor safety monitor run together.
+M5 teleop uses **TwistStamped** with simulation time and `base_link` frame. A key
+press issues a request that expires after 0.5 simulation seconds unless new key
+events arrive. There is no background command repetition; key release/browser
+loss stops renewing intent. `k` sends zero and engages braking. Do not use the old
+M3/M4 unstamped commands against M5. The old launchers remain available, and their
+lack of safety controls is still documented above.
+
+Headless: `./scripts/launch-milestone-5.sh headless`. Stop the desktop with
+`docker compose stop desktop`. Reset the scenario by relaunching the full stack;
+do not use Gazebo's in-place time reset.
+
+### Inspect and exercise the safety boundary
+
+These commands target the existing desktop container. Stop interactive driving
+before using another command source. ROS CLI fills `stamp: now` from its clock
+on each publication; `use_sim_time` is required.
+
+```bash
+# A short request; timeout brakes automatically after its 0.5 s lease.
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic pub --once /cmd_vel geometry_msgs/msg/TwistStamped '{header: {stamp: now, frame_id: base_link}, twist: {linear: {x: 0.2}}}' --use-sim-time
+
+# Assert e-stop (latched in firmware and driver).
+docker compose exec -T desktop /ros_entrypoint.sh ros2 service call /safety/estop std_srvs/srv/SetBool '{data: true}'
+
+# Release the input; this deliberately leaves the latch set.
+docker compose exec -T desktop /ros_entrypoint.sh ros2 service call /safety/estop std_srvs/srv/SetBool '{data: false}'
+
+# Keep zero intent fresh while resetting (run this in terminal A, Ctrl-C afterwards).
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic pub --rate 10 /cmd_vel geometry_msgs/msg/TwistStamped '{header: {stamp: now, frame_id: base_link}}' --use-sim-time
+
+# Terminal B: reset after encoder speeds are stationary. Check success in the reply.
+docker compose exec -T desktop /ros_entrypoint.sh ros2 service call /safety/reset std_srvs/srv/Trigger '{}'
+
+# Independent diagnostic streams:
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic echo --once /firmware/state
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic echo --once /motor/driver_state
+```
+
+Reset needs a released stop input, fresh zero command and fresh encoder speeds
+below 0.15 rad/s. The driver also checks stationary wheels and a disabled frame.
+It returns to WAIT_COMMAND; a new nonzero request is required to move. A zero
+publisher left running can compete with teleop, so stop it before driving again.
+
+### Acceptance and troubleshooting
+
+`test-milestone-5.sh` runs deterministic core tests, then a fresh Gazebo scenario.
+It verifies forward/reverse/turn tracking, 4 rad/s target saturation, 4 rad/s²
+requested ramps and 2 N m torque bounds; physical timeout/e-stop stops; latch and
+reset refusal/recovery; stale, future, nonfinite, wrong-frame and unsupported-axis
+requests; missing encoders; frozen firmware; and native driver deadband plus
+malformed/stale/over-limit effort rejection. Simulator pose is used only by the
+test. Torque saturation and anti-windup are tested with deterministic locked wheels.
+The live nominal tracking check uses averages over the final 0.6 simulation seconds
+and a 0.15 rad/s error tolerance, accounting for count quantization.
+
+Timeout must be observed within 0.65 simulation seconds after the streaming phase
+ends, with less than 0.5 m total subsequent motion from the maximum wheel
+request on this floor. E-stop travel from the nominal 0.2 m/s case must be under
+0.12 m. After settling, every fault-stop check requires less than 5 mm of motion
+over 0.5 s and wheel speed below 0.1 rad/s. These are nominal simulation acceptance
+budgets, not guaranteed stopping distances under other loads/surfaces or hardware.
+
+Run the same motion/command/e-stop checks in a fresh visible desktop:
+
+```bash
+docker compose exec -T desktop /ros_entrypoint.sh python3 tests/check_milestone_5.py --existing --evidence /workspace/evidence/milestone-5/desktop-acceptance
+```
+
+The `--existing` variant omits process suspension and native effort injection to
+leave the desktop running. Headless acceptance covers those faults in its isolated
+container. Do not enter keyboard commands during the test.
+
+- **WAIT_COMMAND / IDLE:** expected startup/reset / explicit-zero states.
+- **INVALID_COMMAND:** inspect stamp, frame, finite values, unsupported axes and
+  duplicate publishers. Malformed input brakes and increments the counter.
+- **ENCODER_TIMEOUT / INVALID_ENCODER:** inspect `/wheel/encoders`, its acquisition
+  stamps and driver process. A new command cannot substitute for missing feedback.
+- **CLOCK_STALLED:** physics or ROS clock delivery stopped advancing; restart the
+  full launch if needed. The independent motor lease also expires.
+- **ESTOP after releasing input:** intentional. Send fresh zero, wait stationary,
+  then call reset and inspect its response.
+- **Stale firmware telemetry + driver WATCHDOG:** the controller stopped executing;
+  the driver independently brakes. Read both telemetry timestamps/ages.
+- **Plugin cannot load:** rebuild both images and check the runtime `gazebo.log`;
+  a superficially running ROS process is not acceptance evidence.
+
+See [firmware concepts and full contracts](concepts/firmware-safety.md),
+[ADR 0005](decisions/0005-encoder-pid-and-independent-motor-watchdog.md), and
+[M5 evidence](../evidence/milestone-5/README.md).

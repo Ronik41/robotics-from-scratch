@@ -1,0 +1,54 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-25-20-14-41-624254-d5957e6441cd-56
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [173]
+[INFO] [parameter_bridge-2]: process started with pid [174]
+[INFO] [robot_state_publisher-3]: process started with pid [175]
+[INFO] [python3-4]: process started with pid [176]
+[INFO] [python3-5]: process started with pid [177]
+[INFO] [rviz2-6]: process started with pid [178]
+[INFO] [xterm-7]: process started with pid [179]
+[INFO] [xterm-8]: process started with pid [180]
+[rviz2-6] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[robot_state_publisher-3] [WARN] [1790367282.027109387] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1790367282.027294137] [robot_state_publisher]: Robot initialized
+[rviz2-6] [INFO] [1790367282.708495887] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-6] [INFO] [1790367282.716526346] [rviz2]: OpenGl version: 4.5 (GLSL 4.5)
+[rviz2-6] [INFO] [1790367282.835501554] [rviz2]: Stereo is NOT SUPPORTED
+[python3-1] [INFO] [1790367283.090331262] [sim_firmware]: Firmware limits: {"radius": 0.14, "track": 0.48, "max_speed": 4.0, "acceleration": 4.0, "torque": 2.0, "deadband": 0.04, "kp": 0.45, "ki": 0.8, "kd": 0.002, "integral_limit": 1.2, "command_timeout": 0.5, "feedback_timeout": 0.2, "wall_timeout": 1.0, "future_tolerance": 0.03}
+[python3-1] [INFO] [1790367283.093258554] [sim_firmware]: Safety state: WAIT_COMMAND
+[parameter_bridge-2] [INFO] [1790367283.174854887] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367283.176514554] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367283.179750679] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367283.180957054] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367283.182655262] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790367283.184064346] [rover_bridge]: Creating GZ->ROS Bridge: [/motor/driver_state (gz.msgs.StringMsg) -> /motor/driver_state (std_msgs/msg/String)] (Lazy 0)
+[rviz2-6] [INFO] [1790367283.262223054] [rviz2]: Stereo is NOT SUPPORTED
+[python3-1] [INFO] [1790367284.186238513] [sim_firmware]: Safety state: CLOCK_STALLED
+[rviz2-6] [INFO] [1790367305.918998801] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 0.204 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[python3-1] [INFO] [1790367339.972863969] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367340.847167845] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367348.106776376] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367349.877384210] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367357.135766088] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367358.955133422] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367374.724627222] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367377.458376333] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367384.379691628] [sim_firmware]: Safety state: COMMAND_TIMEOUT
+[python3-1] [INFO] [1790367391.971461465] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367395.398372134] [sim_firmware]: Safety state: ESTOP
+[python3-1] [INFO] [1790367403.725166513] [sim_firmware]: Safety state: WAIT_COMMAND
+[python3-1] [INFO] [1790367404.238284221] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367410.686848085] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367414.232804712] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367418.047860922] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367424.580905592] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367426.364976843] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367430.774251636] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367432.881807387] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367439.665004210] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367443.592760795] [sim_firmware]: Safety state: INVALID_COMMAND
+[python3-1] [INFO] [1790367455.861008926] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790367456.876137843] [sim_firmware]: Safety state: COMMAND_TIMEOUT
+[python3-1] [INFO] [1790367494.056580846] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790367496.206206472] [sim_firmware]: Safety state: CLOCK_STALLED
+[python3-1] [INFO] [1790367525.995549264] [sim_firmware]: Safety state: ESTOP

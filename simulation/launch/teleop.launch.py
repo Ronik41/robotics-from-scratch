@@ -20,9 +20,10 @@ def setup(context):
     right = tree.find("joint[@name='right_wheel_joint']/origin").attrib['xyz'].split()
     radius = float(tree.find("link[@name='left_wheel']/collision/geometry/cylinder").attrib['radius'])
     sensors = LaunchConfiguration("sensors").perform(context) == "true"
+    firmware = LaunchConfiguration("firmware").perform(context) == "true"
     nodes = [
         Node(package='ros_gz_bridge', executable='parameter_bridge', name='rover_bridge',
-             parameters=[{'config_file': str(ROOT / ('simulation/config/bridge-sensors.yaml' if sensors else 'simulation/config/bridge.yaml')), 'use_sim_time': True}]),
+             parameters=[{'config_file': str(ROOT / ('simulation/config/bridge-firmware.yaml' if firmware else 'simulation/config/bridge-sensors.yaml' if sensors else 'simulation/config/bridge.yaml')), 'use_sim_time': True}]),
         Node(package='robot_state_publisher', executable='robot_state_publisher',
              parameters=[{'robot_description': urdf, 'use_sim_time': True, 'publish_frequency': 50.0}]),
         ExecuteProcess(cmd=['python3', str(ROOT / 'src/rover_odometry/node.py'), '--ros-args',
@@ -35,16 +36,26 @@ def setup(context):
         ExecuteProcess(cmd=['xterm', '-T', 'Rover teleop: i forward / comma reverse / j,l turn / k stop',
                             '-fa', 'monospace', '-fs', '11', '-geometry', '80x18+20+560', '-e', 'ros2', 'run', 'teleop_twist_keyboard',
                             'teleop_twist_keyboard', '--ros-args', '-p', 'speed:=0.2', '-p', 'turn:=0.5',
-                            '-p', 'use_sim_time:=true'], condition=IfCondition(LaunchConfiguration('rviz'))),
+                            '-p', 'use_sim_time:=true', *(['-p', 'stamped:=true', '-p', 'frame_id:=base_link'] if firmware else [])], condition=IfCondition(LaunchConfiguration('rviz'))),
     ]
     if sensors:
         nodes.insert(3, ExecuteProcess(cmd=['python3', str(ROOT / 'src/rover_sensors/node.py'),
                                            '--ros-args', '-p', 'use_sim_time:=true']))
+    if firmware:
+        nodes.insert(0, ExecuteProcess(cmd=['python3', str(ROOT / 'src/rover_control/node.py'),
+                                          '--ros-args', '-p', 'use_sim_time:=true',
+                                          '-p', f'wheel_radius:={radius}',
+                                          '-p', f'wheel_separation:={float(left[1])-float(right[1])}']))
+    if firmware:
+        nodes.append(ExecuteProcess(cmd=['xterm', '-T', 'M5 motor safety diagnostics',
+                                         '-fa', 'monospace', '-fs', '10', '-geometry', '82x25+730+450',
+                                         '-e', 'python3', str(ROOT/'scripts/control-monitor.py')],
+                                    condition=IfCondition(LaunchConfiguration('rviz'))))
     # A dead bridge/estimator must not leave a superficially healthy launch behind.
     return [*nodes, *(RegisterEventHandler(OnProcessExit(target_action=node,
-            on_exit=[EmitEvent(event=Shutdown(reason='Required ROS component exited'))])) for node in nodes[:5 if sensors else 4])]
+            on_exit=[EmitEvent(event=Shutdown(reason='Required ROS component exited'))])) for node in nodes[:6 if firmware else 5 if sensors else 4])]
 
 
 def generate_launch_description():
-    return LaunchDescription([DeclareLaunchArgument('urdf'), DeclareLaunchArgument('sensors', default_value='false'), DeclareLaunchArgument('rviz', default_value='false'),
+    return LaunchDescription([DeclareLaunchArgument('urdf'), DeclareLaunchArgument('firmware', default_value='false'), DeclareLaunchArgument('sensors', default_value='false'), DeclareLaunchArgument('rviz', default_value='false'),
                               OpaqueFunction(function=setup)])

@@ -13,3 +13,10 @@ M4 opts into `rover/sensors.xacro`, `config/bridge-sensors.yaml`,
 of the room with Gazebo sensor systems in each evidence directory; M2/M3 still
 use the original world. Native LiDAR/camera require rendering, including headless
 Ogre 2/EGL. See the sensor concept note for mounts and measurement limitations.
+
+
+M5 opts into the firmware argument, `config/bridge-firmware.yaml`, and the compiled
+`rover::MotorDriver` plugin. Its model omits DiffDrive and its bridge omits body
+commands. `scripts/launch-milestone-5.sh` launches this mode with sensors, RViz,
+stamped keyboard teleop and a read-only safety monitor. Earlier modes remain
+regression baselines. See the firmware safety concept note for protocol and limits.

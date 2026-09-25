@@ -15,6 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Compile only the small ROS message package; no host installation.
 COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces
 RUN source /opt/ros/jazzy/setup.bash && cd /opt/rover_interfaces && colcon build --event-handlers console_direct+
+# Compile the simulation motor boundary against the installed Harmonic SDK.
+COPY src/rover_motor_driver /opt/rover_motor_driver/src
+RUN source /opt/ros/jazzy/setup.bash && cmake -S /opt/rover_motor_driver/src -B /opt/rover_motor_driver/build -DCMAKE_INSTALL_PREFIX=/opt/rover_motor_driver && cmake --build /opt/rover_motor_driver/build -j2 && cmake --install /opt/rover_motor_driver/build
+ENV GZ_SIM_SYSTEM_PLUGIN_PATH=/opt/rover_motor_driver/lib
 COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh
 WORKDIR /workspace
 CMD ["bash"]

@@ -32,3 +32,12 @@ M4: `./scripts/test-milestone-4.sh` exercises sensor contracts, scene observatio
 IMU statistics, discrete wheel counts, recording and isolated actual replay.
 `test_sensor_models.py` independently bounds quantization error. See setup and
 `evidence/milestone-4/README.md` for the recorded runs and limitations.
+
+
+Milestone 5: `scripts/test-milestone-5.sh` runs the pure firmware suite plus live
+Gazebo torque/safety acceptance. See `test_motor_control.py` for deterministic
+virtual-clock/quantized-plant tests and `check_milestone_5.py` for actual motion,
+stopping, ROS validation and process-suspension faults. `--existing` omits native
+fault injection and is suitable for an otherwise idle desktop. Test-only Gazebo
+pose never enters firmware. Thresholds and evidence are documented in
+`docs/concepts/firmware-safety.md` and `evidence/milestone-5/README.md`.

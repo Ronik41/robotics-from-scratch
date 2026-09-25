@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "bag_message_counts": {
+    "/clock": 3680,
+    "/tf": 368,
+    "/imu/data_raw": 368,
+    "/odom": 184,
+    "/wheel/encoders": 184,
+    "/robot_description": 1,
+    "/tf_static": 1,
+    "/joint_states": 183,
+    "/camera/camera_info": 37,
+    "/camera/image_raw": 37,
+    "/scan": 36
+  },
+  "replay_unique_messages": {
+    "/imu/data_raw": 368,
+    "/wheel/encoders": 184,
+    "/camera/camera_info": 37,
+    "/camera/image_raw": 37,
+    "/scan": 36
+  },
+  "recorded_unique_messages": {
+    "/imu/data_raw": 368,
+    "/wheel/encoders": 184,
+    "/camera/camera_info": 37,
+    "/camera/image_raw": 37,
+    "/scan": 36
+  },
+  "measurement_span_s": {
+    "/imu/data_raw": 3.6700000000000004,
+    "/wheel/encoders": 3.66,
+    "/camera/camera_info": 3.6,
+    "/camera/image_raw": 3.6,
+    "/scan": 3.5
+  },
+  "payloads_match_recording": true,
+  "isolated_ros_domain": 43
+}

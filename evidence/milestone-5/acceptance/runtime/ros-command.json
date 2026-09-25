@@ -1,0 +1,9 @@
+[
+  "ros2",
+  "launch",
+  "/workspace/simulation/launch/teleop.launch.py",
+  "urdf:=/workspace/evidence/milestone-5/20260925T201133Z-acceptance-71872/runtime/rover.urdf",
+  "rviz:=false",
+  "sensors:=true",
+  "firmware:=true"
+]

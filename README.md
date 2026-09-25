@@ -48,7 +48,7 @@ docker compose --profile gui build robotics desktop
 Click the teleop terminal: `i` forward, `,` reverse, `j/l` turn, `k` stop.
 [Setup and checks](docs/setup.md) · [Frame/odometry concepts](docs/concepts/teleop-tf-odometry.md)
 · [Verified evidence](evidence/milestone-3/README.md). Wheel odometry drifts;
-watchdog/e-stop remain later milestones.
+this historical M3 mode has no watchdog/e-stop.
 
 
 Milestone 4 adds native simulated LiDAR, RGB camera, raw IMU and explicit wheel
@@ -61,4 +61,22 @@ docker compose --profile gui build robotics desktop
 ```
 
 [Sensor concepts](docs/concepts/sensors.md) · [M4 evidence](evidence/milestone-4/README.md).
-No mapping, localization, navigation, perception or low-level safety is implemented.
+This historical M4 mode retains ideal actuation; use M5 for low-level safety.
+
+
+Milestone 5 adds encoder-feedback wheel PID, bounded torque and acceleration
+requests, a command/feedback watchdog, a latched e-stop with explicit reset, and
+an independent simulated motor-driver watchdog:
+
+```bash
+docker compose --profile gui build robotics desktop
+./scripts/test-milestone-5.sh
+./scripts/launch-milestone-5.sh gui
+```
+
+M5 requires stamped commands; a keyboard request expires after 0.5 simulation
+seconds unless refreshed. The desktop includes a live safety-state monitor.
+[Control and safety concepts](docs/concepts/firmware-safety.md) ·
+[Setup and reset commands](docs/setup.md#milestone-5-simulated-firmware-and-motor-safety) ·
+[M5 evidence](evidence/milestone-5/README.md).
+No mapping, localization, Nav2 or perception has been implemented.

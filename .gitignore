@@ -16,3 +16,7 @@ __pycache__/
 media/recordings/
 *.bag
 *.db3
+
+# Fresh timestamped test captures stay local; promote curated evidence explicitly.
+# Previously committed historical evidence remains tracked.
+/evidence/milestone-*/[0-9]*/

@@ -1,0 +1,2 @@
+data: '{"state": "ESTOP", "estop_latched": true, "estop_asserted": true, "target_rad_s": [0.0, 0.0], "ramped_rad_s": [0.0, 0.0], "measured_rad_s": [0.0, 0.0], "effort_nm": [0.0, 0.0], "integral_nm": [0.0, 0.0], "speed_saturated": false, "torque_saturated": false, "command_age_s": 136.519, "encoder_age_s": 0.02600000000001046, "rejected_commands": 5, "rejected_encoders": 1, "sim_time": 193.366}'
+---

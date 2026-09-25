@@ -1,0 +1,202 @@
+{
+  "source_run": "evidence/milestone-5/20260925T200901Z-acceptance-70668",
+  "notes": [
+    "Initial turn settled around 0.61 rad/s against 0.857 requested; integral was clamped at 0.7 Nm. Increased Ki from 0.6 to 0.8 and integral bound to 1.2 Nm; final turn error below 0.03 rad/s.",
+    "Test command source repeated timestamps at phase boundaries; final source only publishes when its acquisition stamp advances. Firmware correctly rejected duplicates.",
+    "Strict equality between received encoder delta time and a single acquisition period rejected feedback after a suspended process missed deliveries. Receiver now permits skipped deliveries and uses cumulative count differences over its measured interval."
+  ],
+  "turn_samples": [
+    {
+      "state": "ACTIVE",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "ramped_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "measured_rad_s": [
+        -0.6135923151542151,
+        0.6135923151542151
+      ],
+      "effort_nm": [
+        -0.8087310013403577,
+        0.8084017562109778
+      ],
+      "integral_nm": [
+        -0.6991355882578494,
+        0.7
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 0.014000000000001123,
+      "encoder_age_s": 0.0129999999999999,
+      "rejected_commands": 8,
+      "rejected_encoders": 0,
+      "sim_time": 9.233
+    },
+    {
+      "state": "ACTIVE",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "ramped_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "measured_rad_s": [
+        -0.6135923151542696,
+        0.6135923151542696
+      ],
+      "effort_nm": [
+        -0.8104913439124424,
+        0.8104141175395256
+      ],
+      "integral_nm": [
+        -0.7,
+        0.7
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 0.019999999999999574,
+      "encoder_age_s": 0.011000000000001009,
+      "rejected_commands": 8,
+      "rejected_encoders": 0,
+      "sim_time": 9.291
+    },
+    {
+      "state": "ACTIVE",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "ramped_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "measured_rad_s": [
+        -0.6135923151542696,
+        0.6135923151542696
+      ],
+      "effort_nm": [
+        -0.8100536622711791,
+        0.8087620318459069
+      ],
+      "integral_nm": [
+        -0.7,
+        0.7
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 0.030000000000001137,
+      "encoder_age_s": 0.027000000000001023,
+      "rejected_commands": 8,
+      "rejected_encoders": 0,
+      "sim_time": 9.347000000000001
+    },
+    {
+      "state": "ACTIVE",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "ramped_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "measured_rad_s": [
+        -0.6135923151542151,
+        0.6135923151542151
+      ],
+      "effort_nm": [
+        -0.8106583443456673,
+        0.809293184110285
+      ],
+      "integral_nm": [
+        -0.7,
+        0.7
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 0.027000000000001023,
+      "encoder_age_s": 0.0129999999999999,
+      "rejected_commands": 8,
+      "rejected_encoders": 0,
+      "sim_time": 9.393
+    },
+    {
+      "state": "ACTIVE",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "ramped_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "measured_rad_s": [
+        -0.6135923151542151,
+        0.6135923151542151
+      ],
+      "effort_nm": [
+        -0.8106583443456673,
+        0.809293184110285
+      ],
+      "integral_nm": [
+        -0.7,
+        0.7
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 0.0039999999999995595,
+      "encoder_age_s": 0.02999999999999936,
+      "rejected_commands": 8,
+      "rejected_encoders": 0,
+      "sim_time": 9.41
+    }
+  ],
+  "initial_final_state": {
+    "state": "INVALID_ENCODER",
+    "estop_latched": false,
+    "estop_asserted": false,
+    "target_rad_s": [
+      0.0,
+      0.0
+    ],
+    "ramped_rad_s": [
+      0.0,
+      0.0
+    ],
+    "measured_rad_s": [
+      1.687378866674241,
+      1.533980787885674
+    ],
+    "effort_nm": [
+      0.0,
+      0.0
+    ],
+    "integral_nm": [
+      0.0,
+      0.0
+    ],
+    "speed_saturated": false,
+    "torque_saturated": false,
+    "command_age_s": 3.1069999999999993,
+    "encoder_age_s": 3.1040000000000028,
+    "rejected_commands": 13,
+    "rejected_encoders": 85,
+    "sim_time": 31.844
+  }
+}

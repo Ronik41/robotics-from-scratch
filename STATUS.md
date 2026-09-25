@@ -2,98 +2,108 @@
 
 ## Current milestone
 
-**Milestone 4 — Complete (2026-09-25). No acceptance checks blocked.**
+**Milestone 5 — Complete (2026-09-25). No acceptance checks blocked.**
 
-Milestones 1–3 passed before implementation and again on the rebuilt image.
-Only M4 was implemented. [Evidence index](evidence/milestone-4/README.md) links
-measurements, logs, rosbag, replay results, RViz screenshot and retained failures.
+M1–M4 passed before implementation and again on the rebuilt images, including
+M4 sensor recording and isolated replay. Only M5 was implemented. The
+[evidence index](evidence/milestone-5/README.md) links deterministic tests, actual
+Gazebo motion/fault results, desktop captures, source manifests and resolved issues.
 
 ## Current state
 
-The opt-in M4 stack publishes native Gazebo 2D LiDAR and RGB camera observations,
-raw IMU measurements with explicit noise/bias, and a separate stamped encoder
-count interface. Every stream has a documented frame and simulation-time rate.
+M5 introduces a separate simulated firmware process between stamped `/cmd_vel`
+requests and wheel actuation. It derives wheel speed from M4's delayed, quantized
+encoder counts; applies PID, curvature-preserving speed saturation, acceleration
+ramps and torque limits; and sends effort to a compiled Gazebo motor-driver plugin.
+The generated M5 model contains no DiffDrive and the bridge has no command bypass.
 
-| Interface | Type | Rate | Frame |
-| --- | --- | --- | --- |
-| `/scan` | sensor_msgs/LaserScan | 10 Hz | lidar_link |
-| `/camera/image_raw` | sensor_msgs/Image (320×240 RGB8) | 10 Hz | camera_optical_frame |
-| `/camera/camera_info` | sensor_msgs/CameraInfo | 10 Hz | camera_optical_frame |
-| `/imu/data_raw` | sensor_msgs/Imu | 100 Hz | imu_link |
-| `/wheel/encoders` | rover_interfaces/WheelEncoders | 50 Hz | base_link; explicit wheel joint names |
+| Interface | Contract |
+| --- | --- |
+| `/cmd_vel` | TwistStamped, simulation acquisition time, `base_link`, forward speed/yaw rate |
+| `/wheel/encoders` | Existing M4 signed cumulative counts, 2048 counts/revolution, 50 Hz |
+| `/safety/estop` | SetBool: true latches; false only releases the input |
+| `/safety/reset` | Trigger: requires released input, fresh zero command and stationary fresh feedback |
+| `/firmware/state` | Inspectable reason, PID state, requested/measured speed, limits, ages and rejection counts |
+| `/motor/driver_state` | Independent drive/brake/watchdog/e-stop status, applied torque and wheel speeds |
 
-Encoders use 2048 decoded counts/wheel revolution and signed cumulative counts
-since driver startup. IMU and encoder delivery have a minimum modeled 10 ms delay;
-headers preserve acquisition stamps. Native IMU orientation is dropped before ROS
-publication and explicitly marked unavailable. The new driver publishes no pose,
-TF, odometry or commands. Sensor mounts add no physical mass or collision.
+Wheel targets are limited to ±4 rad/s and ramped at 4 rad/s². Requested effort is
+limited to ±2 N m per wheel. The simulated motor has a 0.04 N m deadband and a
+bounded damping brake. Firmware stops on command age >0.5 simulation seconds,
+encoder age >0.2 simulation seconds, or receive age >1 monotonic second. The driver
+independently brakes if effort is >0.15 simulation seconds old or no valid frame
+arrives within 750 ms wall time. Both layers latch e-stop. Reset never replays a
+previous motion request.
 
-M3 `wheel_odometry` source is unchanged and still consumes only `/joint_states`
-and clock. It owns `/odom` and `odom -> base_link`; robot_state_publisher owns all
-mechanical and sensor transforms. There is no `map -> odom` or localization/fusion.
-Simulator pose/native odometry is not bridged to ROS. Ground truth stays a test oracle.
+M3 odometry and TF ownership are unchanged. M4 LiDAR, RGB camera, IMU and encoder
+interfaces remain available. Controller inputs are exactly clock, desired velocity
+and encoders; no Gazebo pose, odometry, LiDAR or IMU feeds its PID. Gazebo pose is
+used only by acceptance code. No mapping, localization, Nav2 or perception is added.
 
 ## Acceptance results
 
-- **Baseline M1–M3:** clock smoke, three deterministic loads/duplicate guard,
-  five odometry analytic tests, forward/reverse/turn/arc/zero route and TF passed.
-- **Rebuilt-image regression:** M1–M3 passed. An M2 stepping timeout during concurrent
-  rendering was retained; the isolated rerun passed without changing its thresholds.
-- **Fresh M4 test:** `evidence/milestone-4/20260925T194706Z-acceptance-65403/`.
-  All stream frame/timestamp/rate checks passed, with camera calibration pairing,
-  LiDAR surface ranges/occlusion, stationary IMU statistics, physical turn response,
-  signed encoder motion and 514 matched joint/count acquisitions.
-- **Measured noise:** LiDAR σ=9.36 mm versus 10 mm configured; IMU gyro σ=.002005
-  rad/s versus .002 configured. IMU z acceleration mean=9.8387 m/s² versus 9.84
-  expected with bias. These are nominal checks, not calibration.
-- **Rosbag:** 5.878 simulation seconds, 14.2 MiB, 8,107 total messages. Isolated
-  replay received all recorded sensor samples: 587 IMU, 293 encoders, 59 RGB,
-  59 CameraInfo and 58 scans. Decoded fields/image bytes and timestamps matched;
-  static/dynamic TF resolved correctly.
-- **Desktop:** sensor acceptance passed; actual RViz screenshot shows Global,
-  LiDAR and RGB status OK. IMU, encoder and calibration samples are retained.
-- **Documentation:** setup, concept notes, architecture and accepted ADR 0004 updated.
+- **M1–M4 baseline and rebuilt-image regression:** all passed; repeated M4 bags
+  replayed successfully in an isolated ROS domain.
+- **Nine deterministic tests:** quantized closed-loop tracking, feedback response,
+  explicit zero braking, saturation/acceleration/anti-windup, command and encoder
+  watchdogs, latched e-stop/reset and invalid/stale inputs passed.
+- **19 fresh headless checks:** actual forward/reverse/turn motion and wheel tracking,
+  saturation, timeout/e-stop stops, reset, malformed requests, process suspension,
+  motor deadband and driver protocol rejection passed.
+- **Tracking:** final-window forward mean 1.4364 rad/s versus 1.4286 requested;
+  turn -0.8437/+0.8309 versus -0.8571/+0.8571. All under 0.15 rad/s error tolerance.
+- **Timeout:** observed 0.538 simulation seconds after command streaming ended;
+  0.39045 m subsequent travel at the maximum requested wheel speed, then only
+  0.032 mm movement in the settled half-second window.
+- **E-stop:** 0.02813 m travel after assertion from the nominal 0.2 m/s case.
+  Continued motion commands did not clear either latch. Reset conditions and
+  fresh-command recovery passed.
+- **Independent driver:** frozen firmware caused WATCHDOG in 0.194 simulation
+  seconds; wheels physically stopped. Suspended encoders also caused a safe stop
+  while high-level commands continued, and the recovered stream became usable.
+- **Desktop:** motion, fault and e-stop/reset acceptance passed. Actual browser
+  captures show timeout/braking and both e-stop latches. CLI stamped commands and
+  stop service were exercised. The read-only monitor identifies stale telemetry.
 
 ## Repeat
 
 ```bash
 docker compose --profile gui build robotics desktop
-./scripts/test-milestone-4.sh
-./scripts/launch-milestone-4.sh gui
+./scripts/test-milestone-5.sh
+./scripts/launch-milestone-5.sh gui
 ```
 
 [Open the local desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
-Final desktop evidence: `evidence/milestone-4/20260925T194850Z-launch-66034/`.
-The rover is stopped after verification. RViz displays scans, the RGB view, TF
-and wheel odometry. Keyboard teleop remains available: `i` forward, `,` reverse,
-`j/l` turn, `k` explicit stop. Stop the desktop with `docker compose stop desktop`.
-Headless live launch: `./scripts/launch-milestone-4.sh headless`.
+It is currently running with **e-stop asserted and the rover stopped**. Sensor and
+diagnostic streams remain available. Follow the [documented reset sequence](docs/setup.md#milestone-5-simulated-firmware-and-motor-safety)
+to release/reset it, or relaunch for a fresh scenario. Stop the desktop with
+`docker compose stop desktop`. Headless: `./scripts/launch-milestone-5.sh headless`.
 
-See [setup and bag commands](docs/setup.md), [sensor concepts and contracts](docs/concepts/sensors.md),
-[architecture](docs/architecture.md), and [ADR 0004](docs/decisions/0004-sensor-contracts-and-simulation-boundary.md).
-M2 and M3 launch/test commands remain available as earlier baselines.
+M5 keyboard commands are stamped and expire without new key events. `k` brakes.
+Earlier M2–M4 launch/test modes remain available as historical baselines; M3/M4
+still use unstamped Twist and ideal actuation without M5 safety behavior.
 
-## Findings and boundaries
+## Boundaries and resolved findings
 
-- The LiDAR plane is about 0.58 m above the floor, so it misses low crates while
-  the camera can see them. The table blocks rays to the wall behind it. Both
-  properties are checked; no privileged obstacle list fills sensor blind spots.
-- Whole-run rates include discovery/startup losses: final headless IMU 94.38 Hz,
-  encoder 49.52 Hz, rendered streams about 10.03 Hz. The desktop stationary window
-  measured 100/50 Hz. Rendering is CPU based; wall-time throughput differs.
-- Native rendering/transport age reached ~206 ms. The 10 ms modeled driver delay
-  is not an end-to-end guarantee. Replay uses deeper verifier queues and hashes
-  image bytes efficiently; CDR padding is excluded from semantic comparison.
-- Noise/bias/covariance values are initial assumptions. No rolling shutter,
-  spinning-scan distortion, material multipath, thermal drift, missed pulses or
-  hardware counter rollover is modeled. Full launch restart is the reset contract.
-- Wheel odometry remains an imperfect planar rolling estimate with the M3 drift
-  limitations. Encoder quantization does not measure or correct wheel slip.
-- No mapping, localization, navigation, perception, motor PID, watchdog or e-stop
-  was implemented. Gazebo DiffDrive remains ideal actuation. Key release/browser
-  disconnection does not stop a persistent command; use explicit `k`/zero Twist.
-- No host software was installed, no Git commit/push or external publication made.
-  Changes remain local. The repository initially contained untracked project files.
+- Python on Linux models firmware behavior, not MCU real-time execution. The
+  driver watchdog runs independently inside physics; real electronics, electrical
+  limits and physical e-stop/brake circuitry remain hardware work.
+- Torque and braking are finite. Measured stopping distances apply only to these
+  nominal simulation cases. Acceleration bounds apply to wheel requests, not all
+  possible chassis dynamics. No real-world reliability or certification is claimed.
+- Both simulation and monotonic deadlines matter under CPU rendering. GUI timeout
+  can occur sooner in simulation time; a CLI check's clock-progress stall correctly
+  inhibited motion. Paused physics resumes with expired leases checked.
+- Tire scrub needed a larger integral allowance. Final gains track turns within
+  the tighter tolerance. The test publisher stopped repeating timestamps, and
+  feedback recovery now supports skipped deliveries using cumulative counts.
+  [Curated observations](evidence/milestone-5/resolved-observations.json) retain the evidence.
+- Full-stack restart is the reset contract for backwards time or encoder driver
+  count-origin reset. The driver e-stop survives firmware restart, not a full
+  simulator restart. The public ROS/Gazebo graph is not a security boundary.
+- No system-wide software was installed and no external publishing beyond the
+  authorized repository is part of this milestone.
 
-Prior records: [M1](evidence/milestone-1/README.md), [M2](evidence/milestone-2/README.md),
-[M3](evidence/milestone-3/README.md), ADRs 0001–0003.
+See [control concepts](docs/concepts/firmware-safety.md), [architecture](docs/architecture.md),
+[ADR 0005](docs/decisions/0005-encoder-pid-and-independent-motor-watchdog.md).
+Previous evidence: [M1](evidence/milestone-1/README.md), [M2](evidence/milestone-2/README.md),
+[M3](evidence/milestone-3/README.md), [M4](evidence/milestone-4/README.md).

@@ -32,6 +32,10 @@ Implement a separate motor-control boundary: velocity PID, encoder feedback, sat
 
 **Done when:** command timeout and e-stop safely halt the rover in simulation.
 
+**Verified 2026-09-25:** deterministic core, headless physics/fault checks and
+browser desktop acceptance passed. [Evidence](evidence/milestone-5/README.md).
+Milestone 6 has not started.
+
 ## 6. Mapping and localization
 
 Build a map, record data, and localize the rover without using simulator ground truth for autonomy.

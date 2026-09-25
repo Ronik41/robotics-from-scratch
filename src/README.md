@@ -13,3 +13,11 @@ IMU measurements and quantized wheel counts, with no estimator or control output
 `rover_interfaces/` is the small colcon-built message package baked into both
 Docker images. Rebuild when its message schema changes. The driver and launch
 source remain mounted. Existing `rover_odometry` is unchanged.
+
+
+M5 adds `rover_control/core.py` (deterministic PID/safety model) and `node.py`
+(ROS adapter consuming stamped commands and M4 encoder counts). `rover_motor_driver/`
+is a C++ Gazebo plugin compiled in the Docker image; it applies bounded wheel
+torque/deadband/braking and independently expires stale motor frames. Rebuild both
+images for C++ changes. Runtime Python remains mounted. Neither new component
+consumes Gazebo pose; firmware does not consume ideal joint speed. See ADR 0005.

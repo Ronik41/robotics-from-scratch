@@ -5,3 +5,6 @@
 !src/rover_interfaces/**
 !scripts/
 !scripts/ros-entrypoint.sh
+
+!src/rover_motor_driver/
+!src/rover_motor_driver/**

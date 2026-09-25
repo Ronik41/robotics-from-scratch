@@ -1,0 +1,502 @@
+{
+  "status": "PASS",
+  "checks": {
+    "forward": {
+      "measured_rad_s": [
+        1.4603497100671115,
+        1.4603497100671115
+      ],
+      "target_rad_s": [
+        1.4285714285714286,
+        1.4285714285714286
+      ],
+      "truth_before": [
+        -2.500000001889102,
+        -1.5,
+        -8.004832456569801e-20,
+        20.489
+      ],
+      "truth_after": [
+        -2.0370911464699666,
+        -1.5,
+        5.556873013824091e-16,
+        22.984
+      ]
+    },
+    "reverse": {
+      "measured_rad_s": [
+        -1.4469170134380822,
+        -1.4469170134380822
+      ],
+      "target_rad_s": [
+        -1.4285714285714286,
+        -1.4285714285714286
+      ],
+      "truth_before": [
+        -2.014294988436972,
+        -1.5,
+        6.510869627976225e-16,
+        23.588
+      ],
+      "truth_after": [
+        -2.473739137776504,
+        -1.5,
+        -1.8430881584596216e-16,
+        26.089
+      ]
+    },
+    "turn": {
+      "measured_rad_s": [
+        -0.8502636367137533,
+        0.8327324277093456
+      ],
+      "target_rad_s": [
+        -0.857142857142857,
+        0.857142857142857
+      ],
+      "truth_before": [
+        -2.495827725137157,
+        -1.5,
+        -1.14469424252933e-16,
+        26.691
+      ],
+      "truth_after": [
+        -2.4040529278432423,
+        -1.6353880672540382,
+        1.250064008972303,
+        30.191
+      ]
+    },
+    "saturation": {
+      "max_target_rad_s": 4.0,
+      "max_effort_nm": 0.668299105547818
+    },
+    "timeout": {
+      "distance_over_half_second_m": 4.342906076230924e-05,
+      "wheel_speed_rad_s": 3.89248e-05,
+      "firmware": {
+        "state": "COMMAND_TIMEOUT",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          4.0,
+          4.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": true,
+        "torque_saturated": false,
+        "command_age_s": 1.533999999999999,
+        "encoder_age_s": 0.02300000000000324,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 33.823
+      },
+      "driver": {
+        "sim_time": 33.786,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -3.89248e-05,
+          -3.89248e-05
+        ],
+        "wheel_rad_s": [
+          3.89248e-05,
+          3.89248e-05
+        ],
+        "rejected": 0
+      },
+      "observed_timeout_s": 0.232999999999997,
+      "travel_to_stop_m": 0.23221679929816214
+    },
+    "estop": {
+      "distance_over_half_second_m": 0.0,
+      "wheel_speed_rad_s": 6.71233e-08,
+      "firmware": {
+        "state": "ESTOP",
+        "estop_latched": true,
+        "estop_asserted": true,
+        "target_rad_s": [
+          1.4285714285714286,
+          1.4285714285714286
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.2900000000000063,
+        "encoder_age_s": 0.017000000000003013,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 36.617000000000004
+      },
+      "driver": {
+        "sim_time": 36.62,
+        "state": "ESTOP",
+        "estop_latched": true,
+        "applied_nm": [
+          -6.71233e-08,
+          -6.71233e-08
+        ],
+        "wheel_rad_s": [
+          6.71233e-08,
+          6.71233e-08
+        ],
+        "rejected": 0
+      },
+      "travel_to_stop_m": 0.02545781775717425
+    },
+    "reset": {
+      "success": true,
+      "message": "Reset; send a new command to move"
+    },
+    "stale": {
+      "distance_over_half_second_m": 6.347118992515007e-06,
+      "wheel_speed_rad_s": 4.11644e-06,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.3160000000000025,
+        "encoder_age_s": 0.012000000000000455,
+        "rejected_commands": 1,
+        "rejected_encoders": 0,
+        "sim_time": 40.072
+      },
+      "driver": {
+        "sim_time": 40.06,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -4.11644e-06,
+          -4.11644e-06
+        ],
+        "wheel_rad_s": [
+          4.11644e-06,
+          4.11644e-06
+        ],
+        "rejected": 0
+      }
+    },
+    "future": {
+      "distance_over_half_second_m": 1.0673431129619336e-05,
+      "wheel_speed_rad_s": 9.75163e-06,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.3060000000000045,
+        "encoder_age_s": 0.026000000000003354,
+        "rejected_commands": 2,
+        "rejected_encoders": 0,
+        "sim_time": 42.066
+      },
+      "driver": {
+        "sim_time": 42.033,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -9.75163e-06,
+          -9.75163e-06
+        ],
+        "wheel_rad_s": [
+          9.75163e-06,
+          9.75163e-06
+        ],
+        "rejected": 0
+      }
+    },
+    "nan": {
+      "distance_over_half_second_m": 1.0679547224872804e-05,
+      "wheel_speed_rad_s": 8.3867e-06,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.2970000000000041,
+        "encoder_age_s": 0.018000000000000682,
+        "rejected_commands": 3,
+        "rejected_encoders": 0,
+        "sim_time": 44.078
+      },
+      "driver": {
+        "sim_time": 44.057,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -8.3867e-06,
+          -8.3867e-06
+        ],
+        "wheel_rad_s": [
+          8.3867e-06,
+          8.3867e-06
+        ],
+        "rejected": 0
+      }
+    },
+    "wrong_frame": {
+      "distance_over_half_second_m": 1.0757288516773446e-05,
+      "wheel_speed_rad_s": 6.89744e-06,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.311000000000007,
+        "encoder_age_s": 0.029000000000003467,
+        "rejected_commands": 4,
+        "rejected_encoders": 0,
+        "sim_time": 46.089000000000006
+      },
+      "driver": {
+        "sim_time": 46.081,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -6.89744e-06,
+          -6.89744e-06
+        ],
+        "wheel_rad_s": [
+          6.89744e-06,
+          6.89744e-06
+        ],
+        "rejected": 0
+      }
+    },
+    "unsupported_axis": {
+      "distance_over_half_second_m": 1.0689874995064978e-05,
+      "wheel_speed_rad_s": 6.11341e-06,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 1.3130000000000024,
+        "encoder_age_s": 0.026000000000003354,
+        "rejected_commands": 5,
+        "rejected_encoders": 0,
+        "sim_time": 48.106
+      },
+      "driver": {
+        "sim_time": 48.105,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -6.11341e-06,
+          -6.11341e-06
+        ],
+        "wheel_rad_s": [
+          6.11341e-06,
+          6.11341e-06
+        ],
+        "rejected": 0
+      }
+    },
+    "final": {
+      "distance_over_half_second_m": 0.0,
+      "wheel_speed_rad_s": 3.41689e-11,
+      "firmware": {
+        "state": "INVALID_COMMAND",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 2.6090000000000018,
+        "encoder_age_s": 0.021999999999998465,
+        "rejected_commands": 5,
+        "rejected_encoders": 0,
+        "sim_time": 49.402
+      },
+      "driver": {
+        "sim_time": 49.37,
+        "state": "BRAKE",
+        "estop_latched": false,
+        "applied_nm": [
+          -3.41689e-11,
+          -3.41689e-11
+        ],
+        "wheel_rad_s": [
+          3.41689e-11,
+          3.41689e-11
+        ],
+        "rejected": 0
+      }
+    }
+  },
+  "subscriptions": [
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/cmd_vel",
+      [
+        "geometry_msgs/msg/TwistStamped"
+      ]
+    ],
+    [
+      "/wheel/encoders",
+      [
+        "rover_interfaces/msg/WheelEncoders"
+      ]
+    ]
+  ]
+}

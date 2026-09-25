@@ -71,9 +71,9 @@ def check_processes(processes):
             raise RuntimeError(f"Child exited ({process.returncode}): {process.args}")
 
 
-def generate(evidence, drive=False, sensors=False):
+def generate(evidence, drive=False, sensors=False, firmware=False):
     urdf = evidence / "rover.urdf"
-    subprocess.run(["xacro", str(XACRO), f"drive:={str(drive).lower()}", f"sensors:={str(sensors).lower()}", "-o", str(urdf)], check=True, timeout=15)
+    subprocess.run(["xacro", str(XACRO), f"drive:={str(drive).lower()}", f"sensors:={str(sensors).lower()}", f"firmware:={str(firmware).lower()}", "-o", str(urdf)], check=True, timeout=15)
     with (evidence / "rover.sdf").open("w") as out:
         subprocess.run(["gz", "sdf", "-p", str(urdf)], stdout=out, check=True, timeout=15)
     with (evidence / "validation.log").open("w") as out:
@@ -93,7 +93,7 @@ def generate(evidence, drive=False, sensors=False):
             raise RuntimeError(f"Link lost inertia during conversion: {link.attrib['name']}")
     save_json(evidence / "inputs.json", {
         "scenario": SCENARIO,
-        "drive": drive, "sensors": sensors,
+        "drive": drive, "sensors": sensors, "firmware": firmware,
         "sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                    for p in [XACRO, WORLD, CONFIG, ROOT / "simulation/config/gui.config",
                              ROOT / "scripts/rover_sim.py"]}})
@@ -102,7 +102,7 @@ def generate(evidence, drive=False, sensors=False):
         for directory in ["scripts", "src", "simulation", "tests"]:
             paths.extend(p for p in (ROOT / directory).rglob("*")
                          if p.is_file() and "__pycache__" not in p.parts
-                         and p.suffix in {".msg", ".xml", ".txt", ".py", ".sh", ".xacro", ".sdf", ".yaml", ".json", ".rviz", ".config"})
+                         and p.suffix in {".cc", ".msg", ".xml", ".txt", ".py", ".sh", ".xacro", ".sdf", ".yaml", ".json", ".rviz", ".config"})
         save_json(evidence / "source-sha256.json", {
             str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)})
     shutil.copyfile("/opt/installed-packages.tsv", evidence / "installed-packages.tsv")
@@ -195,12 +195,13 @@ def main():
     parser.add_argument("--evidence", type=Path, required=True)
     parser.add_argument("--gui", action="store_true")
     parser.add_argument("--drive", action="store_true", help="Start M3 ROS nodes and unpause")
+    parser.add_argument("--firmware", action="store_true", help="M5 torque controller; requires --sensors --drive")
     parser.add_argument("--sensors", action="store_true", help="M4 simulated sensor interfaces; requires --drive")
     parser.add_argument("--rviz", action="store_true", help="Show RViz and keyboard teleop on the desktop")
     parser.add_argument("--check", action="store_true", help="Step 2 s, assert stable, then exit")
     parser.add_argument("--spawn-only", action="store_true", help="Spawn into an already paused delivery world")
     args = parser.parse_args()
-    if (args.sensors and not args.drive) or (args.drive and (args.check or args.spawn_only)) or (args.rviz and not args.drive):
+    if (args.firmware and not args.sensors) or (args.sensors and not args.drive) or (args.drive and (args.check or args.spawn_only)) or (args.rviz and not args.drive):
         parser.error("--drive is a live mode; --rviz requires --drive")
     evidence = args.evidence.resolve()
     evidence.mkdir(parents=True, exist_ok=True)
@@ -222,7 +223,7 @@ def main():
                 fcntl.flock(launch_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError as exc:
                 raise RuntimeError("A rover launcher is already running in this container") from exc
-        urdf = generate(evidence, args.drive, args.sensors)
+        urdf = generate(evidence, args.drive, args.sensors, args.firmware)
         world_path = WORLD
         if args.sensors:
             world = ET.parse(WORLD)
@@ -251,14 +252,14 @@ def main():
                                               start_new_session=True))
         if args.drive:
             command = ["ros2", "launch", str(ROOT / "simulation/launch/teleop.launch.py"),
-                       f"urdf:={urdf}", f"rviz:={str(args.rviz).lower()}", f"sensors:={str(args.sensors).lower()}"]
+                       f"urdf:={urdf}", f"rviz:={str(args.rviz).lower()}", f"sensors:={str(args.sensors).lower()}", f"firmware:={str(args.firmware).lower()}"]
             save_json(evidence / "ros-command.json", command)
             log = (evidence / "ros.log").open("w"); logs.append(log)
             processes.append(subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
                                               start_new_session=True))
             if not request(node, "/control", WorldControl(pause=False), Boolean, 10000).data:
                 raise RuntimeError("Unpause rejected")
-        result["status"] = "STARTED_M4" if args.sensors else "STARTED_M3" if args.drive else ("PASS" if args.check else "LOADED_PAUSED")
+        result["status"] = "STARTED_M5" if args.firmware else "STARTED_M4" if args.sensors else "STARTED_M3" if args.drive else ("PASS" if args.check else "LOADED_PAUSED")
         save_json(evidence / "result.json", result)
         print(json.dumps(result), flush=True)
         while not args.check and not args.spawn_only and not stopping:

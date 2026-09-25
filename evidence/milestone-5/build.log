@@ -1,0 +1,944 @@
+ Image hardwareless-robotics:jazzy-harmonic-desktop Building
+ Image hardwareless-robotics:jazzy-harmonic Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.29kB done
+#1 DONE 0.0s
+
+#2 [desktop internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.76kB 0.0s done
+#2 DONE 0.0s
+
+#3 [desktop internal] load metadata for docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#3 DONE 0.9s
+
+#4 [robotics internal] load .dockerignore
+#4 transferring context: 200B done
+#4 DONE 0.0s
+
+#5 [robotics robotics 1/8] FROM docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#5 resolve docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8 0.0s done
+#5 DONE 0.0s
+
+#6 [desktop internal] load build context
+#6 transferring context: 6.37kB 0.0s done
+#6 DONE 0.0s
+
+#7 [desktop robotics 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-ros-gz     ros-jazzy-rviz2     ros-jazzy-xacro     ros-jazzy-robot-state-publisher     ros-jazzy-teleop-twist-keyboard     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [desktop robotics 3/8] COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces
+#8 CACHED
+
+#9 [desktop robotics 4/8] RUN source /opt/ros/jazzy/setup.bash && cd /opt/rover_interfaces && colcon build --event-handlers console_direct+
+#9 CACHED
+
+#10 [desktop robotics 5/8] COPY src/rover_motor_driver /opt/rover_motor_driver/src
+#10 DONE 0.0s
+
+#11 [desktop robotics 6/8] RUN source /opt/ros/jazzy/setup.bash && cmake -S /opt/rover_motor_driver/src -B /opt/rover_motor_driver/build -DCMAKE_INSTALL_PREFIX=/opt/rover_motor_driver && cmake --build /opt/rover_motor_driver/build -j2 && cmake --install /opt/rover_motor_driver/build
+#11 1.461 -- The C compiler identification is GNU 13.3.0
+#11 1.619 -- The CXX compiler identification is GNU 13.3.0
+#11 1.656 -- Detecting C compiler ABI info
+#11 1.828 -- Detecting C compiler ABI info - done
+#11 1.844 -- Check for working C compiler: /usr/bin/cc - skipped
+#11 1.845 -- Detecting C compile features
+#11 1.847 -- Detecting C compile features - done
+#11 1.870 -- Detecting CXX compiler ABI info
+#11 2.085 -- Detecting CXX compiler ABI info - done
+#11 2.096 -- Check for working CXX compiler: /usr/bin/c++ - skipped
+#11 2.097 -- Detecting CXX compile features
+#11 2.099 -- Detecting CXX compile features - done
+#11 2.107 -- Looking for gz-sim8 -- found version 8.15.0
+#11 2.131 -- Searching for dependencies of gz-sim8
+#11 2.134 -- Looking for sdformat14 -- found version 14.9.0
+#11 2.134 -- Searching for dependencies of sdformat14
+#11 2.150 -- Checking for module 'tinyxml2'
+#11 2.171 --   Found tinyxml2, version 10.0.0
+#11 2.197 -- Looking for gz-math7 -- found version 7.7.0
+#11 2.198 -- Searching for dependencies of gz-math7
+#11 2.201 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.201 -- Searching for dependencies of gz-utils2
+#11 2.203 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.204 -- Searching for dependencies of gz-utils2
+#11 2.204 -- Searching for <gz-utils2> component [cli]
+#11 2.207 -- Looking for gz-utils2-cli -- found version 2.2.1
+#11 2.207 -- Searching for dependencies of gz-utils2-cli
+#11 2.211 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 2.212 -- Searching for dependencies of gz-plugin2
+#11 2.212 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.213 -- Searching for <gz-plugin2> component [loader]
+#11 2.215 -- Looking for gz-plugin2-loader -- found version 2.0.4
+#11 2.215 -- Searching for dependencies of gz-plugin2-loader
+#11 2.217 -- Searching for <gz-plugin2> component [register]
+#11 2.219 -- Looking for gz-plugin2-register -- found version 2.0.4
+#11 2.219 -- Searching for dependencies of gz-plugin2-register
+#11 2.222 -- Looking for gz-transport13 -- found version 13.6.0
+#11 2.222 -- Searching for dependencies of gz-transport13
+#11 2.394 -- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so (found version "3.21.12")
+#11 2.411 -- Config-file not installed for ZeroMQ -- checking for pkg-config
+#11 2.416 -- Checking for module 'libzmq >= 4'
+#11 2.428 --   Found libzmq, version 4.3.5
+#11 2.468 -- Found ZeroMQ: TRUE (Required is at least version "4")
+#11 2.476 -- Checking for module 'uuid'
+#11 2.491 --   Found uuid, version 2.39.3
+#11 2.527 -- Found UUID: TRUE
+#11 2.528 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.533 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 2.534 -- Searching for dependencies of gz-msgs10
+#11 2.560 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.560 -- Looking for gz-math7 -- found version 7.7.0
+#11 2.862 -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter
+#11 2.870 -- Searching for <gz-transport13> component [log]
+#11 2.872 -- Looking for gz-transport13-log -- found version 13.6.0
+#11 2.873 -- Searching for dependencies of gz-transport13-log
+#11 2.875 -- Searching for <gz-transport13> component [parameters]
+#11 2.877 -- Looking for gz-transport13-parameters -- found version 13.6.0
+#11 2.877 -- Searching for dependencies of gz-transport13-parameters
+#11 2.879 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 2.885 -- Looking for gz-common5 -- found version 5.9.0
+#11 2.885 -- Searching for dependencies of gz-common5
+#11 2.886 -- Looking for gz-utils2 -- found version 2.2.1
+#11 2.887 -- Looking for dlfcn.h - found
+#11 2.889 -- Looking for libdl - found
+#11 2.892 -- Found DL: TRUE
+#11 2.901 -- Searching for <gz-common5> component [av]
+#11 2.904 -- Looking for gz-common5-av -- found version 5.9.0
+#11 2.904 -- Searching for dependencies of gz-common5-av
+#11 2.911 -- Checking for module 'libswscale'
+#11 2.927 --   Found libswscale, version 7.5.100
+#11 2.963 -- Found SWSCALE: TRUE
+#11 2.970 -- Checking for module 'libavdevice >= 56.4.100'
+#11 2.986 --   Found libavdevice, version 60.3.100
+#11 3.039 -- Found AVDEVICE: TRUE (Required is at least version "56.4.100")
+#11 3.045 -- Checking for module 'libavformat'
+#11 3.059 --   Found libavformat, version 60.16.100
+#11 3.089 -- Found AVFORMAT: TRUE
+#11 3.096 -- Checking for module 'libavcodec'
+#11 3.110 --   Found libavcodec, version 60.31.102
+#11 3.138 -- Found AVCODEC: TRUE
+#11 3.145 -- Checking for module 'libavutil'
+#11 3.157 --   Found libavutil, version 58.29.100
+#11 3.185 -- Found AVUTIL: TRUE
+#11 3.186 -- Searching for <gz-common5> component [events]
+#11 3.189 -- Looking for gz-common5-events -- found version 5.9.0
+#11 3.190 -- Searching for dependencies of gz-common5-events
+#11 3.191 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.192 -- Searching for <gz-common5> component [graphics]
+#11 3.195 -- Looking for gz-common5-graphics -- found version 5.9.0
+#11 3.195 -- Searching for dependencies of gz-common5-graphics
+#11 3.196 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.205 -- Found GzAssimp: TRUE (found version "5.3.0")
+#11 3.208 -- Searching for <gz-common5> component [io]
+#11 3.212 -- Looking for gz-common5-io -- found version 5.9.0
+#11 3.212 -- Searching for dependencies of gz-common5-io
+#11 3.216 -- Searching for <gz-common5> component [profiler]
+#11 3.220 -- Looking for gz-common5-profiler -- found version 5.9.0
+#11 3.220 -- Searching for dependencies of gz-common5-profiler
+#11 3.224 -- Looking for gz-fuel_tools9 -- found version 9.1.1
+#11 3.224 -- Searching for dependencies of gz-fuel_tools9
+#11 3.302 -- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "8.5.0")
+#11 3.318 -- Checking for module 'jsoncpp'
+#11 3.330 --   Found jsoncpp, version 1.9.5
+#11 3.360 -- Found JSONCPP: TRUE
+#11 3.391 -- Checking for module 'yaml-0.1'
+#11 3.411 --   Found yaml-0.1, version 0.2.5
+#11 3.455 -- Found YAML: TRUE
+#11 3.466 -- Checking for module 'libzip'
+#11 3.485 --   Found libzip, version 1.7.3
+#11 3.513 -- Found ZIP: TRUE
+#11 3.513 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.515 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.515 -- Searching for dependencies of gz-common5
+#11 3.516 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.516 -- Looking for dlfcn.h - found
+#11 3.516 -- Looking for libdl - found
+#11 3.525 -- Searching for <gz-common5> component [testing]
+#11 3.528 -- Looking for gz-common5-testing -- found version 5.9.0
+#11 3.528 -- Searching for dependencies of gz-common5-testing
+#11 3.530 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.530 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 3.535 -- Looking for gz-gui8 -- found version 8.4.0
+#11 3.535 -- Searching for dependencies of gz-gui8
+#11 3.566 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.566 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.567 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.568 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 3.568 -- Looking for gz-transport13 -- found version 13.6.0
+#11 3.572 -- Looking for gz-rendering8 -- found version 8.2.3
+#11 3.572 -- Searching for dependencies of gz-rendering8
+#11 3.573 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.573 -- Searching for dependencies of gz-math7
+#11 3.574 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.574 -- Searching for <gz-math7> component [eigen3]
+#11 3.578 -- Looking for gz-math7-eigen3 -- found version 7.7.0
+#11 3.578 -- Searching for dependencies of gz-math7-eigen3
+#11 3.598 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.598 -- Searching for dependencies of gz-common5
+#11 3.599 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.600 -- Looking for dlfcn.h - found
+#11 3.600 -- Looking for libdl - found
+#11 3.609 -- Searching for <gz-common5> component [graphics]
+#11 3.609 -- Searching for <gz-common5> component [events]
+#11 3.609 -- Searching for <gz-common5> component [geospatial]
+#11 3.613 -- Looking for gz-common5-geospatial -- found version 5.9.0
+#11 3.613 -- Searching for dependencies of gz-common5-geospatial
+#11 3.615 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.617 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.620 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 3.620 -- Searching for dependencies of gz-plugin2
+#11 3.620 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.621 -- Searching for <gz-plugin2> component [all]
+#11 3.624 -- Looking for all libraries of gz-plugin2 -- found version 2.0.4
+#11 3.625 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 3.627 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.647 -- Found OpenGL: /usr/lib/aarch64-linux-gnu/libOpenGL.so  found components: OpenGL
+#11 3.651 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 3.720 -- Looking for gz-physics7 -- found version 7.8.0
+#11 3.722 -- Searching for dependencies of gz-physics7
+#11 3.724 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.725 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.728 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 3.729 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.740 -- Searching for <gz-physics7> component [heightmap]
+#11 3.748 -- Looking for gz-physics7-heightmap -- found version 7.8.0
+#11 3.748 -- Searching for dependencies of gz-physics7-heightmap
+#11 3.756 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.764 -- Searching for <gz-physics7> component [mesh]
+#11 3.769 -- Looking for gz-physics7-mesh -- found version 7.8.0
+#11 3.769 -- Searching for dependencies of gz-physics7-mesh
+#11 3.770 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.776 -- Searching for <gz-physics7> component [sdf]
+#11 3.783 -- Looking for gz-physics7-sdf -- found version 7.8.0
+#11 3.785 -- Searching for dependencies of gz-physics7-sdf
+#11 3.787 -- Looking for sdformat14 -- found version 14.9.0
+#11 3.822 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.822 -- Searching for dependencies of gz-sensors8
+#11 3.857 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.858 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.859 -- Looking for gz-transport13 -- found version 13.6.0
+#11 3.859 -- Looking for gz-rendering8 -- found version 8.2.3
+#11 3.860 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 3.861 -- Looking for sdformat14 -- found version 14.9.0
+#11 3.862 -- Searching for <gz-sensors8> component [air_pressure]
+#11 3.864 -- Looking for gz-sensors8-air_pressure -- found version 8.2.2
+#11 3.865 -- Searching for dependencies of gz-sensors8-air_pressure
+#11 3.867 -- Searching for <gz-sensors8> component [air_speed]
+#11 3.868 -- Looking for gz-sensors8-air_speed -- found version 8.2.2
+#11 3.868 -- Searching for dependencies of gz-sensors8-air_speed
+#11 3.869 -- Searching for <gz-sensors8> component [altimeter]
+#11 3.870 -- Looking for gz-sensors8-altimeter -- found version 8.2.2
+#11 3.870 -- Searching for dependencies of gz-sensors8-altimeter
+#11 3.871 -- Searching for <gz-sensors8> component [imu]
+#11 3.874 -- Looking for gz-sensors8-imu -- found version 8.2.2
+#11 3.874 -- Searching for dependencies of gz-sensors8-imu
+#11 3.875 -- Searching for <gz-sensors8> component [force_torque]
+#11 3.877 -- Looking for gz-sensors8-force_torque -- found version 8.2.2
+#11 3.877 -- Searching for dependencies of gz-sensors8-force_torque
+#11 3.878 -- Searching for <gz-sensors8> component [logical_camera]
+#11 3.879 -- Looking for gz-sensors8-logical_camera -- found version 8.2.2
+#11 3.879 -- Searching for dependencies of gz-sensors8-logical_camera
+#11 3.882 -- Searching for <gz-sensors8> component [magnetometer]
+#11 3.884 -- Looking for gz-sensors8-magnetometer -- found version 8.2.2
+#11 3.884 -- Searching for dependencies of gz-sensors8-magnetometer
+#11 3.885 -- Searching for <gz-sensors8> component [navsat]
+#11 3.886 -- Looking for gz-sensors8-navsat -- found version 8.2.2
+#11 3.886 -- Searching for dependencies of gz-sensors8-navsat
+#11 3.887 -- Searching for <gz-sensors8> component [dvl]
+#11 3.888 -- Looking for gz-sensors8-dvl -- found version 8.2.2
+#11 3.888 -- Searching for dependencies of gz-sensors8-dvl
+#11 3.889 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.889 -- Searching for dependencies of gz-sensors8
+#11 3.911 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.912 -- Looking for gz-common5 -- found version 5.9.0
+#11 3.912 -- Looking for gz-transport13 -- found version 13.6.0
+#11 3.912 -- Looking for gz-rendering8 -- found version 8.2.3
+#11 3.913 -- Looking for gz-msgs10 -- found version 10.4.0
+#11 3.914 -- Looking for sdformat14 -- found version 14.9.0
+#11 3.915 -- Searching for <gz-sensors8> component [rendering]
+#11 3.917 -- Looking for gz-sensors8-rendering -- found version 8.2.2
+#11 3.917 -- Searching for dependencies of gz-sensors8-rendering
+#11 3.919 -- Searching for <gz-sensors8> component [rendering]
+#11 3.919 -- Searching for <gz-sensors8> component [lidar]
+#11 3.920 -- Looking for gz-sensors8-lidar -- found version 8.2.2
+#11 3.920 -- Searching for dependencies of gz-sensors8-lidar
+#11 3.921 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.922 -- Searching for <gz-sensors8> component [gpu_lidar]
+#11 3.925 -- Looking for gz-sensors8-gpu_lidar -- found version 8.2.2
+#11 3.925 -- Searching for dependencies of gz-sensors8-gpu_lidar
+#11 3.926 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.927 -- Searching for <gz-sensors8> component [camera]
+#11 3.929 -- Looking for gz-sensors8-camera -- found version 8.2.2
+#11 3.929 -- Searching for dependencies of gz-sensors8-camera
+#11 3.930 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.931 -- Searching for <gz-sensors8> component [boundingbox_camera]
+#11 3.933 -- Looking for gz-sensors8-boundingbox_camera -- found version 8.2.2
+#11 3.934 -- Searching for dependencies of gz-sensors8-boundingbox_camera
+#11 3.934 -- Searching for <gz-sensors8> component [segmentation_camera]
+#11 3.936 -- Looking for gz-sensors8-segmentation_camera -- found version 8.2.2
+#11 3.936 -- Searching for dependencies of gz-sensors8-segmentation_camera
+#11 3.937 -- Searching for <gz-sensors8> component [depth_camera]
+#11 3.938 -- Looking for gz-sensors8-depth_camera -- found version 8.2.2
+#11 3.938 -- Searching for dependencies of gz-sensors8-depth_camera
+#11 3.939 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.941 -- Searching for <gz-sensors8> component [rgbd_camera]
+#11 3.942 -- Looking for gz-sensors8-rgbd_camera -- found version 8.2.2
+#11 3.942 -- Searching for dependencies of gz-sensors8-rgbd_camera
+#11 3.944 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.945 -- Searching for <gz-sensors8> component [thermal_camera]
+#11 3.946 -- Looking for gz-sensors8-thermal_camera -- found version 8.2.2
+#11 3.946 -- Searching for dependencies of gz-sensors8-thermal_camera
+#11 3.947 -- Looking for gz-sensors8 -- found version 8.2.2
+#11 3.949 -- Searching for <gz-sensors8> component [wide_angle_camera]
+#11 3.950 -- Looking for gz-sensors8-wide_angle_camera -- found version 8.2.2
+#11 3.950 -- Searching for dependencies of gz-sensors8-wide_angle_camera
+#11 3.952 -- Looking for gz-rendering8 -- found version 8.2.3
+#11 3.953 -- Looking for gz-math7 -- found version 7.7.0
+#11 3.953 -- Looking for gz-utils2 -- found version 2.2.1
+#11 3.974 -- Looking for gz-plugin2 -- found version 2.0.4
+#11 3.975 -- Looking for gz-transport13 -- found version 13.6.0
+#11 3.976 -- Configuring done (2.7s)
+#11 4.008 -- Generating done (0.0s)
+#11 4.010 -- Build files have been written to: /opt/rover_motor_driver/build
+#11 4.096 [ 50%] Building CXX object CMakeFiles/rover_motor_driver.dir/MotorDriver.cc.o
+#11 13.36 [100%] Linking CXX shared library librover_motor_driver.so
+#11 14.07 [100%] Built target rover_motor_driver
+#11 14.13 -- Install configuration: ""
+#11 14.13 -- Installing: /opt/rover_motor_driver/lib/librover_motor_driver.so
+#11 14.15 -- Set non-toolchain portion of runtime path of "/opt/rover_motor_driver/lib/librover_motor_driver.so" to ""
+#11 DONE 14.4s
+
+#12 [robotics robotics 7/8] COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh
+#12 DONE 0.0s
+
+#13 [desktop robotics 8/8] WORKDIR /workspace
+#13 DONE 0.0s
+
+#14 [robotics] exporting to image
+#14 exporting layers
+#14 exporting layers 0.3s done
+#14 exporting manifest sha256:77a86152c6dcdb0dd310033dfab166ca65efb458d2f956c671b4656b9180c295 done
+#14 exporting config sha256:bc46f8007b071e5929e1b317e27ce467d314428020f0e176ae37607505e8dad1 done
+#14 exporting attestation manifest sha256:296513a9f02ef5c49d815cb3b5a2af69b3703d1f7b18e9ca1e43af76376c8e44 0.0s done
+#14 exporting manifest list sha256:cd08b398a162cb2fbfb875e562213c2198e72f2213794a422d27feeaa2671688 done
+#14 naming to docker.io/library/hardwareless-robotics:jazzy-harmonic done
+#14 unpacking to docker.io/library/hardwareless-robotics:jazzy-harmonic 0.1s done
+#14 DONE 0.4s
+
+#15 [desktop desktop 1/1] RUN apt-get update && apt-get install -y --no-install-recommends     xvfb x11vnc novnc websockify openbox mesa-utils python3-pil x11-utils xterm     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#15 0.538 Get:1 http://packages.ros.org/ros2/ubuntu noble InRelease [4676 B]
+#15 ...
+
+#16 [robotics] resolving provenance for metadata file
+#16 DONE 0.0s
+
+#15 [desktop desktop 1/1] RUN apt-get update && apt-get install -y --no-install-recommends     xvfb x11vnc novnc websockify openbox mesa-utils python3-pil x11-utils xterm     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#15 0.579 Get:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+#15 0.700 Get:3 http://packages.ros.org/ros2/ubuntu noble/main Sources [2171 kB]
+#15 0.877 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#15 0.923 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#15 0.968 Get:6 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+#15 1.011 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+#15 1.048 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+#15 1.211 Get:9 http://packages.ros.org/ros2/ubuntu noble/main arm64 Packages [2037 kB]
+#15 1.464 Get:10 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+#15 1.482 Get:11 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+#15 1.485 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2199 kB]
+#15 1.502 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2996 kB]
+#15 1.524 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [94.8 kB]
+#15 1.525 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1692 kB]
+#15 1.537 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+#15 1.538 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [671 B]
+#15 1.538 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+#15 1.539 Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [89.7 kB]
+#15 1.539 Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1635 kB]
+#15 1.551 Get:21 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1356 kB]
+#15 1.561 Get:22 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [2811 kB]
+#15 3.164 Fetched 39.0 MB in 3s (13.5 MB/s)
+#15 3.164 Reading package lists...
+#15 4.370 Reading package lists...
+#15 5.623 Building dependency tree...
+#15 6.032 Reading state information...
+#15 6.560 python3-pil is already the newest version (10.2.0-1ubuntu1.3).
+#15 6.560 python3-pil set to manually installed.
+#15 6.560 The following additional packages will be installed:
+#15 6.560   fonts-urw-base35 ieee-data libcares2 libfontenc1 libgs-common libgs10
+#15 6.560   libgs10-common libid3tag0 libidn12 libijs-0.35 libimlib2t64 libjbig2dec0
+#15 6.560   liblzo2-2 libnode109 libobrender32v5 libobt2v5 libpangoxft-1.0-0 libpaper1
+#15 6.560   libspectre1 libstartup-notification0 libutempter0 libvncclient1
+#15 6.560   libvncserver1 libxcomposite1 libxdamage1 libxfont2 libxkbfile1 libxmuu1
+#15 6.561   libxtst6 libxxf86dga1 mesa-utils-bin net-tools node-acorn node-busboy
+#15 6.561   node-cjs-module-lexer node-undici node-xtend nodejs poppler-data
+#15 6.561   python-babel-localedata python3-babel python3-certifi python3-chardet
+#15 6.561   python3-debtcollector python3-deprecated python3-dnspython python3-eventlet
+#15 6.561   python3-greenlet python3-idna python3-iso8601 python3-jwcrypto
+#15 6.561   python3-monotonic python3-msgpack python3-netaddr python3-netifaces
+#15 6.561   python3-novnc python3-oslo.config python3-oslo.context python3-oslo.i18n
+#15 6.561   python3-oslo.log python3-oslo.serialization python3-oslo.utils python3-pbr
+#15 6.561   python3-pyasyncore python3-pyinotify python3-requests python3-rfc3986
+#15 6.561   python3-stevedore python3-typing-extensions python3-urllib3
+#15 6.562   python3-websockify python3-wrapt tcl tcl8.6 tk tk8.6 ucf x11-xkb-utils xauth
+#15 6.562   xbitmaps xfonts-encodings xfonts-utils xserver-common
+#15 6.567 Suggested packages:
+#15 6.567   fonts-freefont-otf | fonts-freefont-ttf fonts-texgyre npm python-nova
+#15 6.567   fonts-dejavu tint2 openbox-gnome-session openbox-kde-session poppler-utils
+#15 6.567   ghostscript fonts-japanese-mincho | fonts-ipafont-mincho
+#15 6.567   fonts-japanese-gothic | fonts-ipafont-gothic fonts-arphic-ukai
+#15 6.567   fonts-arphic-uming fonts-nanum python-debtcollector-doc python3-trio
+#15 6.567   python3-aioquic python3-h2 python3-httpx python3-httpcore
+#15 6.567   python-eventlet-doc python-greenlet-dev python-greenlet-doc ipython3
+#15 6.567   python-netaddr-docs python3-nova python-oslo.log-doc python-pyinotify-doc
+#15 6.567   python3-openssl python3-socks python-requests-doc tcl-tclreadline
+#15 6.567   xfonts-cyrillic
+#15 6.567 Recommended packages:
+#15 6.567   fonts-droid-fallback libpaper-utils nodejs-doc obconf | obconf-qt scrot luit
+#15 6.567   xfonts-base luit | x11-utils
+#15 7.027 The following NEW packages will be installed:
+#15 7.027   fonts-urw-base35 ieee-data libcares2 libfontenc1 libgs-common libgs10
+#15 7.027   libgs10-common libid3tag0 libidn12 libijs-0.35 libimlib2t64 libjbig2dec0
+#15 7.027   liblzo2-2 libnode109 libobrender32v5 libobt2v5 libpangoxft-1.0-0 libpaper1
+#15 7.027   libspectre1 libstartup-notification0 libutempter0 libvncclient1
+#15 7.027   libvncserver1 libxcomposite1 libxdamage1 libxfont2 libxkbfile1 libxmuu1
+#15 7.028   libxtst6 libxxf86dga1 mesa-utils mesa-utils-bin net-tools node-acorn
+#15 7.028   node-busboy node-cjs-module-lexer node-undici node-xtend nodejs novnc
+#15 7.028   openbox poppler-data python-babel-localedata python3-babel python3-certifi
+#15 7.028   python3-chardet python3-debtcollector python3-deprecated python3-dnspython
+#15 7.028   python3-eventlet python3-greenlet python3-idna python3-iso8601
+#15 7.028   python3-jwcrypto python3-monotonic python3-msgpack python3-netaddr
+#15 7.028   python3-netifaces python3-novnc python3-oslo.config python3-oslo.context
+#15 7.028   python3-oslo.i18n python3-oslo.log python3-oslo.serialization
+#15 7.028   python3-oslo.utils python3-pbr python3-pyasyncore python3-pyinotify
+#15 7.028   python3-requests python3-rfc3986 python3-stevedore python3-typing-extensions
+#15 7.028   python3-urllib3 python3-websockify python3-wrapt tcl tcl8.6 tk tk8.6 ucf
+#15 7.028   websockify x11-utils x11-xkb-utils x11vnc xauth xbitmaps xfonts-encodings
+#15 7.028   xfonts-utils xserver-common xterm xvfb
+#15 7.188 0 upgraded, 91 newly installed, 0 to remove and 17 not upgraded.
+#15 7.188 Need to get 47.2 MB of archives.
+#15 7.188 After this operation, 188 MB of additional disk space will be used.
+#15 7.188 Get:1 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 poppler-data all 0.4.12-1 [2060 kB]
+#15 7.707 Get:2 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-netifaces arm64 0.11.0-2build3 [17.9 kB]
+#15 7.708 Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ucf all 3.0043+nmu1 [56.5 kB]
+#15 7.709 Get:4 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxmuu1 arm64 2:1.1.3-3build2 [9140 B]
+#15 7.710 Get:5 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 xauth arm64 1:1.1.2-1build1 [25.3 kB]
+#15 7.711 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libfontenc1 arm64 1:1.1.8-1build1 [13.9 kB]
+#15 7.715 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+#15 7.725 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 xfonts-utils arm64 1:7.7+6build3 [93.1 kB]
+#15 7.736 Get:9 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 fonts-urw-base35 all 20200910-8 [11.0 MB]
+#15 7.932 Get:10 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ieee-data all 20220827.1 [2113 kB]
+#15 7.970 Get:11 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libcares2 arm64 1.27.0-1.0ubuntu1 [74.1 kB]
+#15 7.972 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgs-common all 10.02.1~dfsg1-0ubuntu7.9 [176 kB]
+#15 7.979 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgs10-common all 10.02.1~dfsg1-0ubuntu7.9 [488 kB]
+#15 7.993 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libidn12 arm64 1.42-1ubuntu0.1 [57.1 kB]
+#15 8.001 Get:15 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libijs-0.35 arm64 0.35-15.1build1 [15.3 kB]
+#15 8.002 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libjbig2dec0 arm64 0.20-1ubuntu0.24.04.1 [63.4 kB]
+#15 8.002 Get:17 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libpaper1 arm64 1.1.29build1 [13.4 kB]
+#15 8.002 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgs10 arm64 10.02.1~dfsg1-0ubuntu7.9 [3777 kB]
+#15 8.054 Get:19 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libid3tag0 arm64 0.15.1b-14build1 [32.9 kB]
+#15 8.056 Get:20 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libspectre1 arm64 0.2.12-1build2 [29.6 kB]
+#15 8.057 Get:21 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libimlib2t64 arm64 1.12.1-1.1build2 [201 kB]
+#15 8.060 Get:22 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 liblzo2-2 arm64 2.10-2build4 [50.6 kB]
+#15 8.061 Get:23 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 node-xtend all 4.0.2-3 [3902 B]
+#15 8.061 Get:24 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 nodejs arm64 18.19.1+dfsg-6ubuntu5 [306 kB]
+#15 8.066 Get:25 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 node-acorn all 8.8.1+ds+~cs25.17.7-2 [115 kB]
+#15 8.067 Get:26 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 node-cjs-module-lexer all 1.2.3+dfsg-1 [32.1 kB]
+#15 8.068 Get:27 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 node-busboy all 1.6.0+~cs2.6.0-2 [17.3 kB]
+#15 8.168 Get:28 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 node-undici all 5.26.3+dfsg1+~cs23.10.12-2 [325 kB]
+#15 8.174 Get:29 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libnode109 arm64 18.19.1+dfsg-6ubuntu5 [11.2 MB]
+#15 8.349 Get:30 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libobt2v5 arm64 3.6.1-12build5 [32.9 kB]
+#15 8.352 Get:31 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libpangoxft-1.0-0 arm64 1.52.1+ds-1build1 [20.1 kB]
+#15 8.354 Get:32 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libobrender32v5 arm64 3.6.1-12build5 [39.7 kB]
+#15 8.355 Get:33 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libstartup-notification0 arm64 0.12-6build3 [18.9 kB]
+#15 8.356 Get:34 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libutempter0 arm64 1.2.1-3build1 [9590 B]
+#15 8.357 Get:35 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libvncclient1 arm64 0.9.14+dfsg-1ubuntu0.2 [74.7 kB]
+#15 8.358 Get:36 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libvncserver1 arm64 0.9.14+dfsg-1ubuntu0.2 [132 kB]
+#15 8.360 Get:37 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxcomposite1 arm64 1:0.4.5-1build3 [6336 B]
+#15 8.360 Get:38 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxdamage1 arm64 1:1.1.6-1build1 [6236 B]
+#15 8.385 Get:39 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libxfont2 arm64 1:2.0.6-1+deb13u1build0.24.04.2 [89.8 kB]
+#15 8.387 Get:40 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxkbfile1 arm64 1:1.1.0-1build4 [69.4 kB]
+#15 8.389 Get:41 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxtst6 arm64 2:1.2.3-1.1build1 [13.0 kB]
+#15 8.390 Get:42 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libxxf86dga1 arm64 2:1.1.5-1build1 [11.3 kB]
+#15 8.391 Get:43 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 mesa-utils-bin arm64 9.0.0-2 [168 kB]
+#15 8.393 Get:44 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 net-tools arm64 2.10-0.1ubuntu4.4 [207 kB]
+#15 8.398 Get:45 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-pbr all 5.11.1-0ubuntu1 [66.5 kB]
+#15 8.401 Get:46 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-wrapt arm64 1.15.0-2build3 [33.9 kB]
+#15 8.403 Get:47 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-debtcollector all 2.5.0-3 [13.3 kB]
+#15 8.404 Get:48 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-netaddr all 0.8.0-2ubuntu1 [319 kB]
+#15 8.423 Get:49 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python-babel-localedata all 2.10.3-3build1 [6357 kB]
+#15 8.500 Get:50 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-babel all 2.10.3-3build1 [87.5 kB]
+#15 8.502 Get:51 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.i18n all 6.3.0-0ubuntu1 [22.2 kB]
+#15 8.503 Get:52 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-greenlet arm64 3.0.3-0ubuntu5.1 [153 kB]
+#15 8.506 Get:53 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-dnspython all 2.6.1-1ubuntu1 [163 kB]
+#15 8.508 Get:54 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-monotonic all 1.6-2 [5732 B]
+#15 8.509 Get:55 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-eventlet all 0.35.2-0ubuntu1.1 [274 kB]
+#15 8.512 Get:56 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.context all 1:5.5.0-0ubuntu1 [13.7 kB]
+#15 8.512 Get:57 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-msgpack arm64 1.0.3-3build2 [77.9 kB]
+#15 8.514 Get:58 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-iso8601 all 1.0.2-1 [15.8 kB]
+#15 8.530 Get:59 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.utils all 7.1.0-0ubuntu1 [63.2 kB]
+#15 8.535 Get:60 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.serialization all 5.4.0-0ubuntu1 [15.6 kB]
+#15 8.536 Get:61 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-pyasyncore all 1.0.2-2 [10.1 kB]
+#15 8.538 Get:62 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-pyinotify all 0.9.6-2ubuntu1 [25.0 kB]
+#15 8.539 Get:63 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.log all 5.5.1-0ubuntu1 [46.9 kB]
+#15 8.541 Get:64 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-certifi all 2023.11.17-1 [165 kB]
+#15 8.544 Get:65 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-chardet all 5.2.0+dfsg-1 [117 kB]
+#15 8.546 Get:66 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-idna all 3.6-2ubuntu0.2 [49.7 kB]
+#15 8.549 Get:67 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-urllib3 all 2.0.7-1ubuntu0.7 [95.4 kB]
+#15 8.550 Get:68 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-requests all 2.31.0+dfsg-1ubuntu1.1 [50.8 kB]
+#15 8.564 Get:69 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-rfc3986 all 2.0.0-2 [21.9 kB]
+#15 8.566 Get:70 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-stevedore all 1:5.1.0-0ubuntu1 [21.0 kB]
+#15 8.569 Get:71 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-oslo.config all 1:9.4.0-0ubuntu1 [88.0 kB]
+#15 8.574 Get:72 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-novnc all 1:1.3.0-2 [12.8 kB]
+#15 8.575 Get:73 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-typing-extensions all 4.10.0-1 [60.7 kB]
+#15 8.581 Get:74 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-deprecated all 1.2.14-1 [10.5 kB]
+#15 8.582 Get:75 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 python3-jwcrypto all 1.5.4-1 [31.9 kB]
+#15 8.583 Get:76 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 python3-websockify arm64 0.10.0+dfsg1-5build2 [42.2 kB]
+#15 8.584 Get:77 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 websockify arm64 0.10.0+dfsg1-5build2 [24.4 kB]
+#15 8.585 Get:78 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 novnc all 1:1.3.0-2 [248 kB]
+#15 8.598 Get:79 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 openbox arm64 3.6.1-12build5 [301 kB]
+#15 8.690 Get:80 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 tcl8.6 arm64 8.6.14+dfsg-1build1 [14.6 kB]
+#15 8.692 Get:81 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 tcl arm64 8.6.14build1 [4124 B]
+#15 8.693 Get:82 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 tk8.6 arm64 8.6.14-1build1 [12.3 kB]
+#15 8.694 Get:83 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 tk arm64 8.6.14build1 [3076 B]
+#15 8.694 Get:84 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 x11-utils arm64 7.7+6build2 [188 kB]
+#15 8.699 Get:85 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 x11-xkb-utils arm64 7.7+8build2 [165 kB]
+#15 8.701 Get:86 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 x11vnc arm64 0.9.16-10 [1008 kB]
+#15 8.713 Get:87 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 xbitmaps all 1.1.1-2.2 [22.4 kB]
+#15 8.713 Get:88 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 xserver-common all 2:21.1.12-1ubuntu1.8 [34.8 kB]
+#15 8.716 Get:89 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 xterm arm64 390-1ubuntu3 [886 kB]
+#15 8.736 Get:90 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 xvfb arm64 2:21.1.12-1ubuntu1.8 [873 kB]
+#15 8.746 Get:91 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 mesa-utils arm64 9.0.0-2 [1051 kB]
+#15 9.171 debconf: delaying package configuration, since apt-utils is not installed
+#15 9.256 Fetched 47.2 MB in 2s (27.7 MB/s)
+#15 9.303 Selecting previously unselected package poppler-data.
+#15 9.303 (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 108865 files and directories currently installed.)
+#15 9.715 Preparing to unpack .../00-poppler-data_0.4.12-1_all.deb ...
+#15 9.718 Unpacking poppler-data (0.4.12-1) ...
+#15 9.931 Selecting previously unselected package python3-netifaces:arm64.
+#15 9.941 Preparing to unpack .../01-python3-netifaces_0.11.0-2build3_arm64.deb ...
+#15 9.943 Unpacking python3-netifaces:arm64 (0.11.0-2build3) ...
+#15 9.976 Selecting previously unselected package ucf.
+#15 9.990 Preparing to unpack .../02-ucf_3.0043+nmu1_all.deb ...
+#15 9.995 Moving old data out of the way
+#15 10.000 Unpacking ucf (3.0043+nmu1) ...
+#15 10.04 Selecting previously unselected package libxmuu1:arm64.
+#15 10.05 Preparing to unpack .../03-libxmuu1_2%3a1.1.3-3build2_arm64.deb ...
+#15 10.06 Unpacking libxmuu1:arm64 (2:1.1.3-3build2) ...
+#15 10.08 Selecting previously unselected package xauth.
+#15 10.09 Preparing to unpack .../04-xauth_1%3a1.1.2-1build1_arm64.deb ...
+#15 10.09 Unpacking xauth (1:1.1.2-1build1) ...
+#15 10.12 Selecting previously unselected package libfontenc1:arm64.
+#15 10.13 Preparing to unpack .../05-libfontenc1_1%3a1.1.8-1build1_arm64.deb ...
+#15 10.13 Unpacking libfontenc1:arm64 (1:1.1.8-1build1) ...
+#15 10.15 Selecting previously unselected package xfonts-encodings.
+#15 10.16 Preparing to unpack .../06-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+#15 10.17 Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+#15 10.20 Selecting previously unselected package xfonts-utils.
+#15 10.21 Preparing to unpack .../07-xfonts-utils_1%3a7.7+6build3_arm64.deb ...
+#15 10.21 Unpacking xfonts-utils (1:7.7+6build3) ...
+#15 10.25 Selecting previously unselected package fonts-urw-base35.
+#15 10.26 Preparing to unpack .../08-fonts-urw-base35_20200910-8_all.deb ...
+#15 10.32 Unpacking fonts-urw-base35 (20200910-8) ...
+#15 10.50 Selecting previously unselected package ieee-data.
+#15 10.52 Preparing to unpack .../09-ieee-data_20220827.1_all.deb ...
+#15 10.53 Unpacking ieee-data (20220827.1) ...
+#15 10.65 Selecting previously unselected package libcares2:arm64.
+#15 10.66 Preparing to unpack .../10-libcares2_1.27.0-1.0ubuntu1_arm64.deb ...
+#15 10.66 Unpacking libcares2:arm64 (1.27.0-1.0ubuntu1) ...
+#15 10.69 Selecting previously unselected package libgs-common.
+#15 10.70 Preparing to unpack .../11-libgs-common_10.02.1~dfsg1-0ubuntu7.9_all.deb ...
+#15 10.70 Unpacking libgs-common (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 10.73 Selecting previously unselected package libgs10-common.
+#15 10.74 Preparing to unpack .../12-libgs10-common_10.02.1~dfsg1-0ubuntu7.9_all.deb ...
+#15 10.74 Unpacking libgs10-common (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 10.83 Selecting previously unselected package libidn12:arm64.
+#15 10.84 Preparing to unpack .../13-libidn12_1.42-1ubuntu0.1_arm64.deb ...
+#15 10.85 Unpacking libidn12:arm64 (1.42-1ubuntu0.1) ...
+#15 10.88 Selecting previously unselected package libijs-0.35:arm64.
+#15 10.89 Preparing to unpack .../14-libijs-0.35_0.35-15.1build1_arm64.deb ...
+#15 10.89 Unpacking libijs-0.35:arm64 (0.35-15.1build1) ...
+#15 10.92 Selecting previously unselected package libjbig2dec0:arm64.
+#15 10.93 Preparing to unpack .../15-libjbig2dec0_0.20-1ubuntu0.24.04.1_arm64.deb ...
+#15 10.93 Unpacking libjbig2dec0:arm64 (0.20-1ubuntu0.24.04.1) ...
+#15 10.96 Selecting previously unselected package libpaper1:arm64.
+#15 10.97 Preparing to unpack .../16-libpaper1_1.1.29build1_arm64.deb ...
+#15 10.97 Unpacking libpaper1:arm64 (1.1.29build1) ...
+#15 11.00 Selecting previously unselected package libgs10:arm64.
+#15 11.01 Preparing to unpack .../17-libgs10_10.02.1~dfsg1-0ubuntu7.9_arm64.deb ...
+#15 11.01 Unpacking libgs10:arm64 (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 11.22 Selecting previously unselected package libid3tag0:arm64.
+#15 11.23 Preparing to unpack .../18-libid3tag0_0.15.1b-14build1_arm64.deb ...
+#15 11.24 Unpacking libid3tag0:arm64 (0.15.1b-14build1) ...
+#15 11.26 Selecting previously unselected package libspectre1:arm64.
+#15 11.27 Preparing to unpack .../19-libspectre1_0.2.12-1build2_arm64.deb ...
+#15 11.28 Unpacking libspectre1:arm64 (0.2.12-1build2) ...
+#15 11.30 Selecting previously unselected package libimlib2t64:arm64.
+#15 11.31 Preparing to unpack .../20-libimlib2t64_1.12.1-1.1build2_arm64.deb ...
+#15 11.31 Unpacking libimlib2t64:arm64 (1.12.1-1.1build2) ...
+#15 11.36 Selecting previously unselected package liblzo2-2:arm64.
+#15 11.37 Preparing to unpack .../21-liblzo2-2_2.10-2build4_arm64.deb ...
+#15 11.37 Unpacking liblzo2-2:arm64 (2.10-2build4) ...
+#15 11.39 Selecting previously unselected package node-xtend.
+#15 11.40 Preparing to unpack .../22-node-xtend_4.0.2-3_all.deb ...
+#15 11.41 Unpacking node-xtend (4.0.2-3) ...
+#15 11.43 Selecting previously unselected package nodejs.
+#15 11.44 Preparing to unpack .../23-nodejs_18.19.1+dfsg-6ubuntu5_arm64.deb ...
+#15 11.44 Unpacking nodejs (18.19.1+dfsg-6ubuntu5) ...
+#15 11.52 Selecting previously unselected package node-acorn.
+#15 11.53 Preparing to unpack .../24-node-acorn_8.8.1+ds+~cs25.17.7-2_all.deb ...
+#15 11.53 Unpacking node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+#15 11.60 Selecting previously unselected package node-cjs-module-lexer.
+#15 11.61 Preparing to unpack .../25-node-cjs-module-lexer_1.2.3+dfsg-1_all.deb ...
+#15 11.62 Unpacking node-cjs-module-lexer (1.2.3+dfsg-1) ...
+#15 11.67 Selecting previously unselected package node-busboy.
+#15 11.69 Preparing to unpack .../26-node-busboy_1.6.0+~cs2.6.0-2_all.deb ...
+#15 11.70 Unpacking node-busboy (1.6.0+~cs2.6.0-2) ...
+#15 11.74 Selecting previously unselected package node-undici.
+#15 11.75 Preparing to unpack .../27-node-undici_5.26.3+dfsg1+~cs23.10.12-2_all.deb ...
+#15 11.75 Unpacking node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+#15 11.81 Selecting previously unselected package libnode109:arm64.
+#15 11.82 Preparing to unpack .../28-libnode109_18.19.1+dfsg-6ubuntu5_arm64.deb ...
+#15 11.83 Unpacking libnode109:arm64 (18.19.1+dfsg-6ubuntu5) ...
+#15 12.22 Selecting previously unselected package libobt2v5:arm64.
+#15 12.23 Preparing to unpack .../29-libobt2v5_3.6.1-12build5_arm64.deb ...
+#15 12.23 Unpacking libobt2v5:arm64 (3.6.1-12build5) ...
+#15 12.26 Selecting previously unselected package libpangoxft-1.0-0:arm64.
+#15 12.28 Preparing to unpack .../30-libpangoxft-1.0-0_1.52.1+ds-1build1_arm64.deb ...
+#15 12.28 Unpacking libpangoxft-1.0-0:arm64 (1.52.1+ds-1build1) ...
+#15 12.31 Selecting previously unselected package libobrender32v5.
+#15 12.32 Preparing to unpack .../31-libobrender32v5_3.6.1-12build5_arm64.deb ...
+#15 12.32 Unpacking libobrender32v5 (3.6.1-12build5) ...
+#15 12.35 Selecting previously unselected package libstartup-notification0:arm64.
+#15 12.36 Preparing to unpack .../32-libstartup-notification0_0.12-6build3_arm64.deb ...
+#15 12.36 Unpacking libstartup-notification0:arm64 (0.12-6build3) ...
+#15 12.39 Selecting previously unselected package libutempter0:arm64.
+#15 12.40 Preparing to unpack .../33-libutempter0_1.2.1-3build1_arm64.deb ...
+#15 12.40 Unpacking libutempter0:arm64 (1.2.1-3build1) ...
+#15 12.43 Selecting previously unselected package libvncclient1:arm64.
+#15 12.44 Preparing to unpack .../34-libvncclient1_0.9.14+dfsg-1ubuntu0.2_arm64.deb ...
+#15 12.44 Unpacking libvncclient1:arm64 (0.9.14+dfsg-1ubuntu0.2) ...
+#15 12.46 Selecting previously unselected package libvncserver1:arm64.
+#15 12.47 Preparing to unpack .../35-libvncserver1_0.9.14+dfsg-1ubuntu0.2_arm64.deb ...
+#15 12.48 Unpacking libvncserver1:arm64 (0.9.14+dfsg-1ubuntu0.2) ...
+#15 12.50 Selecting previously unselected package libxcomposite1:arm64.
+#15 12.52 Preparing to unpack .../36-libxcomposite1_1%3a0.4.5-1build3_arm64.deb ...
+#15 12.52 Unpacking libxcomposite1:arm64 (1:0.4.5-1build3) ...
+#15 12.54 Selecting previously unselected package libxdamage1:arm64.
+#15 12.55 Preparing to unpack .../37-libxdamage1_1%3a1.1.6-1build1_arm64.deb ...
+#15 12.55 Unpacking libxdamage1:arm64 (1:1.1.6-1build1) ...
+#15 12.59 Selecting previously unselected package libxfont2:arm64.
+#15 12.60 Preparing to unpack .../38-libxfont2_1%3a2.0.6-1+deb13u1build0.24.04.2_arm64.deb ...
+#15 12.60 Unpacking libxfont2:arm64 (1:2.0.6-1+deb13u1build0.24.04.2) ...
+#15 12.63 Selecting previously unselected package libxkbfile1:arm64.
+#15 12.64 Preparing to unpack .../39-libxkbfile1_1%3a1.1.0-1build4_arm64.deb ...
+#15 12.64 Unpacking libxkbfile1:arm64 (1:1.1.0-1build4) ...
+#15 12.67 Selecting previously unselected package libxtst6:arm64.
+#15 12.68 Preparing to unpack .../40-libxtst6_2%3a1.2.3-1.1build1_arm64.deb ...
+#15 12.69 Unpacking libxtst6:arm64 (2:1.2.3-1.1build1) ...
+#15 12.71 Selecting previously unselected package libxxf86dga1:arm64.
+#15 12.72 Preparing to unpack .../41-libxxf86dga1_2%3a1.1.5-1build1_arm64.deb ...
+#15 12.72 Unpacking libxxf86dga1:arm64 (2:1.1.5-1build1) ...
+#15 12.74 Selecting previously unselected package mesa-utils-bin:arm64.
+#15 12.75 Preparing to unpack .../42-mesa-utils-bin_9.0.0-2_arm64.deb ...
+#15 12.76 Unpacking mesa-utils-bin:arm64 (9.0.0-2) ...
+#15 12.79 Selecting previously unselected package net-tools.
+#15 12.80 Preparing to unpack .../43-net-tools_2.10-0.1ubuntu4.4_arm64.deb ...
+#15 12.80 Unpacking net-tools (2.10-0.1ubuntu4.4) ...
+#15 12.83 Selecting previously unselected package python3-pbr.
+#15 12.84 Preparing to unpack .../44-python3-pbr_5.11.1-0ubuntu1_all.deb ...
+#15 12.84 Unpacking python3-pbr (5.11.1-0ubuntu1) ...
+#15 12.87 Selecting previously unselected package python3-wrapt.
+#15 12.88 Preparing to unpack .../45-python3-wrapt_1.15.0-2build3_arm64.deb ...
+#15 12.89 Unpacking python3-wrapt (1.15.0-2build3) ...
+#15 12.91 Selecting previously unselected package python3-debtcollector.
+#15 12.92 Preparing to unpack .../46-python3-debtcollector_2.5.0-3_all.deb ...
+#15 12.92 Unpacking python3-debtcollector (2.5.0-3) ...
+#15 12.95 Selecting previously unselected package python3-netaddr.
+#15 12.96 Preparing to unpack .../47-python3-netaddr_0.8.0-2ubuntu1_all.deb ...
+#15 12.96 Unpacking python3-netaddr (0.8.0-2ubuntu1) ...
+#15 12.99 Selecting previously unselected package python-babel-localedata.
+#15 13.00 Preparing to unpack .../48-python-babel-localedata_2.10.3-3build1_all.deb ...
+#15 13.00 Unpacking python-babel-localedata (2.10.3-3build1) ...
+#15 13.29 Selecting previously unselected package python3-babel.
+#15 13.30 Preparing to unpack .../49-python3-babel_2.10.3-3build1_all.deb ...
+#15 13.31 Unpacking python3-babel (2.10.3-3build1) ...
+#15 13.34 Selecting previously unselected package python3-oslo.i18n.
+#15 13.35 Preparing to unpack .../50-python3-oslo.i18n_6.3.0-0ubuntu1_all.deb ...
+#15 13.35 Unpacking python3-oslo.i18n (6.3.0-0ubuntu1) ...
+#15 13.38 Selecting previously unselected package python3-greenlet.
+#15 13.39 Preparing to unpack .../51-python3-greenlet_3.0.3-0ubuntu5.1_arm64.deb ...
+#15 13.39 Unpacking python3-greenlet (3.0.3-0ubuntu5.1) ...
+#15 13.43 Selecting previously unselected package python3-dnspython.
+#15 13.44 Preparing to unpack .../52-python3-dnspython_2.6.1-1ubuntu1_all.deb ...
+#15 13.45 Unpacking python3-dnspython (2.6.1-1ubuntu1) ...
+#15 13.49 Selecting previously unselected package python3-monotonic.
+#15 13.51 Preparing to unpack .../53-python3-monotonic_1.6-2_all.deb ...
+#15 13.51 Unpacking python3-monotonic (1.6-2) ...
+#15 13.53 Selecting previously unselected package python3-eventlet.
+#15 13.54 Preparing to unpack .../54-python3-eventlet_0.35.2-0ubuntu1.1_all.deb ...
+#15 13.55 Unpacking python3-eventlet (0.35.2-0ubuntu1.1) ...
+#15 13.59 Selecting previously unselected package python3-oslo.context.
+#15 13.60 Preparing to unpack .../55-python3-oslo.context_1%3a5.5.0-0ubuntu1_all.deb ...
+#15 13.60 Unpacking python3-oslo.context (1:5.5.0-0ubuntu1) ...
+#15 13.63 Selecting previously unselected package python3-msgpack.
+#15 13.64 Preparing to unpack .../56-python3-msgpack_1.0.3-3build2_arm64.deb ...
+#15 13.64 Unpacking python3-msgpack (1.0.3-3build2) ...
+#15 13.67 Selecting previously unselected package python3-iso8601.
+#15 13.68 Preparing to unpack .../57-python3-iso8601_1.0.2-1_all.deb ...
+#15 13.68 Unpacking python3-iso8601 (1.0.2-1) ...
+#15 13.71 Selecting previously unselected package python3-oslo.utils.
+#15 13.72 Preparing to unpack .../58-python3-oslo.utils_7.1.0-0ubuntu1_all.deb ...
+#15 13.72 Unpacking python3-oslo.utils (7.1.0-0ubuntu1) ...
+#15 13.75 Selecting previously unselected package python3-oslo.serialization.
+#15 13.76 Preparing to unpack .../59-python3-oslo.serialization_5.4.0-0ubuntu1_all.deb ...
+#15 13.77 Unpacking python3-oslo.serialization (5.4.0-0ubuntu1) ...
+#15 13.79 Selecting previously unselected package python3-pyasyncore.
+#15 13.80 Preparing to unpack .../60-python3-pyasyncore_1.0.2-2_all.deb ...
+#15 13.80 Unpacking python3-pyasyncore (1.0.2-2) ...
+#15 13.82 Selecting previously unselected package python3-pyinotify.
+#15 13.84 Preparing to unpack .../61-python3-pyinotify_0.9.6-2ubuntu1_all.deb ...
+#15 13.84 Unpacking python3-pyinotify (0.9.6-2ubuntu1) ...
+#15 13.86 Selecting previously unselected package python3-oslo.log.
+#15 13.87 Preparing to unpack .../62-python3-oslo.log_5.5.1-0ubuntu1_all.deb ...
+#15 13.87 Unpacking python3-oslo.log (5.5.1-0ubuntu1) ...
+#15 13.91 Selecting previously unselected package python3-certifi.
+#15 13.92 Preparing to unpack .../63-python3-certifi_2023.11.17-1_all.deb ...
+#15 13.92 Unpacking python3-certifi (2023.11.17-1) ...
+#15 13.94 Selecting previously unselected package python3-chardet.
+#15 13.96 Preparing to unpack .../64-python3-chardet_5.2.0+dfsg-1_all.deb ...
+#15 13.96 Unpacking python3-chardet (5.2.0+dfsg-1) ...
+#15 13.99 Selecting previously unselected package python3-idna.
+#15 14.00 Preparing to unpack .../65-python3-idna_3.6-2ubuntu0.2_all.deb ...
+#15 14.01 Unpacking python3-idna (3.6-2ubuntu0.2) ...
+#15 14.03 Selecting previously unselected package python3-urllib3.
+#15 14.04 Preparing to unpack .../66-python3-urllib3_2.0.7-1ubuntu0.7_all.deb ...
+#15 14.04 Unpacking python3-urllib3 (2.0.7-1ubuntu0.7) ...
+#15 14.07 Selecting previously unselected package python3-requests.
+#15 14.08 Preparing to unpack .../67-python3-requests_2.31.0+dfsg-1ubuntu1.1_all.deb ...
+#15 14.09 Unpacking python3-requests (2.31.0+dfsg-1ubuntu1.1) ...
+#15 14.11 Selecting previously unselected package python3-rfc3986.
+#15 14.12 Preparing to unpack .../68-python3-rfc3986_2.0.0-2_all.deb ...
+#15 14.13 Unpacking python3-rfc3986 (2.0.0-2) ...
+#15 14.15 Selecting previously unselected package python3-stevedore.
+#15 14.16 Preparing to unpack .../69-python3-stevedore_1%3a5.1.0-0ubuntu1_all.deb ...
+#15 14.16 Unpacking python3-stevedore (1:5.1.0-0ubuntu1) ...
+#15 14.19 Selecting previously unselected package python3-oslo.config.
+#15 14.20 Preparing to unpack .../70-python3-oslo.config_1%3a9.4.0-0ubuntu1_all.deb ...
+#15 14.20 Unpacking python3-oslo.config (1:9.4.0-0ubuntu1) ...
+#15 14.23 Selecting previously unselected package python3-novnc.
+#15 14.25 Preparing to unpack .../71-python3-novnc_1%3a1.3.0-2_all.deb ...
+#15 14.25 Unpacking python3-novnc (1:1.3.0-2) ...
+#15 14.30 Selecting previously unselected package python3-typing-extensions.
+#15 14.32 Preparing to unpack .../72-python3-typing-extensions_4.10.0-1_all.deb ...
+#15 14.33 Unpacking python3-typing-extensions (4.10.0-1) ...
+#15 14.36 Selecting previously unselected package python3-deprecated.
+#15 14.38 Preparing to unpack .../73-python3-deprecated_1.2.14-1_all.deb ...
+#15 14.38 Unpacking python3-deprecated (1.2.14-1) ...
+#15 14.41 Selecting previously unselected package python3-jwcrypto.
+#15 14.42 Preparing to unpack .../74-python3-jwcrypto_1.5.4-1_all.deb ...
+#15 14.42 Unpacking python3-jwcrypto (1.5.4-1) ...
+#15 14.45 Selecting previously unselected package python3-websockify.
+#15 14.46 Preparing to unpack .../75-python3-websockify_0.10.0+dfsg1-5build2_arm64.deb ...
+#15 14.46 Unpacking python3-websockify (0.10.0+dfsg1-5build2) ...
+#15 14.49 Selecting previously unselected package websockify.
+#15 14.50 Preparing to unpack .../76-websockify_0.10.0+dfsg1-5build2_arm64.deb ...
+#15 14.50 Unpacking websockify (0.10.0+dfsg1-5build2) ...
+#15 14.53 Selecting previously unselected package novnc.
+#15 14.54 Preparing to unpack .../77-novnc_1%3a1.3.0-2_all.deb ...
+#15 14.54 Unpacking novnc (1:1.3.0-2) ...
+#15 14.59 Selecting previously unselected package openbox.
+#15 14.61 Preparing to unpack .../78-openbox_3.6.1-12build5_arm64.deb ...
+#15 14.61 Unpacking openbox (3.6.1-12build5) ...
+#15 14.68 Selecting previously unselected package tcl8.6.
+#15 14.69 Preparing to unpack .../79-tcl8.6_8.6.14+dfsg-1build1_arm64.deb ...
+#15 14.69 Unpacking tcl8.6 (8.6.14+dfsg-1build1) ...
+#15 14.72 Selecting previously unselected package tcl.
+#15 14.73 Preparing to unpack .../80-tcl_8.6.14build1_arm64.deb ...
+#15 14.74 Unpacking tcl (8.6.14build1) ...
+#15 14.77 Selecting previously unselected package tk8.6.
+#15 14.78 Preparing to unpack .../81-tk8.6_8.6.14-1build1_arm64.deb ...
+#15 14.78 Unpacking tk8.6 (8.6.14-1build1) ...
+#15 14.81 Selecting previously unselected package tk.
+#15 14.82 Preparing to unpack .../82-tk_8.6.14build1_arm64.deb ...
+#15 14.83 Unpacking tk (8.6.14build1) ...
+#15 14.87 Selecting previously unselected package x11-utils.
+#15 14.88 Preparing to unpack .../83-x11-utils_7.7+6build2_arm64.deb ...
+#15 14.88 Unpacking x11-utils (7.7+6build2) ...
+#15 14.92 Selecting previously unselected package x11-xkb-utils.
+#15 14.92 Preparing to unpack .../84-x11-xkb-utils_7.7+8build2_arm64.deb ...
+#15 14.93 Unpacking x11-xkb-utils (7.7+8build2) ...
+#15 14.95 Selecting previously unselected package x11vnc.
+#15 14.96 Preparing to unpack .../85-x11vnc_0.9.16-10_arm64.deb ...
+#15 14.97 Unpacking x11vnc (0.9.16-10) ...
+#15 15.00 Selecting previously unselected package xbitmaps.
+#15 15.02 Preparing to unpack .../86-xbitmaps_1.1.1-2.2_all.deb ...
+#15 15.02 Unpacking xbitmaps (1.1.1-2.2) ...
+#15 15.07 Selecting previously unselected package xserver-common.
+#15 15.08 Preparing to unpack .../87-xserver-common_2%3a21.1.12-1ubuntu1.8_all.deb ...
+#15 15.08 Unpacking xserver-common (2:21.1.12-1ubuntu1.8) ...
+#15 15.12 Selecting previously unselected package xterm.
+#15 15.13 Preparing to unpack .../88-xterm_390-1ubuntu3_arm64.deb ...
+#15 15.14 Unpacking xterm (390-1ubuntu3) ...
+#15 15.20 Selecting previously unselected package xvfb.
+#15 15.21 Preparing to unpack .../89-xvfb_2%3a21.1.12-1ubuntu1.8_arm64.deb ...
+#15 15.22 Unpacking xvfb (2:21.1.12-1ubuntu1.8) ...
+#15 15.26 Selecting previously unselected package mesa-utils.
+#15 15.27 Preparing to unpack .../90-mesa-utils_9.0.0-2_arm64.deb ...
+#15 15.27 Unpacking mesa-utils (9.0.0-2) ...
+#15 15.34 Setting up tk8.6 (8.6.14-1build1) ...
+#15 15.35 Setting up net-tools (2.10-0.1ubuntu4.4) ...
+#15 15.36 Setting up tcl8.6 (8.6.14+dfsg-1build1) ...
+#15 15.37 Setting up libxdamage1:arm64 (1:1.1.6-1build1) ...
+#15 15.38 Setting up libpangoxft-1.0-0:arm64 (1.52.1+ds-1build1) ...
+#15 15.38 Setting up python3-pbr (5.11.1-0ubuntu1) ...
+#15 15.63 Setting up libxtst6:arm64 (2:1.2.3-1.1build1) ...
+#15 15.64 Setting up libijs-0.35:arm64 (0.35-15.1build1) ...
+#15 15.65 Setting up libgs-common (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 15.66 Setting up libxxf86dga1:arm64 (2:1.1.5-1build1) ...
+#15 15.67 Setting up liblzo2-2:arm64 (2.10-2build4) ...
+#15 15.69 Setting up node-cjs-module-lexer (1.2.3+dfsg-1) ...
+#15 15.69 Setting up libvncserver1:arm64 (0.9.14+dfsg-1ubuntu0.2) ...
+#15 15.70 Setting up python-babel-localedata (2.10.3-3build1) ...
+#15 15.71 Setting up poppler-data (0.4.12-1) ...
+#15 15.72 Setting up python3-monotonic (1.6-2) ...
+#15 15.88 Setting up libid3tag0:arm64 (0.15.1b-14build1) ...
+#15 15.88 Setting up libvncclient1:arm64 (0.9.14+dfsg-1ubuntu0.2) ...
+#15 15.89 Setting up libfontenc1:arm64 (1:1.1.8-1build1) ...
+#15 15.89 Setting up python3-iso8601 (1.0.2-1) ...
+#15 16.00 Setting up python3-chardet (5.2.0+dfsg-1) ...
+#15 16.56 Setting up mesa-utils-bin:arm64 (9.0.0-2) ...
+#15 16.57 Setting up python3-certifi (2023.11.17-1) ...
+#15 16.69 Setting up libjbig2dec0:arm64 (0.20-1ubuntu0.24.04.1) ...
+#15 16.69 Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+#15 16.70 Setting up python3-greenlet (3.0.3-0ubuntu5.1) ...
+#15 16.84 Setting up libcares2:arm64 (1.27.0-1.0ubuntu1) ...
+#15 16.84 Setting up python3-idna (3.6-2ubuntu0.2) ...
+#15 17.04 Setting up libidn12:arm64 (1.42-1ubuntu0.1) ...
+#15 17.04 Setting up python3-wrapt (1.15.0-2build3) ...
+#15 17.18 Setting up libobt2v5:arm64 (3.6.1-12build5) ...
+#15 17.18 Setting up python3-typing-extensions (4.10.0-1) ...
+#15 17.30 Setting up ucf (3.0043+nmu1) ...
+#15 17.36 debconf: unable to initialize frontend: Dialog
+#15 17.36 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#15 17.36 debconf: falling back to frontend: Readline
+#15 17.37 debconf: unable to initialize frontend: Readline
+#15 17.37 debconf: (This frontend requires a controlling tty.)
+#15 17.37 debconf: falling back to frontend: Teletype
+#15 17.39 Setting up python3-urllib3 (2.0.7-1ubuntu0.7) ...
+#15 17.54 Setting up python3-netifaces:arm64 (0.11.0-2build3) ...
+#15 17.54 Setting up libutempter0:arm64 (1.2.1-3build1) ...
+#15 17.55 Setting up python3-websockify (0.10.0+dfsg1-5build2) ...
+#15 17.64 /usr/lib/python3/dist-packages/websockify/token_plugins.py:35: SyntaxWarning: invalid escape sequence '\s'
+#15 17.64   tok, target = re.split(':\s', line)
+#15 17.67 Setting up ieee-data (20220827.1) ...
+#15 17.68 Setting up python3-dnspython (2.6.1-1ubuntu1) ...
+#15 17.95 Setting up tcl (8.6.14build1) ...
+#15 17.96 Setting up python3-stevedore (1:5.1.0-0ubuntu1) ...
+#15 18.26 Setting up python3-msgpack (1.0.3-3build2) ...
+#15 18.49 Setting up libxkbfile1:arm64 (1:1.1.0-1build4) ...
+#15 18.50 Setting up python3-pyasyncore (1.0.2-2) ...
+#15 18.70 Setting up node-xtend (4.0.2-3) ...
+#15 18.70 Setting up tk (8.6.14build1) ...
+#15 18.71 Setting up libxcomposite1:arm64 (1:0.4.5-1build3) ...
+#15 18.72 Setting up libxfont2:arm64 (1:2.0.6-1+deb13u1build0.24.04.2) ...
+#15 18.73 Setting up libxmuu1:arm64 (2:1.1.3-3build2) ...
+#15 18.73 Setting up python3-deprecated (1.2.14-1) ...
+#15 18.87 Setting up xbitmaps (1.1.1-2.2) ...
+#15 18.87 Setting up libstartup-notification0:arm64 (0.12-6build3) ...
+#15 18.88 Setting up node-busboy (1.6.0+~cs2.6.0-2) ...
+#15 18.88 Setting up libpaper1:arm64 (1.1.29build1) ...
+#15 18.95 debconf: unable to initialize frontend: Dialog
+#15 18.95 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#15 18.95 debconf: falling back to frontend: Readline
+#15 18.96 debconf: unable to initialize frontend: Readline
+#15 18.96 debconf: (This frontend requires a controlling tty.)
+#15 18.96 debconf: falling back to frontend: Teletype
+#15 19.03
+#15 19.03 Creating config file /etc/papersize with new version
+#15 19.08 Setting up python3-babel (2.10.3-3build1) ...
+#15 19.10 update-alternatives: using /usr/bin/pybabel-python3 to provide /usr/bin/pybabel (pybabel) in auto mode
+#15 19.29 Setting up x11-xkb-utils (7.7+8build2) ...
+#15 19.29 Setting up python3-pyinotify (0.9.6-2ubuntu1) ...
+#15 19.42 Setting up python3-debtcollector (2.5.0-3) ...
+#15 19.55 Setting up xfonts-utils (1:7.7+6build3) ...
+#15 19.56 Setting up x11vnc (0.9.16-10) ...
+#15 19.57 Setting up python3-eventlet (0.35.2-0ubuntu1.1) ...
+#15 19.89 Setting up python3-rfc3986 (2.0.0-2) ...
+#15 20.02 Setting up mesa-utils (9.0.0-2) ...
+#15 20.03 Setting up python3-requests (2.31.0+dfsg-1ubuntu1.1) ...
+#15 20.16 Setting up python3-oslo.context (1:5.5.0-0ubuntu1) ...
+#15 20.27 Setting up python3-jwcrypto (1.5.4-1) ...
+#15 20.39 Setting up node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+#15 20.39 Setting up python3-netaddr (0.8.0-2ubuntu1) ...
+#15 20.52 Setting up xauth (1:1.1.2-1build1) ...
+#15 20.53 Setting up x11-utils (7.7+6build2) ...
+#15 20.54 Setting up xterm (390-1ubuntu3) ...
+#15 20.56 update-alternatives: using /usr/bin/xterm to provide /usr/bin/x-terminal-emulator (x-terminal-emulator) in auto mode
+#15 20.56 update-alternatives: warning: skip creation of /usr/share/man/man1/x-terminal-emulator.1.gz because associated file /usr/share/man/man1/xterm.1.gz (of link group x-terminal-emulator) doesn't exist
+#15 20.57 update-alternatives: using /usr/bin/lxterm to provide /usr/bin/x-terminal-emulator (x-terminal-emulator) in auto mode
+#15 20.57 update-alternatives: warning: skip creation of /usr/share/man/man1/x-terminal-emulator.1.gz because associated file /usr/share/man/man1/lxterm.1.gz (of link group x-terminal-emulator) doesn't exist
+#15 20.57 Setting up xserver-common (2:21.1.12-1ubuntu1.8) ...
+#15 20.58 Setting up python3-oslo.i18n (6.3.0-0ubuntu1) ...
+#15 20.70 Setting up xvfb (2:21.1.12-1ubuntu1.8) ...
+#15 20.71 Setting up websockify (0.10.0+dfsg1-5build2) ...
+#15 20.71 Setting up python3-oslo.utils (7.1.0-0ubuntu1) ...
+#15 20.86 Setting up fonts-urw-base35 (20200910-8) ...
+#15 21.00 Setting up libgs10-common (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 21.01 Setting up python3-oslo.serialization (5.4.0-0ubuntu1) ...
+#15 21.15 Setting up libgs10:arm64 (10.02.1~dfsg1-0ubuntu7.9) ...
+#15 21.15 Setting up libspectre1:arm64 (0.2.12-1build2) ...
+#15 21.16 Setting up libimlib2t64:arm64 (1.12.1-1.1build2) ...
+#15 21.16 Setting up libobrender32v5 (3.6.1-12build5) ...
+#15 21.17 Setting up openbox (3.6.1-12build5) ...
+#15 21.18 update-alternatives: using /usr/bin/openbox to provide /usr/bin/x-window-manager (x-window-manager) in auto mode
+#15 21.18 update-alternatives: warning: skip creation of /usr/share/man/man1/x-window-manager.1.gz because associated file /usr/share/man/man1/openbox.1.gz (of link group x-window-manager) doesn't exist
+#15 21.18 update-alternatives: using /usr/bin/openbox-session to provide /usr/bin/x-session-manager (x-session-manager) in auto mode
+#15 21.18 update-alternatives: warning: skip creation of /usr/share/man/man1/x-session-manager.1.gz because associated file /usr/share/man/man1/openbox-session.1.gz (of link group x-session-manager) doesn't exist
+#15 21.19 Setting up python3-oslo.log (5.5.1-0ubuntu1) ...
+#15 21.33 Setting up python3-oslo.config (1:9.4.0-0ubuntu1) ...
+#15 21.57 Setting up node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+#15 21.58 Setting up python3-novnc (1:1.3.0-2) ...
+#15 21.68 Setting up libnode109:arm64 (18.19.1+dfsg-6ubuntu5) ...
+#15 21.69 Setting up nodejs (18.19.1+dfsg-6ubuntu5) ...
+#15 21.69 update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+#15 21.69 update-alternatives: warning: skip creation of /usr/share/man/man1/js.1.gz because associated file /usr/share/man/man1/nodejs.1.gz (of link group js) doesn't exist
+#15 21.70 Setting up novnc (1:1.3.0-2) ...
+#15 21.80 Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+#15 22.01 Processing triggers for hicolor-icon-theme (0.17-2) ...
+#15 22.01 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+#15 DONE 22.9s
+
+#17 [desktop] exporting to image
+#17 exporting layers
+#17 exporting layers 8.8s done
+#17 exporting manifest sha256:b18afe31eab32a1c2595ecc969baf440d2f68b706419faf5b4827df370846abb done
+#17 exporting config sha256:2fd1a4fb00a6698a1d4f39fd4b938490b9b2925e45f3975cdf3450f7052ef978 done
+#17 exporting attestation manifest sha256:53294587cc0fd666287c90be67e3204974c09d715c6b6e8c3394b9ed821aac6e 0.0s done
+#17 exporting manifest list sha256:9a492f50c589a90f13afe72dc49ef7c16e8ba7b221fa3b0e7de6f40954fe6e7a done
+#17 naming to docker.io/library/hardwareless-robotics:jazzy-harmonic-desktop done
+#17 unpacking to docker.io/library/hardwareless-robotics:jazzy-harmonic-desktop
+#17 unpacking to docker.io/library/hardwareless-robotics:jazzy-harmonic-desktop 1.2s done
+#17 DONE 10.1s
+
+#18 [desktop] resolving provenance for metadata file
+#18 DONE 0.0s
+ Image hardwareless-robotics:jazzy-harmonic-desktop Built
+ Image hardwareless-robotics:jazzy-harmonic Built
