@@ -1,0 +1,13 @@
+[INFO] [1790384044.210457046] [map_saver]:
+	map_saver lifecycle node launched.
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1790384044.301276171] [map_saver]: Creating
+[INFO] [1790384044.440334963] [map_saver]: Configuring
+[INFO] [1790384044.502462046] [map_saver]: Saving map from 'map' topic to '/workspace/evidence/milestone-6/20260926T005202Z-acceptance-81678/map/map' file
+[INFO] [1790384045.500147421] [map_io]: Received a 160 X 121 map @ 0.05 m/pix
+[INFO] [1790384045.515264713] [map_io]: Writing map occupancy data to /workspace/evidence/milestone-6/20260926T005202Z-acceptance-81678/map/map.pgm
+[INFO] [1790384045.518596255] [map_io]: Writing map metadata to /workspace/evidence/milestone-6/20260926T005202Z-acceptance-81678/map/map.yaml
+[INFO] [1790384045.520016588] [map_io]: Map saved
+[INFO] [1790384045.520371463] [map_saver]: Map saved successfully
+[INFO] [1790384045.522888130] [map_saver]: Destroying

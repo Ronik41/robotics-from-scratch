@@ -1,0 +1,8 @@
+{
+  "mapping_source": "evidence/milestone-6/20260926T005202Z-acceptance-81678/mapping",
+  "localization_source": "evidence/milestone-6/20260926T0059-localization",
+  "note": "Separate fresh simulator runs. Localization loaded the exact versioned map copied from this mapping run. Later readiness fixes are identified in the final source manifest and verified by desktop acceptance.",
+  "desktop_source": "evidence/milestone-6/20260926T0445-desktop-check",
+  "desktop_runtime_source": "evidence/milestone-6/20260926T043651Z-localization-84788",
+  "desktop_note": "The same desktop container was restarted for final fresh localization; no estimator state carried over. Final recorder QoS and launch readiness verified here."
+}

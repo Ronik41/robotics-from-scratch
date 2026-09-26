@@ -71,9 +71,9 @@ def check_processes(processes):
             raise RuntimeError(f"Child exited ({process.returncode}): {process.args}")
 
 
-def generate(evidence, drive=False, sensors=False, firmware=False):
+def generate(evidence, drive=False, sensors=False, firmware=False, m6=False):
     urdf = evidence / "rover.urdf"
-    subprocess.run(["xacro", str(XACRO), f"drive:={str(drive).lower()}", f"sensors:={str(sensors).lower()}", f"firmware:={str(firmware).lower()}", "-o", str(urdf)], check=True, timeout=15)
+    subprocess.run(["xacro", str(XACRO), f"drive:={str(drive).lower()}", f"sensors:={str(sensors).lower()}", f"firmware:={str(firmware).lower()}", f"m6:={str(m6).lower()}", "-o", str(urdf)], check=True, timeout=15)
     with (evidence / "rover.sdf").open("w") as out:
         subprocess.run(["gz", "sdf", "-p", str(urdf)], stdout=out, check=True, timeout=15)
     with (evidence / "validation.log").open("w") as out:
@@ -93,7 +93,7 @@ def generate(evidence, drive=False, sensors=False, firmware=False):
             raise RuntimeError(f"Link lost inertia during conversion: {link.attrib['name']}")
     save_json(evidence / "inputs.json", {
         "scenario": SCENARIO,
-        "drive": drive, "sensors": sensors, "firmware": firmware,
+        "drive": drive, "sensors": sensors, "firmware": firmware, "m6": m6,
         "sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                    for p in [XACRO, WORLD, CONFIG, ROOT / "simulation/config/gui.config",
                              ROOT / "scripts/rover_sim.py"]}})
@@ -198,9 +198,13 @@ def main():
     parser.add_argument("--firmware", action="store_true", help="M5 torque controller; requires --sensors --drive")
     parser.add_argument("--sensors", action="store_true", help="M4 simulated sensor interfaces; requires --drive")
     parser.add_argument("--rviz", action="store_true", help="Show RViz and keyboard teleop on the desktop")
+    parser.add_argument("--m6", choices=["mapping", "localization"], help="M6; requires M5 firmware")
+    parser.add_argument("--map", default=str(ROOT / "maps/delivery_room_v1/map.yaml"))
     parser.add_argument("--check", action="store_true", help="Step 2 s, assert stable, then exit")
     parser.add_argument("--spawn-only", action="store_true", help="Spawn into an already paused delivery world")
     args = parser.parse_args()
+    if args.m6 and not args.firmware:
+        parser.error("M6 requires --drive --sensors --firmware")
     if (args.firmware and not args.sensors) or (args.sensors and not args.drive) or (args.drive and (args.check or args.spawn_only)) or (args.rviz and not args.drive):
         parser.error("--drive is a live mode; --rviz requires --drive")
     evidence = args.evidence.resolve()
@@ -223,11 +227,21 @@ def main():
                 fcntl.flock(launch_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError as exc:
                 raise RuntimeError("A rover launcher is already running in this container") from exc
-        urdf = generate(evidence, args.drive, args.sensors, args.firmware)
+        urdf = generate(evidence, args.drive, args.sensors, args.firmware, args.m6 is not None)
         world_path = WORLD
         if args.sensors:
             world = ET.parse(WORLD)
             w = world.getroot().find('world')
+            if args.m6:
+                # M2's cutaway walls are below the unchanged LiDAR's scan plane.
+                # Preserve footprint and all other geometry; close the 2D room.
+                for name in ('south_wall', 'west_wall'):
+                    wall = w.find(f"model[@name='{name}']")
+                    pose = wall.find('pose').text.split(); pose[2] = '0.4'
+                    wall.find('pose').text = ' '.join(pose)
+                    for size in wall.findall('.//geometry/box/size'):
+                        xyz = size.text.split(); xyz[2] = '0.8'
+                        size.text = ' '.join(xyz)
             sensor_plugin = ET.SubElement(w, 'plugin', filename='gz-sim-sensors-system', name='gz::sim::systems::Sensors')
             ET.SubElement(sensor_plugin, 'render_engine').text = 'ogre2'
             ET.SubElement(w, 'plugin', filename='gz-sim-imu-system', name='gz::sim::systems::Imu')
@@ -252,7 +266,8 @@ def main():
                                               start_new_session=True))
         if args.drive:
             command = ["ros2", "launch", str(ROOT / "simulation/launch/teleop.launch.py"),
-                       f"urdf:={urdf}", f"rviz:={str(args.rviz).lower()}", f"sensors:={str(args.sensors).lower()}", f"firmware:={str(args.firmware).lower()}"]
+                       f"urdf:={urdf}", f"rviz:={str(args.rviz).lower()}", f"sensors:={str(args.sensors).lower()}", f"firmware:={str(args.firmware).lower()}",
+                       f"m6:={args.m6 or 'none'}", f"map:={args.map}"]
             save_json(evidence / "ros-command.json", command)
             log = (evidence / "ros.log").open("w"); logs.append(log)
             processes.append(subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
@@ -260,6 +275,8 @@ def main():
             if not request(node, "/control", WorldControl(pause=False), Boolean, 10000).data:
                 raise RuntimeError("Unpause rejected")
         result["status"] = "STARTED_M5" if args.firmware else "STARTED_M4" if args.sensors else "STARTED_M3" if args.drive else ("PASS" if args.check else "LOADED_PAUSED")
+        if args.m6:
+            result['status'] = 'STARTED_M6_' + args.m6.upper()
         save_json(evidence / "result.json", result)
         print(json.dumps(result), flush=True)
         while not args.check and not args.spawn_only and not stopping:

@@ -1,0 +1,467 @@
+{
+  "status": "PASS",
+  "mode": "mapping",
+  "preflight_graph": {
+    "tf_authorities": {
+      "base_link -> base_drive": [
+        "robot_state_publisher"
+      ],
+      "base_link -> camera_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> imu_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> left_wheel": [
+        "robot_state_publisher"
+      ],
+      "base_link -> lidar_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> parcel_tray": [
+        "robot_state_publisher"
+      ],
+      "base_link -> rear_support": [
+        "robot_state_publisher"
+      ],
+      "base_link -> right_wheel": [
+        "robot_state_publisher"
+      ],
+      "camera_link -> camera_optical_frame": [
+        "robot_state_publisher"
+      ],
+      "map -> odom": [
+        "slam_toolbox"
+      ],
+      "odom -> base_link": [
+        "wheel_odometry"
+      ]
+    },
+    "dynamic_map_tf_messages": 125,
+    "subscriptions": {
+      "slam_toolbox": [
+        [
+          "/bond",
+          [
+            "bond/msg/Status"
+          ]
+        ],
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/scan",
+          [
+            "sensor_msgs/msg/LaserScan"
+          ]
+        ],
+        [
+          "/slam_toolbox/feedback",
+          [
+            "visualization_msgs/msg/InteractiveMarkerFeedback"
+          ]
+        ]
+      ],
+      "wheel_odometry": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/joint_states",
+          [
+            "sensor_msgs/msg/JointState"
+          ]
+        ]
+      ],
+      "sim_firmware": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/cmd_vel",
+          [
+            "geometry_msgs/msg/TwistStamped"
+          ]
+        ],
+        [
+          "/wheel/encoders",
+          [
+            "rover_interfaces/msg/WheelEncoders"
+          ]
+        ]
+      ],
+      "transform_listener_impl_aaaae99370c0": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/tf",
+          [
+            "tf2_msgs/msg/TFMessage"
+          ]
+        ],
+        [
+          "/tf_static",
+          [
+            "tf2_msgs/msg/TFMessage"
+          ]
+        ]
+      ]
+    },
+    "native_bridge_allowlist": [
+      "/model/delivery_rover/joint_state",
+      "/motor/driver_state",
+      "/sensors/camera/camera_info",
+      "/sensors/camera/image",
+      "/sensors/lidar",
+      "/world/delivery_room/clock"
+    ],
+    "model_plugins": [
+      "rover::MotorDriver",
+      "gz::sim::systems::JointStatePublisher"
+    ],
+    "cmd_vel_consumers": [
+      "sim_firmware"
+    ],
+    "nodes": [
+      "m6_acceptance_oracle",
+      "m6_lifecycle_manager",
+      "m6_tf_authority_probe",
+      "robot_state_publisher",
+      "rosbag2_recorder",
+      "rover_bridge",
+      "sim_firmware",
+      "sim_sensor_driver",
+      "slam_toolbox",
+      "transform_listener_impl_aaaae99370c0",
+      "wheel_odometry"
+    ]
+  },
+  "safety": {
+    "firmware": {
+      "state": "COMMAND_TIMEOUT",
+      "estop_latched": false,
+      "estop_asserted": false,
+      "target_rad_s": [
+        0.0,
+        0.0
+      ],
+      "ramped_rad_s": [
+        0.0,
+        0.0
+      ],
+      "measured_rad_s": [
+        0.0,
+        0.0
+      ],
+      "effort_nm": [
+        0.0,
+        0.0
+      ],
+      "integral_nm": [
+        0.0,
+        0.0
+      ],
+      "speed_saturated": false,
+      "torque_saturated": false,
+      "command_age_s": 3.3170000000000073,
+      "encoder_age_s": 0.018000000000000682,
+      "rejected_commands": 0,
+      "rejected_encoders": 0,
+      "sim_time": 81.358
+    },
+    "driver": {
+      "sim_time": 81.347,
+      "state": "BRAKE",
+      "estop_latched": false,
+      "applied_nm": [
+        1.01018e-14,
+        1.00626e-14
+      ],
+      "wheel_rad_s": [
+        -1.01018e-14,
+        -1.00626e-14
+      ],
+      "rejected": 0
+    },
+    "max_effort_nm": 0.9377916420457196
+  },
+  "graph": {
+    "tf_authorities": {
+      "base_link -> base_drive": [
+        "robot_state_publisher"
+      ],
+      "base_link -> camera_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> imu_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> left_wheel": [
+        "robot_state_publisher"
+      ],
+      "base_link -> lidar_link": [
+        "robot_state_publisher"
+      ],
+      "base_link -> parcel_tray": [
+        "robot_state_publisher"
+      ],
+      "base_link -> rear_support": [
+        "robot_state_publisher"
+      ],
+      "base_link -> right_wheel": [
+        "robot_state_publisher"
+      ],
+      "camera_link -> camera_optical_frame": [
+        "robot_state_publisher"
+      ],
+      "map -> odom": [
+        "slam_toolbox"
+      ],
+      "odom -> base_link": [
+        "wheel_odometry"
+      ]
+    },
+    "dynamic_map_tf_messages": 5065,
+    "subscriptions": {
+      "slam_toolbox": [
+        [
+          "/bond",
+          [
+            "bond/msg/Status"
+          ]
+        ],
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/scan",
+          [
+            "sensor_msgs/msg/LaserScan"
+          ]
+        ],
+        [
+          "/slam_toolbox/feedback",
+          [
+            "visualization_msgs/msg/InteractiveMarkerFeedback"
+          ]
+        ]
+      ],
+      "wheel_odometry": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/joint_states",
+          [
+            "sensor_msgs/msg/JointState"
+          ]
+        ]
+      ],
+      "sim_firmware": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/cmd_vel",
+          [
+            "geometry_msgs/msg/TwistStamped"
+          ]
+        ],
+        [
+          "/wheel/encoders",
+          [
+            "rover_interfaces/msg/WheelEncoders"
+          ]
+        ]
+      ],
+      "transform_listener_impl_aaaae99370c0": [
+        [
+          "/clock",
+          [
+            "rosgraph_msgs/msg/Clock"
+          ]
+        ],
+        [
+          "/parameter_events",
+          [
+            "rcl_interfaces/msg/ParameterEvent"
+          ]
+        ],
+        [
+          "/tf",
+          [
+            "tf2_msgs/msg/TFMessage"
+          ]
+        ],
+        [
+          "/tf_static",
+          [
+            "tf2_msgs/msg/TFMessage"
+          ]
+        ]
+      ]
+    },
+    "native_bridge_allowlist": [
+      "/model/delivery_rover/joint_state",
+      "/motor/driver_state",
+      "/sensors/camera/camera_info",
+      "/sensors/camera/image",
+      "/sensors/lidar",
+      "/world/delivery_room/clock"
+    ],
+    "model_plugins": [
+      "rover::MotorDriver",
+      "gz::sim::systems::JointStatePublisher"
+    ],
+    "cmd_vel_consumers": [
+      "rosbag2_recorder",
+      "sim_firmware"
+    ],
+    "nodes": [
+      "m6_acceptance_oracle",
+      "m6_lifecycle_manager",
+      "m6_tf_authority_probe",
+      "robot_state_publisher",
+      "rosbag2_recorder",
+      "rover_bridge",
+      "sim_firmware",
+      "sim_sensor_driver",
+      "slam_toolbox",
+      "transform_listener_impl_aaaae99370c0",
+      "wheel_odometry"
+    ]
+  },
+  "map_quality": {
+    "resolution_m": 0.05000000074505806,
+    "width": 160,
+    "height": 121,
+    "origin_xy_m": [
+      -1.4958265172010534,
+      -1.486832115404515
+    ],
+    "occupied_cells": 1003,
+    "free_cells": 17657,
+    "unknown_cells": 700,
+    "interior_known_fraction": 0.9995278564683664,
+    "interior_free_fraction": 0.9995278564683664,
+    "occupied_surface_rmse_m": 0.04354024435953274,
+    "occupied_surface_p95_m": 0.09816797437498126,
+    "surface_coverage_within_15cm": {
+      "south": 1.0,
+      "north": 1.0,
+      "west": 1.0,
+      "east": 1.0,
+      "table_south": 1.0,
+      "table_north": 0.8666666666666667,
+      "table_west": 1.0,
+      "table_east": 0.2857142857142857
+    },
+    "oracle_alignment": "world_xy = map_xy + (-2.5, -1.5); yaw=0; no fitted alignment",
+    "scope": "M6 wall inner faces and table at the LiDAR plane; low crates excluded"
+  },
+  "timestamp_matched_samples": 400,
+  "max_oracle_time_mismatch_s": 0.008000000000009777,
+  "trajectory": {
+    "position_error_m": {
+      "rmse": 0.01026174463289233,
+      "max": 0.021894289026732214,
+      "final_window_max": 0.0037184850598196754
+    },
+    "yaw_error_rad": {
+      "rmse": 0.019005254431679827,
+      "max": 0.11386704914872738,
+      "final_window_max": 0.004387150270831336
+    },
+    "odom_position_error_m": {
+      "rmse": 0.23655737658807824,
+      "max": 0.6582826868260966,
+      "final_window_max": 0.004583825520764808
+    },
+    "odom_yaw_error_rad": {
+      "rmse": 0.1399967480966017,
+      "max": 0.21088522694525902,
+      "final_window_max": 0.0200428550427613
+    }
+  },
+  "saved_map_quality": {
+    "resolution_m": 0.05,
+    "width": 160,
+    "height": 121,
+    "origin_xy_m": [
+      -1.496,
+      -1.487
+    ],
+    "occupied_cells": 1003,
+    "free_cells": 17657,
+    "unknown_cells": 700,
+    "interior_known_fraction": 0.9995278564683664,
+    "interior_free_fraction": 0.9995278564683664,
+    "occupied_surface_rmse_m": 0.04342697655974517,
+    "occupied_surface_p95_m": 0.09800000000000031,
+    "surface_coverage_within_15cm": {
+      "south": 1.0,
+      "north": 1.0,
+      "west": 1.0,
+      "east": 1.0,
+      "table_south": 1.0,
+      "table_north": 0.8709677419354839,
+      "table_west": 1.0,
+      "table_east": 0.2857142857142857
+    },
+    "oracle_alignment": "world_xy = map_xy + (-2.5, -1.5); yaw=0; no fitted alignment",
+    "scope": "M6 wall inner faces and table at the LiDAR plane; low crates excluded"
+  },
+  "bag_message_counts": {
+    "/odom": 3947,
+    "/scan": 790,
+    "/motor/driver_state": 1563,
+    "/map": 102,
+    "/wheel/encoders": 3948,
+    "/tf_static": 1,
+    "/robot_description": 1,
+    "/firmware/state": 1843,
+    "/cmd_vel": 1807,
+    "/tf": 12925,
+    "/clock": 78969
+  }
+}

@@ -20,3 +20,8 @@ media/recordings/
 # Fresh timestamped test captures stay local; promote curated evidence explicitly.
 # Previously committed historical evidence remains tracked.
 /evidence/milestone-*/[0-9]*/
+
+# M6 raw orchestration output; curated per-check logs/results are committed.
+/evidence/milestone-6/*-run.log
+/evidence/milestone-6/regressions-*.log
+/evidence/milestone-6/static-contracts.log

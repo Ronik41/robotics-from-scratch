@@ -1,0 +1,24 @@
+{
+  "before": [
+    "evidence/milestone-1/20260926T001316Z-78225",
+    "evidence/milestone-2/20260926T001321Z-acceptance-78273",
+    "evidence/milestone-3/20260926T001351Z-acceptance-78369",
+    "evidence/milestone-4/20260926T001414Z-acceptance-78425",
+    "evidence/milestone-5/20260926T001444Z-acceptance-78489"
+  ],
+  "after": [
+    "evidence/milestone-1/20260926T005242Z-81801",
+    "evidence/milestone-2/20260926T005248Z-acceptance-81903",
+    "evidence/milestone-3/20260926T005326Z-acceptance-82053",
+    "evidence/milestone-4/20260926T005354Z-acceptance-82103",
+    "evidence/milestone-5/20260926T005446Z-acceptance-82189"
+  ],
+  "baseline_commit": "2284f2c",
+  "rebuilt_before_axle_frame": [
+    "evidence/milestone-1/20260926T004310Z-80453",
+    "evidence/milestone-2/20260926T004316Z-acceptance-80529",
+    "evidence/milestone-3/20260926T004346Z-acceptance-80624",
+    "evidence/milestone-4/20260926T004408Z-acceptance-80664",
+    "evidence/milestone-5/20260926T004442Z-acceptance-80779"
+  ]
+}

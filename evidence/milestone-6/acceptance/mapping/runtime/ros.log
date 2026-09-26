@@ -1,0 +1,51 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-26-00-52-18-897222-1e6c478f1e91-193
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [253]
+[INFO] [parameter_bridge-2]: process started with pid [254]
+[INFO] [robot_state_publisher-3]: process started with pid [255]
+[INFO] [python3-4]: process started with pid [256]
+[INFO] [python3-5]: process started with pid [257]
+[INFO] [async_slam_toolbox_node-6]: process started with pid [258]
+[INFO] [lifecycle_manager-7]: process started with pid [259]
+[robot_state_publisher-3] [WARN] [1790383939.089300303] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1790383939.089559761] [robot_state_publisher]: Robot initialized
+[lifecycle_manager-7] [INFO] [1790383939.117781303] [m6_lifecycle_manager]: Creating
+[lifecycle_manager-7] [INFO] [1790383939.128279595] [m6_lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-7] [INFO] [1790383939.132408720] [m6_lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-7] [INFO] [1790383939.132489053] [m6_lifecycle_manager]: [34m[1mConfiguring slam_toolbox[0m[0m
+[async_slam_toolbox_node-6] [INFO] [1790383939.297306511] [slam_toolbox]: Configuring
+[async_slam_toolbox_node-6] [INFO] [1790383939.309151011] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[lifecycle_manager-7] [INFO] [1790383939.327302553] [m6_lifecycle_manager]: [34m[1mActivating slam_toolbox[0m[0m
+[async_slam_toolbox_node-6] [INFO] [1790383939.327483970] [slam_toolbox]: Activating
+[async_slam_toolbox_node-6] [INFO] [1790383939.332875303] [slam_toolbox]: Creating bond (slam_toolbox) to lifecycle manager.
+[python3-1] [INFO] [1790383939.356890220] [sim_firmware]: Firmware limits: {"radius": 0.14, "track": 0.48, "max_speed": 4.0, "acceleration": 4.0, "torque": 2.0, "deadband": 0.04, "kp": 0.45, "ki": 0.8, "kd": 0.002, "integral_limit": 1.2, "command_timeout": 0.5, "feedback_timeout": 0.2, "wall_timeout": 1.0, "future_tolerance": 0.03}
+[python3-1] [INFO] [1790383939.357760470] [sim_firmware]: Safety state: WAIT_COMMAND
+[lifecycle_manager-7] [INFO] [1790383939.438764262] [m6_lifecycle_manager]: Server slam_toolbox connected with bond.
+[lifecycle_manager-7] [INFO] [1790383939.438825178] [m6_lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-7] [INFO] [1790383939.438833178] [m6_lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[parameter_bridge-2] [INFO] [1790383940.153632595] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790383940.158504345] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790383940.164442804] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790383940.166788637] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790383940.171451679] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790383940.173316345] [rover_bridge]: Creating GZ->ROS Bridge: [/motor/driver_state (gz.msgs.StringMsg) -> /motor/driver_state (std_msgs/msg/String)] (Lazy 0)
+[async_slam_toolbox_node-6] Info: clipped range threshold to be within minimum and maximum range!
+[async_slam_toolbox_node-6] Registering sensor: [Custom Described Lidar]
+[python3-1] [INFO] [1790383944.776113958] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790383945.823892834] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790383958.733821506] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790383959.451566423] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790383973.969410472] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790383974.715276041] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790383977.940916626] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790383978.670560460] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790383983.076854920] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790383984.430922838] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384003.296567347] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384004.432650916] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384024.689707509] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384025.758827593] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384030.208618429] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384030.985030221] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384033.538702847] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384039.010235835] [sim_firmware]: Safety state: COMMAND_TIMEOUT

@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "stationary": {
+    "lidar_east_mean_m": 6.238971598943075,
+    "lidar_noise_stddev_m": 0.008567835834112362,
+    "imu_accel_z_mean": 9.840185264733718,
+    "imu_gyro_z_mean": 0.0031703153039480043,
+    "imu_gyro_z_stddev": 0.0019077409757977002,
+    "synchronized_camera_samples": 30
+  },
+  "motion": {
+    "forward": {
+      "left_counts": 560,
+      "right_counts": 560
+    },
+    "reverse": {
+      "left_counts": -559,
+      "right_counts": -559
+    },
+    "left": {
+      "left_counts": -268,
+      "right_counts": 269
+    }
+  },
+  "interfaces": {
+    "/scan": {
+      "messages": 105,
+      "rate_hz_sim": 10.0,
+      "frame": "lidar_link",
+      "first_stamp_ns": 1400000000,
+      "last_stamp_ns": 11800000000,
+      "observed_age_s_min_max": [
+        0.012,
+        0.09200000000000001
+      ]
+    },
+    "/camera/image_raw": {
+      "messages": 105,
+      "rate_hz_sim": 10.0,
+      "frame": "camera_optical_frame",
+      "first_stamp_ns": 1400000000,
+      "last_stamp_ns": 11800000000,
+      "observed_age_s_min_max": [
+        0.008,
+        0.09200000000000001
+      ]
+    },
+    "/camera/camera_info": {
+      "messages": 105,
+      "rate_hz_sim": 10.0,
+      "frame": "camera_optical_frame",
+      "first_stamp_ns": 1400000000,
+      "last_stamp_ns": 11800000000,
+      "observed_age_s_min_max": [
+        0.001,
+        0.09200000000000001
+      ]
+    },
+    "/imu/data_raw": {
+      "messages": 1103,
+      "rate_hz_sim": 95.16407599309154,
+      "frame": "imu_link",
+      "first_stamp_ns": 230000000,
+      "last_stamp_ns": 11810000000,
+      "observed_age_s_min_max": [
+        0.01,
+        0.052000000000000005
+      ]
+    },
+    "/wheel/encoders": {
+      "messages": 548,
+      "rate_hz_sim": 49.637023593466424,
+      "frame": "base_link",
+      "first_stamp_ns": 780000000,
+      "last_stamp_ns": 11800000000,
+      "observed_age_s_min_max": [
+        0.01,
+        0.09200000000000001
+      ]
+    }
+  },
+  "encoders": {
+    "matched_samples": 519,
+    "resolution_counts_per_rev": 2048,
+    "max_angle_error_rad": 0.0015339807878856412
+  }
+}

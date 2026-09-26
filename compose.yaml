@@ -35,4 +35,6 @@ services:
       GZ_PARTITION: hardwareless-robotics-desktop
       ROVER_EVIDENCE: "${ROVER_EVIDENCE:-}"
       ROVER_MILESTONE: "${ROVER_MILESTONE:-2}"
+      ROVER_M6_MODE: "${ROVER_M6_MODE:-localization}"
+      ROVER_MAP: "${ROVER_MAP:-/workspace/maps/delivery_room_v1/map.yaml}"
     command: ["python3", "scripts/desktop.py"]

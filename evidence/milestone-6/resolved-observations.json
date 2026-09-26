@@ -1,0 +1,163 @@
+{
+  "source_run": "evidence/milestone-6/20260926T004742Z-acceptance-81103/localization",
+  "symptom": "AMCL covariance spikes during turns when differential model uses base_link behind the axle",
+  "diagnostic_samples": [
+    {
+      "sim_time_s": 4.7,
+      "xy": [
+        0.22170460357015143,
+        -0.1626898649467583
+      ],
+      "covariance_xy_yaw": [
+        0.05437436048760603,
+        0.04925752513891638,
+        0.06139162762315732
+      ]
+    },
+    {
+      "sim_time_s": 10.2,
+      "xy": [
+        0.33997927029246755,
+        -0.02403694914736251
+      ],
+      "covariance_xy_yaw": [
+        0.02155257940897853,
+        0.00571598368569323,
+        0.00541142994425842
+      ]
+    },
+    {
+      "sim_time_s": 13.0,
+      "xy": [
+        0.0004082416522608004,
+        -0.01817158005280559
+      ],
+      "covariance_xy_yaw": [
+        0.00660957802382521,
+        0.002459927292428219,
+        0.003163965442974662
+      ]
+    },
+    {
+      "sim_time_s": 15.7,
+      "xy": [
+        0.04215868382074777,
+        -0.048575572863939806
+      ],
+      "covariance_xy_yaw": [
+        0.016984944176118275,
+        0.06769044629859847,
+        0.1349243980188984
+      ]
+    },
+    {
+      "sim_time_s": 16.7,
+      "xy": [
+        0.05681252761386789,
+        -0.04761025180463733
+      ],
+      "covariance_xy_yaw": [
+        0.009083133535983891,
+        0.00910177195482522,
+        0.002764631169170339
+      ]
+    },
+    {
+      "sim_time_s": 19.9,
+      "xy": [
+        0.05303365272911162,
+        -0.06416618619412133
+      ],
+      "covariance_xy_yaw": [
+        0.002767185646031646,
+        0.0021464246803789937,
+        0.0019507350755666104
+      ]
+    },
+    {
+      "sim_time_s": 20.9,
+      "xy": [
+        0.2388417722700102,
+        0.11462506985106566
+      ],
+      "covariance_xy_yaw": [
+        1.0303220286026225,
+        1.1097697355429885,
+        1.8581195225080411
+      ]
+    },
+    {
+      "sim_time_s": 21.1,
+      "xy": [
+        0.02597934326692618,
+        0.019782420657528037
+      ],
+      "covariance_xy_yaw": [
+        0.41432166995620545,
+        0.38102657970685494,
+        0.6232871271037917
+      ]
+    },
+    {
+      "sim_time_s": 21.2,
+      "xy": [
+        0.018305559974900666,
+        -0.05602713382260129
+      ],
+      "covariance_xy_yaw": [
+        0.24971529378192273,
+        0.1658784195880508,
+        0.3535248241432957
+      ]
+    },
+    {
+      "sim_time_s": 21.4,
+      "xy": [
+        0.009370508917609016,
+        -0.07064827374499885
+      ],
+      "covariance_xy_yaw": [
+        0.13330575416678012,
+        0.09611142225547004,
+        0.20824566378972853
+      ]
+    }
+  ],
+  "last_variances": [
+    0.13330575416678012,
+    0.09611142225547004,
+    0.20824566378972853
+  ],
+  "original_limits": [
+    0.04,
+    0.04,
+    0.0225
+  ],
+  "correction": "M6-only fixed axle-centred base_drive frame; keep original covariance limits",
+  "primary_source": "https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_amcl/src/motion_model/differential_motion_model.cpp",
+  "verified_correction": {
+    "result": "acceptance/localization/result.json",
+    "status": "PASS",
+    "final_variances": [
+      0.0026915668534021942,
+      0.0007700225923230798,
+      0.001442031421665883
+    ],
+    "limits_unchanged": true,
+    "desktop_result": "desktop-acceptance/result.json"
+  },
+  "desktop_startup_observation": {
+    "source": "20260926T0439-desktop-check",
+    "fault": "INVALID_ENCODER",
+    "rejected_samples": 1,
+    "encoder_age_s_after_recovery": 0.022,
+    "motion": "Survey refused motion and exited with a best-effort zero. The next complete restart ran with zero rejected encoders.",
+    "limit": "Software-rendered startup can cause timing faults; no firmware checks were weakened. The precise rejected-sample timing was not captured."
+  },
+  "recorder_observation": {
+    "source": "20260926T0442-desktop-check",
+    "fault": "Localization and safety checks passed, but the bag contained zero /map messages.",
+    "correction": "Explicit reliable/transient-local recorder QoS for map, robot_description and tf_static.",
+    "verified_by": "desktop-acceptance/result.json"
+  }
+}

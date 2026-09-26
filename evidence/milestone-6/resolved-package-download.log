@@ -1,0 +1,100 @@
+ Image hardwareless-robotics:jazzy-harmonic Building
+ Image hardwareless-robotics:jazzy-harmonic-desktop Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.29kB done
+#1 DONE 0.0s
+
+#2 [desktop internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.13kB 0.0s done
+#2 DONE 0.0s
+
+#3 [robotics internal] load metadata for docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#3 DONE 1.2s
+
+#4 [desktop internal] load .dockerignore
+#4 transferring context: 200B done
+#4 DONE 0.0s
+
+#5 [robotics robotics 1/9] FROM docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8
+#5 resolve docker.io/library/ros:jazzy-ros-base-noble@sha256:c3706ef0a0aa45413c07803cf433602f543b22e45b4855f6fca955c2d8ecc4e8 done
+#5 DONE 0.0s
+
+#6 [robotics internal] load build context
+#6 transferring context: 505B done
+#6 DONE 0.0s
+
+#7 [robotics robotics 5/9] COPY src/rover_motor_driver /opt/rover_motor_driver/src
+#7 CACHED
+
+#8 [robotics robotics 2/9] RUN apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-ros-gz     ros-jazzy-rviz2     ros-jazzy-xacro     ros-jazzy-robot-state-publisher     ros-jazzy-teleop-twist-keyboard     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [robotics robotics 3/9] COPY src/rover_interfaces /opt/rover_interfaces/src/rover_interfaces
+#9 CACHED
+
+#10 [robotics robotics 4/9] RUN source /opt/ros/jazzy/setup.bash && cd /opt/rover_interfaces && colcon build --event-handlers console_direct+
+#10 CACHED
+
+#11 [robotics robotics 6/9] RUN source /opt/ros/jazzy/setup.bash && cmake -S /opt/rover_motor_driver/src -B /opt/rover_motor_driver/build -DCMAKE_INSTALL_PREFIX=/opt/rover_motor_driver && cmake --build /opt/rover_motor_driver/build -j2 && cmake --install /opt/rover_motor_driver/build
+#11 CACHED
+
+#12 [robotics robotics 7/9] RUN apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-slam-toolbox ros-jazzy-nav2-amcl ros-jazzy-nav2-map-server     ros-jazzy-nav2-lifecycle-manager python3-numpy python3-pil     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*
+#12 1.002 Err:1 http://packages.ros.org/ros2/ubuntu noble InRelease
+#12 1.002   403  Forbidden [IP: 146.112.61.106 80]
+#12 1.019 Get:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+#12 1.990 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#12 2.382 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#12 2.805 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+#12 3.224 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+#12 3.851 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+#12 4.301 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+#12 8.108 Get:9 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+#12 49.40 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1692 kB]
+#12 53.05 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [94.8 kB]
+#12 53.25 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2199 kB]
+#12 57.95 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2996 kB]
+#12 64.45 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+#12 64.54 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [671 B]
+#12 64.54 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+#12 64.60 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1635 kB]
+#12 68.26 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [2811 kB]
+#12 74.24 Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [89.7 kB]
+#12 74.43 Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1356 kB]
+#12 77.34 Reading package lists...
+#12 78.30 E: Failed to fetch http://packages.ros.org/ros2/ubuntu/dists/noble/InRelease  403  Forbidden [IP: 146.112.61.106 80]
+#12 78.30 E: The repository 'http://packages.ros.org/ros2/ubuntu noble InRelease' is not signed.
+#12 ERROR: process "/bin/bash -o pipefail -c apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-slam-toolbox ros-jazzy-nav2-amcl ros-jazzy-nav2-map-server     ros-jazzy-nav2-lifecycle-manager python3-numpy python3-pil     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+------
+ > [robotics robotics 7/9] RUN apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-slam-toolbox ros-jazzy-nav2-amcl ros-jazzy-nav2-map-server     ros-jazzy-nav2-lifecycle-manager python3-numpy python3-pil     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*:
+64.45 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+64.54 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [671 B]
+64.54 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+64.60 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1635 kB]
+68.26 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [2811 kB]
+74.24 Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [89.7 kB]
+74.43 Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1356 kB]
+
+78.30 E: Failed to fetch http://packages.ros.org/ros2/ubuntu/dists/noble/InRelease  403  Forbidden [IP: 146.112.61.106 80]
+78.30 E: The repository 'http://packages.ros.org/ros2/ubuntu noble InRelease' is not signed.
+------
+Dockerfile:23
+
+--------------------
+
+  22 |     # M6 uses only Nav2 localization/map services, never its navigation bringup.
+
+  23 | >>> RUN apt-get update && apt-get install -y --no-install-recommends \
+
+  24 | >>>     ros-jazzy-slam-toolbox ros-jazzy-nav2-amcl ros-jazzy-nav2-map-server \
+
+  25 | >>>     ros-jazzy-nav2-lifecycle-manager python3-numpy python3-pil \
+
+  26 | >>>     && dpkg-query -W > /opt/installed-packages.tsv \
+
+  27 | >>>     && rm -rf /var/lib/apt/lists/*
+
+  28 |     COPY scripts/ros-entrypoint.sh /ros_entrypoint.sh
+
+--------------------
+
+target robotics: failed to solve: process "/bin/bash -o pipefail -c apt-get update && apt-get install -y --no-install-recommends     ros-jazzy-slam-toolbox ros-jazzy-nav2-amcl ros-jazzy-nav2-map-server     ros-jazzy-nav2-lifecycle-manager python3-numpy python3-pil     && dpkg-query -W > /opt/installed-packages.tsv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100

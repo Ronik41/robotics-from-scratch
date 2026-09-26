@@ -43,9 +43,12 @@ try:
         "/workspace/evidence/milestone-2/" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-desktop")
     children.append(subprocess.Popen([
         "python3", "scripts/rover_sim.py", "--gui", "--evidence", evidence,
-        *(["--drive", "--rviz"] if os.environ.get("ROVER_MILESTONE") in {"3", "4", "5"} else []),
-        *(["--sensors"] if os.environ.get("ROVER_MILESTONE") in {"4", "5"} else []),
-        *(["--firmware"] if os.environ.get("ROVER_MILESTONE") == "5" else [])]))
+        *(["--drive", "--rviz"] if os.environ.get("ROVER_MILESTONE") in {"3", "4", "5", "6"} else []),
+        *(["--sensors"] if os.environ.get("ROVER_MILESTONE") in {"4", "5", "6"} else []),
+        *(["--firmware"] if os.environ.get("ROVER_MILESTONE") in {"5", "6"} else []),
+        *(["--m6", os.environ.get('ROVER_M6_MODE', 'localization'), '--map',
+           os.environ.get('ROVER_MAP', '/workspace/maps/delivery_room_v1/map.yaml')]
+          if os.environ.get('ROVER_MILESTONE') == '6' else [])]))
     while not stopping:
         for child in children:
             if child.poll() is not None:

@@ -1,0 +1,11 @@
+[
+  "ros2",
+  "launch",
+  "/workspace/simulation/launch/teleop.launch.py",
+  "urdf:=/workspace/evidence/milestone-6/20260926T043651Z-localization-84788/rover.urdf",
+  "rviz:=true",
+  "sensors:=true",
+  "firmware:=true",
+  "m6:=localization",
+  "map:=/workspace/maps/delivery_room_v1/map.yaml"
+]

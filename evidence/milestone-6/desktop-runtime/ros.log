@@ -1,0 +1,132 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-26-04-40-43-310159-1050b0bedd57-60
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [148]
+[INFO] [parameter_bridge-2]: process started with pid [149]
+[INFO] [robot_state_publisher-3]: process started with pid [150]
+[INFO] [python3-4]: process started with pid [151]
+[INFO] [python3-5]: process started with pid [152]
+[INFO] [rviz2-6]: process started with pid [153]
+[INFO] [xterm-7]: process started with pid [154]
+[INFO] [xterm-8]: process started with pid [155]
+[INFO] [map_server-9]: process started with pid [156]
+[INFO] [amcl-10]: process started with pid [157]
+[INFO] [lifecycle_manager-11]: process started with pid [158]
+[robot_state_publisher-3] [WARN] [1790397643.459544918] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1790397643.459669626] [robot_state_publisher]: Robot initialized
+[amcl-10] [INFO] [1790397643.469746209] [amcl]:
+[amcl-10] 	amcl lifecycle node launched.
+[amcl-10] 	Waiting on external lifecycle transitions to activate
+[amcl-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-10] [INFO] [1790397643.470101793] [amcl]: Creating
+[map_server-9] [INFO] [1790397643.482881418] [map_server]:
+[map_server-9] 	map_server lifecycle node launched.
+[map_server-9] 	Waiting on external lifecycle transitions to activate
+[map_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-9] [INFO] [1790397643.482977043] [map_server]: Creating
+[rviz2-6] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[lifecycle_manager-11] [INFO] [1790397643.507783459] [m6_lifecycle_manager]: Creating
+[lifecycle_manager-11] [INFO] [1790397643.512767834] [m6_lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-11] [INFO] [1790397643.610441626] [m6_lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-11] [INFO] [1790397643.610521293] [m6_lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-9] [INFO] [1790397643.611161501] [map_server]: Configuring
+[map_server-9] [INFO] [1790397643.611241501] [map_io]: Loading yaml file: /workspace/maps/delivery_room_v1/map.yaml
+[map_server-9] [INFO] [1790397643.611741001] [map_io]: resolution: 0.05
+[map_server-9] [INFO] [1790397643.611749959] [map_io]: origin[0]: -1.496
+[map_server-9] [INFO] [1790397643.611752876] [map_io]: origin[1]: -1.487
+[map_server-9] [INFO] [1790397643.611755334] [map_io]: origin[2]: 0
+[map_server-9] [INFO] [1790397643.611758168] [map_io]: free_thresh: 0.196
+[map_server-9] [INFO] [1790397643.611760834] [map_io]: occupied_thresh: 0.65
+[map_server-9] [INFO] [1790397643.611763834] [map_io]: mode: trinary
+[map_server-9] [INFO] [1790397643.611766793] [map_io]: negate: 0
+[map_server-9] [INFO] [1790397643.612019376] [map_io]: Loading image_file: /workspace/maps/delivery_room_v1/map.pgm
+[map_server-9] [INFO] [1790397643.619653751] [map_io]: Read map /workspace/maps/delivery_room_v1/map.pgm: 160 X 121 map @ 0.05 m/cell
+[lifecycle_manager-11] [INFO] [1790397643.625385376] [m6_lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-10] [INFO] [1790397643.625588918] [amcl]: Configuring
+[amcl-10] [INFO] [1790397643.625649376] [amcl]: initTransforms
+[rviz2-6] [INFO] [1790397643.631969334] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-6] [INFO] [1790397643.632695168] [rviz2]: OpenGl version: 4.5 (GLSL 4.5)
+[amcl-10] [INFO] [1790397643.635644209] [amcl]: initPubSub
+[amcl-10] [INFO] [1790397643.648620126] [amcl]: Subscribed to map topic.
+[lifecycle_manager-11] [INFO] [1790397643.653297834] [m6_lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-9] [INFO] [1790397643.653487168] [map_server]: Activating
+[map_server-9] [INFO] [1790397643.653644459] [map_server]: Creating bond (map_server) to lifecycle manager.
+[rviz2-6] [INFO] [1790397643.667565501] [rviz2]: Stereo is NOT SUPPORTED
+[python3-1] [INFO] [1790397643.670655168] [sim_firmware]: Firmware limits: {"radius": 0.14, "track": 0.48, "max_speed": 4.0, "acceleration": 4.0, "torque": 2.0, "deadband": 0.04, "kp": 0.45, "ki": 0.8, "kd": 0.002, "integral_limit": 1.2, "command_timeout": 0.5, "feedback_timeout": 0.2, "wall_timeout": 1.0, "future_tolerance": 0.03}
+[python3-1] [INFO] [1790397643.671886834] [sim_firmware]: Safety state: WAIT_COMMAND
+[amcl-10] [INFO] [1790397643.733742709] [amcl]: Received a 160 X 121 map @ 0.050 m/pix
+[lifecycle_manager-11] [INFO] [1790397643.761198709] [m6_lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-11] [INFO] [1790397643.761238376] [m6_lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-10] [INFO] [1790397643.761939459] [amcl]: Activating
+[amcl-10] [INFO] [1790397643.761968501] [amcl]: Creating bond (amcl) to lifecycle manager.
+[rviz2-6] [INFO] [1790397643.825135918] [rviz2]: Trying to create a map of size 160 x 121 using 1 swatches
+[rviz2-6] [ERROR] [1790397643.846442459] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
+[rviz2-6] rviz/glsl120/indexed_8bit_image.frag
+[rviz2-6]  GLSL link result :
+[rviz2-6] active samplers with a different type refer to the same texture image unit
+[lifecycle_manager-11] [INFO] [1790397643.866220584] [m6_lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-11] [INFO] [1790397643.866256793] [m6_lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-11] [INFO] [1790397643.866263418] [m6_lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[parameter_bridge-2] [INFO] [1790397644.489194835] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790397644.490966668] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790397644.498130793] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790397644.499594168] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790397644.501544418] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790397644.503432335] [rover_bridge]: Creating GZ->ROS Bridge: [/motor/driver_state (gz.msgs.StringMsg) -> /motor/driver_state (std_msgs/msg/String)] (Lazy 0)
+[amcl-10] [INFO] [1790397644.787505210] [amcl]: createLaserObject
+[amcl-10] [WARN] [1790397646.689045919] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397647.399150378] [rviz2]: Message Filter dropping message: frame 'odom' at time 2.240 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397647.429679170] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 1.500 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397649.779817671] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397651.508126755] [rviz2]: Message Filter dropping message: frame 'odom' at time 4.780 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397651.538549838] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 4.000 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397653.260099922] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397655.410345340] [rviz2]: Message Filter dropping message: frame 'odom' at time 7.220 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397655.572403882] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 6.600 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397656.442104424] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397659.186441425] [rviz2]: Message Filter dropping message: frame 'odom' at time 9.660 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397659.347322675] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 9.100 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397659.467438217] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[amcl-10] [WARN] [1790397662.562700135] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397662.900803135] [rviz2]: Message Filter dropping message: frame 'odom' at time 12.140 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397663.186461760] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 11.700 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397665.744971678] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397666.707180095] [rviz2]: Message Filter dropping message: frame 'odom' at time 14.660 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397667.092866262] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 14.300 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397668.718432013] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397670.418556055] [rviz2]: Message Filter dropping message: frame 'odom' at time 17.180 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397670.932810208] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 16.900 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397671.835261167] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397674.164650001] [rviz2]: Message Filter dropping message: frame 'odom' at time 19.680 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397674.835724502] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 19.500 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397674.958291793] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397677.875646378] [rviz2]: Message Filter dropping message: frame 'odom' at time 22.200 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397677.890401045] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397678.676361087] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 22.100 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397680.905903588] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397681.684932213] [rviz2]: Message Filter dropping message: frame 'odom' at time 24.740 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397682.708567797] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 24.700 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397684.709937881] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397686.167456882] [rviz2]: Message Filter dropping message: frame 'odom' at time 27.380 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397687.276148383] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 27.200 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397687.998936675] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397690.508102801] [rviz2]: Message Filter dropping message: frame 'odom' at time 29.920 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397691.518992218] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[rviz2-6] [INFO] [1790397691.532327760] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 29.800 for reason 'discarding message because the queue is full'
+[rviz2-6] [INFO] [1790397694.125268511] [rviz2]: Message Filter dropping message: frame 'odom' at time 32.240 for reason 'discarding message because the queue is full'
+[amcl-10] [WARN] [1790397694.399617761] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[amcl-10] [INFO] [1790397695.257320053] [amcl]: initialPoseReceived
+[amcl-10] [WARN] [1790397695.257478386] [amcl]: Failed to transform initial pose in time (Lookup would require extrapolation into the future.  Requested time 33.404000 but the latest data is at time 33.380000, when looking up transform from frame [base_drive] to frame [odom])
+[amcl-10] [INFO] [1790397695.257525553] [amcl]: Setting pose (33.404000): 0.250 -0.200 0.200
+[rviz2-6] [INFO] [1790397695.308849553] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 32.400 for reason 'discarding message because the queue is full'
+[python3-1] [INFO] [1790397698.571026305] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790397700.076729597] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790397703.103856792] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790397704.136125251] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790397707.011856544] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790397708.006762253] [sim_firmware]: Safety state: ACTIVE
+[rviz2-6] [INFO] [1790397709.162601629] [rviz2]: Message Filter dropping message: frame 'lidar_link' at time 32.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-6] [INFO] [1790397709.919717129] [rviz2]: Message Filter dropping message: frame 'odom' at time 33.500 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[python3-1] [INFO] [1790397713.201820131] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790397714.264518006] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790397719.404904092] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790397723.081790885] [sim_firmware]: Safety state: COMMAND_TIMEOUT

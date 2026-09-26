@@ -2,108 +2,49 @@
 
 ## Current milestone
 
-**Milestone 5 — Complete (2026-09-25). No acceptance checks blocked.**
+**Milestone 6 — Complete, verified 2026-09-26.** Milestone 7 has not started.
 
-M1–M4 passed before implementation and again on the rebuilt images, including
-M4 sensor recording and isolated replay. Only M5 was implemented. The
-[evidence index](evidence/milestone-5/README.md) links deterministic tests, actual
-Gazebo motion/fault results, desktop captures, source manifests and resolved issues.
+SLAM Toolbox builds a 5 cm occupancy grid from the existing LiDAR and wheel-only
+odometry. Standalone AMCL and map server localize against the versioned
+[delivery room map](maps/delivery_room_v1/README.md) after a clean restart and an
+approximate operator pose. Mapping and localization are separate launch modes;
+only the active estimator owns `map -> odom`. Gazebo pose remains a test oracle.
+All motion still passes through the unchanged M5 firmware and motor safety layer.
 
-## Current state
+## Verification
 
-M5 introduces a separate simulated firmware process between stamped `/cmd_vel`
-requests and wheel actuation. It derives wheel speed from M4's delayed, quantized
-encoder counts; applies PID, curvature-preserving speed saturation, acceleration
-ramps and torque limits; and sends effort to a compiled Gazebo motor-driver plugin.
-The generated M5 model contains no DiffDrive and the bridge has no command bypass.
+- M1–M5 passed before implementation and again after the final model/frame change;
+  M4 isolated rosbag replay passed in both regression sets.
+- Five offline M6 contracts passed. Fresh mapping, fresh headless localization,
+  and fresh desktop localization passed map/TF/input-boundary/safety checks.
+- Saved grid: 160 × 121 cells, 5 cm resolution; 99.95% known scored interior,
+  100% coverage of each room wall within 15 cm, 9.80 cm occupied-surface p95 error.
+- Headless localization final-window maximum error: 0.00096 m and 0.03128 rad.
+  Independent desktop restart: 0.01015 m and 0.02103 rad. Both satisfy the unchanged
+  0.15 m / 0.12 rad limits and x/y/yaw variance limits.
+- MCAP bags retain map, scans, wheel odometry, TF, initial pose/localization output
+  and M5 command/safety state. Actual RViz screenshot and trajectory plots are
+  included in [curated M6 evidence](evidence/milestone-6/README.md).
 
-| Interface | Contract |
-| --- | --- |
-| `/cmd_vel` | TwistStamped, simulation acquisition time, `base_link`, forward speed/yaw rate |
-| `/wheel/encoders` | Existing M4 signed cumulative counts, 2048 counts/revolution, 50 Hz |
-| `/safety/estop` | SetBool: true latches; false only releases the input |
-| `/safety/reset` | Trigger: requires released input, fresh zero command and stationary fresh feedback |
-| `/firmware/state` | Inspectable reason, PID state, requested/measured speed, limits, ages and rejection counts |
-| `/motor/driver_state` | Independent drive/brake/watchdog/e-stop status, applied torque and wheel speeds |
+## Decisions and limitations
 
-Wheel targets are limited to ±4 rad/s and ramped at 4 rad/s². Requested effort is
-limited to ±2 N m per wheel. The simulated motor has a 0.04 N m deadband and a
-bounded damping brake. Firmware stops on command age >0.5 simulation seconds,
-encoder age >0.2 simulation seconds, or receive age >1 monotonic second. The driver
-independently brakes if effort is >0.15 simulation seconds old or no valid frame
-arrives within 750 ms wall time. Both layers latch e-stop. Reset never replays a
-previous motion request.
+[ADR 0006](docs/decisions/0006-slam-toolbox-and-amcl.md) records the Jazzy-compatible
+stack, frame ownership, approximate initialization and map versioning. M6 adds a
+massless axle-centred `base_drive` frame for AMCL's differential motion model,
+resolving covariance spikes caused by using the offset chassis centre. M5 commands
+and wheel odometry retain `base_link`; no safety thresholds were weakened.
 
-M3 odometry and TF ownership are unchanged. M4 LiDAR, RGB camera, IMU and encoder
-interfaces remain available. Controller inputs are exactly clock, desired velocity
-and encoders; no Gazebo pose, odometry, LiDAR or IMU feeds its PID. Gazebo pose is
-used only by acceptance code. No mapping, localization, Nav2 or perception is added.
+Only the M6 scene raises the two low cutaway walls so they intersect the unchanged
+laser plane. Low crates remain invisible; the east table face is partially mapped.
+This is a laser-height slice, not collision clearance. Wheel odometry still uses
+ideal-resolution joint angles; M5 control uses quantized/delayed encoder counts.
+Nominal simulation accuracy does not establish hardware reliability, global
+relocalization or loop-closure benefit. No planning, waypoints, behavior trees,
+package perception or ML are included.
 
-## Acceptance results
-
-- **M1–M4 baseline and rebuilt-image regression:** all passed; repeated M4 bags
-  replayed successfully in an isolated ROS domain.
-- **Nine deterministic tests:** quantized closed-loop tracking, feedback response,
-  explicit zero braking, saturation/acceleration/anti-windup, command and encoder
-  watchdogs, latched e-stop/reset and invalid/stale inputs passed.
-- **19 fresh headless checks:** actual forward/reverse/turn motion and wheel tracking,
-  saturation, timeout/e-stop stops, reset, malformed requests, process suspension,
-  motor deadband and driver protocol rejection passed.
-- **Tracking:** final-window forward mean 1.4364 rad/s versus 1.4286 requested;
-  turn -0.8437/+0.8309 versus -0.8571/+0.8571. All under 0.15 rad/s error tolerance.
-- **Timeout:** observed 0.538 simulation seconds after command streaming ended;
-  0.39045 m subsequent travel at the maximum requested wheel speed, then only
-  0.032 mm movement in the settled half-second window.
-- **E-stop:** 0.02813 m travel after assertion from the nominal 0.2 m/s case.
-  Continued motion commands did not clear either latch. Reset conditions and
-  fresh-command recovery passed.
-- **Independent driver:** frozen firmware caused WATCHDOG in 0.194 simulation
-  seconds; wheels physically stopped. Suspended encoders also caused a safe stop
-  while high-level commands continued, and the recovered stream became usable.
-- **Desktop:** motion, fault and e-stop/reset acceptance passed. Actual browser
-  captures show timeout/braking and both e-stop latches. CLI stamped commands and
-  stop service were exercised. The read-only monitor identifies stale telemetry.
-
-## Repeat
-
-```bash
-docker compose --profile gui build robotics desktop
-./scripts/test-milestone-5.sh
-./scripts/launch-milestone-5.sh gui
-```
-
-[Open the local desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
-It is currently running with **e-stop asserted and the rover stopped**. Sensor and
-diagnostic streams remain available. Follow the [documented reset sequence](docs/setup.md#milestone-5-simulated-firmware-and-motor-safety)
-to release/reset it, or relaunch for a fresh scenario. Stop the desktop with
-`docker compose stop desktop`. Headless: `./scripts/launch-milestone-5.sh headless`.
-
-M5 keyboard commands are stamped and expire without new key events. `k` brakes.
-Earlier M2–M4 launch/test modes remain available as historical baselines; M3/M4
-still use unstamped Twist and ideal actuation without M5 safety behavior.
-
-## Boundaries and resolved findings
-
-- Python on Linux models firmware behavior, not MCU real-time execution. The
-  driver watchdog runs independently inside physics; real electronics, electrical
-  limits and physical e-stop/brake circuitry remain hardware work.
-- Torque and braking are finite. Measured stopping distances apply only to these
-  nominal simulation cases. Acceleration bounds apply to wheel requests, not all
-  possible chassis dynamics. No real-world reliability or certification is claimed.
-- Both simulation and monotonic deadlines matter under CPU rendering. GUI timeout
-  can occur sooner in simulation time; a CLI check's clock-progress stall correctly
-  inhibited motion. Paused physics resumes with expired leases checked.
-- Tire scrub needed a larger integral allowance. Final gains track turns within
-  the tighter tolerance. The test publisher stopped repeating timestamps, and
-  feedback recovery now supports skipped deliveries using cumulative counts.
-  [Curated observations](evidence/milestone-5/resolved-observations.json) retain the evidence.
-- Full-stack restart is the reset contract for backwards time or encoder driver
-  count-origin reset. The driver e-stop survives firmware restart, not a full
-  simulator restart. The public ROS/Gazebo graph is not a security boundary.
-- No system-wide software was installed and no external publishing beyond the
-  authorized repository is part of this milestone.
-
-See [control concepts](docs/concepts/firmware-safety.md), [architecture](docs/architecture.md),
-[ADR 0005](docs/decisions/0005-encoder-pid-and-independent-motor-watchdog.md).
-Previous evidence: [M1](evidence/milestone-1/README.md), [M2](evidence/milestone-2/README.md),
-[M3](evidence/milestone-3/README.md), [M4](evidence/milestone-4/README.md).
+The existing Compose desktop is left running for inspection, with the rover
+stationary and e-stop asserted in both safety layers. Use the
+[setup guide](docs/setup.md#milestone-6-mapping-and-localization) for a fresh mapping
+or localization run and the M5 section for reset commands. The dependency image
+must be rebuilt for M6; starting an old M5 container alone does not install the
+new packages. All installs remain inside Docker.

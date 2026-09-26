@@ -1,0 +1,256 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 71
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /LiDAR measured ranges1
+        - /RGB camera1
+      Splitter Ratio: 0.65
+    Tree Height: 627
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 0.5
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Ground grid (odom height minus 0.24 m)
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: -0.23999999463558197
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.6499999761581421
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        parcel_tray:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_support:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: Rover from joint feedback
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 3
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        left_wheel:
+          Value: true
+        odom:
+          Value: true
+        parcel_tray:
+          Value: true
+        rear_support:
+          Value: true
+        right_wheel:
+          Value: true
+      Marker Scale: 0.25
+      Name: Live coordinate frames
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        odom:
+          base_link:
+            left_wheel:
+              {}
+            parcel_tray:
+              {}
+            rear_support:
+              {}
+            right_wheel:
+              {}
+      Update Interval: 0
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz_default_plugins/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: false
+      Enabled: true
+      Keep: 150
+      Name: Wheel odometry trail
+      Position Tolerance: 0.05000000074505806
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 175; 50
+        Head Length: 0.07000000029802322
+        Head Radius: 0.03999999910593033
+        Shaft Length: 0.18000000715255737
+        Shaft Radius: 0.014999999664723873
+        Value: Arrow
+      Topic:
+        Depth: 10
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /odom
+      Value: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: LiDAR measured ranges
+      Enabled: true
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Depth: 10
+        Filter size: 10
+      Size (m): 0.04
+      Style: Spheres
+      Color Transformer: FlatColor
+      Color: 70; 240; 180
+      Position Transformer: XYZ
+      Decay Time: 0
+      Value: true
+    - Class: rviz_default_plugins/Map
+      Name: Occupancy grid (black occupied, white free, grey unknown)
+      Enabled: true
+      Alpha: 0.85
+      Draw Behind: true
+      Topic:
+        Value: /map
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Depth: 1
+      Value: true
+    - Class: rviz_default_plugins/PoseWithCovariance
+      Name: AMCL axle pose and uncertainty
+      Enabled: true
+      Topic:
+        Value: /amcl_pose
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Depth: 10
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 35; 42; 52
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic: /initialpose
+      X std deviation: 0.25
+      Y std deviation: 0.25
+      Theta std deviation: 0.3
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 13
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 2.5
+        Y: 1.5
+        Z: 0
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 1.5707
+      Target Frame: map
+      Value: Orbit (rviz_default_plugins)
+      Yaw: 4.71239
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 850
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd000000010000000000000156000002f7fc0200000002fb000000100044006900730070006c006100790073010000003e000002f7000000cb00fffffffb0000000a00560069006500770073000000020d00000128000000a500ffffff000002f0000002f700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Views:
+    collapsed: false
+  Width: 1400
+  X: 10
+  Y: 10

@@ -3,6 +3,7 @@
   <xacro:arg name="firmware" default="false"/>
   <xacro:arg name="drive" default="false"/>
   <xacro:arg name="sensors" default="false"/>
+  <xacro:arg name="m6" default="false"/>
   <!-- SI units. base_link: body centre, x forward, y left, z up. -->
   <xacro:property name="wheel_radius" value="0.14"/>
   <xacro:property name="wheel_width" value="0.06"/>
@@ -54,6 +55,15 @@
   </xacro:macro>
   <xacro:wheel side="left" sign="1"/>
   <xacro:wheel side="right" sign="-1"/>
+
+  <!-- AMCL's differential motion model is defined at the axle, not the
+       offset chassis centre. This massless M6-only frame changes no physics. -->
+  <xacro:if value="$(arg m6)">
+    <link name="base_drive"/>
+    <joint name="base_drive_joint" type="fixed">
+      <parent link="base_link"/><child link="base_drive"/><origin xyz="0.14 0 0"/>
+    </joint>
+  </xacro:if>
 
   <!-- A low-friction sphere approximates a passive caster, not its swivel mechanics. -->
   <link name="rear_support">

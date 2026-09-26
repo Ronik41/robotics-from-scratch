@@ -1,0 +1,48 @@
+{
+  "/motor/driver_state": {
+    "sim_time": 101.989,
+    "state": "ESTOP",
+    "estop_latched": true,
+    "applied_nm": [
+      -8.48031e-16,
+      -7.8849e-16
+    ],
+    "wheel_rad_s": [
+      8.48031e-16,
+      7.8849e-16
+    ],
+    "rejected": 0
+  },
+  "/firmware/state": {
+    "state": "ESTOP",
+    "estop_latched": true,
+    "estop_asserted": true,
+    "target_rad_s": [
+      0.0,
+      0.0
+    ],
+    "ramped_rad_s": [
+      0.0,
+      0.0
+    ],
+    "measured_rad_s": [
+      0.0,
+      0.0
+    ],
+    "effort_nm": [
+      0.0,
+      0.0
+    ],
+    "integral_nm": [
+      0.0,
+      0.0
+    ],
+    "speed_saturated": false,
+    "torque_saturated": false,
+    "command_age_s": 50.09100000000001,
+    "encoder_age_s": 0.01300000000000523,
+    "rejected_commands": 0,
+    "rejected_encoders": 0,
+    "sim_time": 101.873
+  }
+}

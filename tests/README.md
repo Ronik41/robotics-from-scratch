@@ -41,3 +41,13 @@ stopping, ROS validation and process-suspension faults. `--existing` omits nativ
 fault injection and is suitable for an otherwise idle desktop. Test-only Gazebo
 pose never enters firmware. Thresholds and evidence are documented in
 `docs/concepts/firmware-safety.md` and `evidence/milestone-5/README.md`.
+
+Milestone 6: `scripts/test-milestone-6.sh` first exercises offline input-boundary
+and map-quality rejection checks. It then runs real SLAM Toolbox mapping, saves
+a fresh PGM/YAML candidate, destroys the container, and starts a second container
+with only AMCL/map-server localization. `check_milestone_6.py` verifies actual
+occupancy grids, TF ownership from publisher GIDs, estimator/control input
+allowlists, map quality, initialized localization convergence and inherited M5
+physical stopping. `map_quality.py` contains the test-only geometric oracle;
+neither the estimator nor the separate motion/initialization helpers import it.
+Thresholds, artifacts and raw bag playback are documented in `docs/setup.md`.

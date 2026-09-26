@@ -1,0 +1,47 @@
+{
+  "version": "delivery_room_v1",
+  "source_run": "evidence/milestone-6/20260926T005202Z-acceptance-81678",
+  "parent_commit": "2284f2c",
+  "image": "sha256:97e90cc162ea8695aba40e9a1b07b734876a2cfbc39417f193aaa86688b3f421 linux/arm64",
+  "workflow": "SLAM Toolbox 2.8.5, M6 delivery room, fixed stamped teleoperation survey",
+  "map_reference": "Initial mapping base_link pose; x forward, y left; no world/map TF",
+  "localization_body_frame": "base_drive (wheel axle, x=0.14 m in base_link)",
+  "files_sha256": {
+    "map.png": "4418b78e8840dc2bbceb93c3bebc5de59abf85e3a1105da85758c158affc0184",
+    "map.yaml": "124dee40f34d6ff4c42a14af9f89289bd341bc574332840e96be9d33f795ee1c",
+    "map.pgm": "b96292a3ad7f12ca83b1266b78e18ab29af12cb30d6a905d70ecef70408c8672"
+  },
+  "quality": {
+    "resolution_m": 0.05,
+    "width": 160,
+    "height": 121,
+    "origin_xy_m": [
+      -1.496,
+      -1.487
+    ],
+    "occupied_cells": 1003,
+    "free_cells": 17657,
+    "unknown_cells": 700,
+    "interior_known_fraction": 0.9995278564683664,
+    "interior_free_fraction": 0.9995278564683664,
+    "occupied_surface_rmse_m": 0.04342697655974517,
+    "occupied_surface_p95_m": 0.09800000000000031,
+    "surface_coverage_within_15cm": {
+      "south": 1.0,
+      "north": 1.0,
+      "west": 1.0,
+      "east": 1.0,
+      "table_south": 1.0,
+      "table_north": 0.8709677419354839,
+      "table_west": 1.0,
+      "table_east": 0.2857142857142857
+    },
+    "oracle_alignment": "world_xy = map_xy + (-2.5, -1.5); yaw=0; no fitted alignment",
+    "scope": "M6 wall inner faces and table at the LiDAR plane; low crates excluded"
+  },
+  "curated_source": "evidence/milestone-6/acceptance/mapping",
+  "verified_localization": [
+    "evidence/milestone-6/acceptance/localization/result.json",
+    "evidence/milestone-6/desktop-acceptance/result.json"
+  ]
+}

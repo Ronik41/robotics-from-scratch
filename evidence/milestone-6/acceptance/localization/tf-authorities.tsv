@@ -1,0 +1,11 @@
+base_link	base_drive	static	010f56e7ff008c5a0000000000001603	1
+base_link	camera_link	static	010f56e7ff008c5a0000000000001603	1
+base_link	imu_link	static	010f56e7ff008c5a0000000000001603	1
+base_link	left_wheel	dynamic	010f56e7ff008c5a0000000000001503	1490
+base_link	lidar_link	static	010f56e7ff008c5a0000000000001603	1
+base_link	parcel_tray	static	010f56e7ff008c5a0000000000001603	1
+base_link	rear_support	static	010f56e7ff008c5a0000000000001603	1
+base_link	right_wheel	dynamic	010f56e7ff008c5a0000000000001503	1490
+camera_link	camera_optical_frame	static	010f56e7ff008c5a0000000000001603	1
+map	odom	dynamic	010f56e7030158ae0000000000002203	235
+odom	base_link	dynamic	010f56e700015b810000000000001503	1460

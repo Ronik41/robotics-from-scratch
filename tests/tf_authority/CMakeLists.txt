@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(m6_tf_authority)
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(tf2_msgs REQUIRED)
+add_executable(tf_authority_probe main.cc)
+target_compile_features(tf_authority_probe PUBLIC cxx_std_17)
+ament_target_dependencies(tf_authority_probe rclcpp tf2_msgs)

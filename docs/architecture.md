@@ -103,3 +103,53 @@ Wheel odometry, TF and sensor ownership remain as in M3/M4. No map, localization
 planner or perception node is added. Simulator pose remains available only to
 acceptance processes. See [controller contracts and hardware gaps](concepts/firmware-safety.md)
 and [ADR 0005](decisions/0005-encoder-pid-and-independent-motor-watchdog.md).
+
+## Milestone 6: map and localization boundary
+
+```text
+M4 /scan + wheel-only odom -> base_link + sensor extrinsics
+       |                                |
+       +-------- SLAM Toolbox ----------+  mapping mode
+                    |          |
+                   /map       map -> odom
+                    |
+              Nav2 map saver -> versioned PGM + YAML
+                                      |
+                               Nav2 map_server -> /map
+                                      |            |
+operator approximate /initialpose ----> AMCL <------+  localization mode
+                                        |
+                                   map -> odom + /amcl_pose
+
+finite teleoperation tape OR keyboard -> /cmd_vel (TwistStamped)
+      -> unchanged M5 firmware -> MotorDriver -> wheel physics
+```
+
+The two M6 estimator modes are mutually exclusive launch choices. The lifecycle
+manager configures/activates only the selected mapper, or map server and AMCL.
+`wheel_odometry` and `robot_state_publisher` retain their existing TF edges.
+M6 adds a fixed `base_link -> base_drive` edge at the wheel axle (x=0.14 m).
+AMCL uses `base_drive` for its differential motion model; its initial/reported
+pose is the axle pose. SLAM Toolbox still uses `base_link`. No dynamic edge is
+replaced, and the initializer consumes no TF or pose feedback.
+No world/map transform or simulator pose bridge exists. `map -> odom` is dynamic
+and belongs only to SLAM Toolbox or AMCL. AMCL does not publish it until initialized.
+
+The M6 world variant raises south/west cutaway walls to the same 0.8 m height as
+the other walls; its footprint, rover, sensors, crates and table are unchanged.
+The initial rover pose defines the map reference. Saved-map metadata and test
+oracle alignment are documented separately; world coordinates never configure
+the estimator. The raw joint-state wheel estimator remains the M3 implementation,
+while M5 control feedback remains quantized/delayed encoders.
+
+`mapping_survey.py` consumes only clock and firmware diagnostics. It publishes
+bounded, stamped teleoperation commands, aborts on stale status/clock or a safety
+fault, and never resets a latch. `initialize_localization.py` publishes an operator
+pose with nonzero covariance. Neither imports Gazebo or reads odometry/map pose.
+Acceptance runs in a separate process, uses Gazebo pose only to score estimates,
+and records message-level TF publisher identities and exact input subscriptions.
+
+No planner, costmap, waypoint navigator, behavior tree, perception or ML component
+is launched. A map cell is not yet a clearance or navigation decision. See
+[ADR 0006](decisions/0006-slam-toolbox-and-amcl.md) and
+[mapping/localization concepts](concepts/mapping-localization.md).

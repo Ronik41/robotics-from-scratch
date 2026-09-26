@@ -7,3 +7,5 @@ Short explanations written as each concept becomes relevant. These are learning 
 - [Teleoperation, TF2, wheel odometry and RViz](teleop-tf-odometry.md)
 
 - [Sensors: measurements, imperfections, frames and replay](sensors.md) — M4.
+- [Firmware, PID and independent motor safety](firmware-safety.md) — M5.
+- [Mapping, localization, occupancy grids, TF and the simulation boundary](mapping-localization.md) — M6.

@@ -1,0 +1,356 @@
+{
+  "profile": "localization",
+  "phases": [
+    {
+      "phase": "observe",
+      "start_sim_s": 35.682,
+      "end_sim_s": 36.682,
+      "v": 0.0,
+      "w": 0.0,
+      "firmware": {
+        "state": "IDLE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.010000000000005116,
+        "encoder_age_s": 0.016000000000005343,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 36.676
+      }
+    },
+    {
+      "phase": "forward",
+      "start_sim_s": 36.682,
+      "end_sim_s": 38.682,
+      "v": 0.15,
+      "w": 0.0,
+      "firmware": {
+        "state": "ACTIVE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          1.0714285714285714,
+          1.0714285714285714
+        ],
+        "ramped_rad_s": [
+          1.0714285714285714,
+          1.0714285714285714
+        ],
+        "measured_rad_s": [
+          1.0737865515201626,
+          1.0737865515201626
+        ],
+        "effort_nm": [
+          0.04720467675317863,
+          0.04720467675317863
+        ],
+        "integral_nm": [
+          0.046929721676143066,
+          0.046929721676143066
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.026000000000003354,
+        "encoder_age_s": 0.01300000000000523,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 38.673
+      }
+    },
+    {
+      "phase": "brake",
+      "start_sim_s": 38.682,
+      "end_sim_s": 39.382000000000005,
+      "v": 0.0,
+      "w": 0.0,
+      "firmware": {
+        "state": "IDLE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.03200000000000358,
+        "encoder_age_s": 0.018000000000000682,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 39.378
+      }
+    },
+    {
+      "phase": "reverse",
+      "start_sim_s": 39.382000000000005,
+      "end_sim_s": 41.382000000000005,
+      "v": -0.15,
+      "w": 0.0,
+      "firmware": {
+        "state": "ACTIVE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          -1.0714285714285714,
+          -1.0714285714285714
+        ],
+        "ramped_rad_s": [
+          -1.0714285714285714,
+          -1.0714285714285714
+        ],
+        "measured_rad_s": [
+          -1.0737865515197809,
+          -1.0737865515197809
+        ],
+        "effort_nm": [
+          -0.05051497102068293,
+          -0.05051497102068293
+        ],
+        "integral_nm": [
+          -0.04945954629968464,
+          -0.04945954629968464
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.009000000000000341,
+        "encoder_age_s": 0.029000000000003467,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 41.349000000000004
+      }
+    },
+    {
+      "phase": "brake",
+      "start_sim_s": 41.382000000000005,
+      "end_sim_s": 42.082,
+      "v": 0.0,
+      "w": 0.0,
+      "firmware": {
+        "state": "IDLE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.0010000000000047748,
+        "encoder_age_s": 0.029000000000003467,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 42.069
+      }
+    },
+    {
+      "phase": "left",
+      "start_sim_s": 42.082,
+      "end_sim_s": 45.582,
+      "v": 0.0,
+      "w": 0.4,
+      "firmware": {
+        "state": "ACTIVE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          -0.6857142857142856,
+          0.6857142857142856
+        ],
+        "ramped_rad_s": [
+          -0.6857142857142856,
+          0.6857142857142856
+        ],
+        "measured_rad_s": [
+          -0.6135923151541606,
+          0.7669903939427007
+        ],
+        "effort_nm": [
+          -0.8486333652873572,
+          0.8040223038499201
+        ],
+        "integral_nm": [
+          -0.8157131477840923,
+          0.8451655789114968
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.03200000000000358,
+        "encoder_age_s": 0.021000000000000796,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 45.541000000000004
+      }
+    },
+    {
+      "phase": "brake",
+      "start_sim_s": 45.582,
+      "end_sim_s": 46.282000000000004,
+      "v": 0.0,
+      "w": 0.0,
+      "firmware": {
+        "state": "IDLE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.021000000000000796,
+        "encoder_age_s": 0.027000000000001023,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 46.247
+      }
+    },
+    {
+      "phase": "right",
+      "start_sim_s": 46.282000000000004,
+      "end_sim_s": 49.782000000000004,
+      "v": 0.0,
+      "w": -0.4,
+      "firmware": {
+        "state": "ACTIVE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.6857142857142856,
+          -0.6857142857142856
+        ],
+        "ramped_rad_s": [
+          0.6857142857142856,
+          -0.6857142857142856
+        ],
+        "measured_rad_s": [
+          0.9203884727312408,
+          -0.9203884727312408
+        ],
+        "effort_nm": [
+          0.6716561255123312,
+          -0.6192330178606124
+        ],
+        "integral_nm": [
+          0.7775971911431859,
+          -0.7236010674096119
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.030000000000008242,
+        "encoder_age_s": 0.017000000000003013,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 49.757000000000005
+      }
+    },
+    {
+      "phase": "settle",
+      "start_sim_s": 49.782000000000004,
+      "end_sim_s": 51.782000000000004,
+      "v": 0.0,
+      "w": 0.0,
+      "firmware": {
+        "state": "IDLE",
+        "estop_latched": false,
+        "estop_asserted": false,
+        "target_rad_s": [
+          0.0,
+          0.0
+        ],
+        "ramped_rad_s": [
+          0.0,
+          0.0
+        ],
+        "measured_rad_s": [
+          0.0,
+          0.0
+        ],
+        "effort_nm": [
+          0.0,
+          0.0
+        ],
+        "integral_nm": [
+          0.0,
+          0.0
+        ],
+        "speed_saturated": false,
+        "torque_saturated": false,
+        "command_age_s": 0.0010000000000047748,
+        "encoder_age_s": 0.017000000000003013,
+        "rejected_commands": 0,
+        "rejected_encoders": 0,
+        "sim_time": 51.757000000000005
+      }
+    }
+  ]
+}

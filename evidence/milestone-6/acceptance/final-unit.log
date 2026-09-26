@@ -1,0 +1,10 @@
+test_modes_use_measurements_and_do_not_auto_seed_amcl (test_m6_contracts.Contracts.test_modes_use_measurements_and_do_not_auto_seed_amcl) ... ok
+test_motion_and_initializer_have_no_pose_or_simulator_inputs (test_m6_contracts.Contracts.test_motion_and_initializer_have_no_pose_or_simulator_inputs) ... ok
+test_quality_rejects_displaced_walls_without_fitting_alignment (test_m6_contracts.Contracts.test_quality_rejects_displaced_walls_without_fitting_alignment) ... ok
+test_quality_rejects_empty_and_unknown_maps (test_m6_contracts.Contracts.test_quality_rejects_empty_and_unknown_maps) ... ok
+test_unknown_grey_is_not_free_on_reload (test_m6_contracts.Contracts.test_unknown_grey_is_not_free_on_reload) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.079s
+
+OK

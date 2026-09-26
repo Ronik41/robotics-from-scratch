@@ -1,0 +1,1141 @@
+ambient {
+  r: 0.4
+  g: 0.4
+  b: 0.4
+  a: 1.0
+}
+background {
+  r: 0.7
+  g: 0.7
+  b: 0.7
+  a: 1.0
+}
+shadows: true
+grid: true
+model {
+  name: "floor"
+  id: 4
+  pose {
+    position {
+      z: -0.05
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 5
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 6
+      parent_id: 5
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 8.0
+            y: 6.0
+            z: 0.1
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.65
+          g: 0.7
+          b: 0.73
+          a: 1.0
+        }
+        diffuse {
+          r: 0.65
+          g: 0.7
+          b: 0.73
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "north_wall"
+  id: 8
+  pose {
+    position {
+      y: 3.0
+      z: 0.4
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 9
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 10
+      parent_id: 9
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 8.2
+            y: 0.12
+            z: 0.8
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        diffuse {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "south_wall"
+  id: 12
+  pose {
+    position {
+      y: -3.0
+      z: 0.4
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 13
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 14
+      parent_id: 13
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 8.2
+            y: 0.12
+            z: 0.8
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        diffuse {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "east_wall"
+  id: 16
+  pose {
+    position {
+      x: 4.0
+      z: 0.4
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 17
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 18
+      parent_id: 17
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.12
+            y: 6.0
+            z: 0.8
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        diffuse {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "west_wall"
+  id: 20
+  pose {
+    position {
+      x: -4.0
+      z: 0.4
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 21
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 22
+      parent_id: 21
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.12
+            y: 6.0
+            z: 0.8
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        diffuse {
+          r: 0.25
+          g: 0.33
+          b: 0.42
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "pickup_pad"
+  id: 24
+  pose {
+    position {
+      x: -2.5
+      y: -1.5
+      z: 0.002
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 25
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 26
+      parent_id: 25
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 1.25
+            y: 1.1
+            z: 0.004
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.12
+          g: 0.6
+          b: 0.63
+          a: 1.0
+        }
+        diffuse {
+          r: 0.12
+          g: 0.6
+          b: 0.63
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "delivery_pad"
+  id: 27
+  pose {
+    position {
+      x: 2.5
+      y: 1.5
+      z: 0.002
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 28
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 29
+      parent_id: 28
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 1.25
+            y: 1.1
+            z: 0.004
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.94
+          g: 0.6
+          b: 0.15
+          a: 1.0
+        }
+        diffuse {
+          r: 0.94
+          g: 0.6
+          b: 0.15
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "sorting_table"
+  id: 30
+  pose {
+    position {
+      y: 0.6
+      z: 0.4
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 31
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 32
+      parent_id: 31
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 1.5
+            y: 0.7
+            z: 0.8
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.37
+          g: 0.46
+          b: 0.55
+          a: 1.0
+        }
+        diffuse {
+          r: 0.37
+          g: 0.46
+          b: 0.55
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "crate_a"
+  id: 34
+  pose {
+    position {
+      x: 1.9
+      y: -1.1
+      z: 0.25
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 35
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 36
+      parent_id: 35
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.5
+            y: 0.5
+            z: 0.5
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.63
+          g: 0.37
+          b: 0.19
+          a: 1.0
+        }
+        diffuse {
+          r: 0.63
+          g: 0.37
+          b: 0.19
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "crate_b"
+  id: 38
+  pose {
+    position {
+      x: -1.8
+      y: 1.6
+      z: 0.2
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 39
+    name: "body"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "visual"
+      id: 40
+      parent_id: 39
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.6
+            y: 0.5
+            z: 0.4
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.63
+          g: 0.37
+          b: 0.19
+          a: 1.0
+        }
+        diffuse {
+          r: 0.63
+          g: 0.37
+          b: 0.19
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+model {
+  name: "delivery_rover"
+  id: 44
+  pose {
+    position {
+      x: -2.5
+      y: -1.5
+      z: 0.25
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  link {
+    id: 45
+    name: "base_link"
+    pose {
+      position {
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "base_link_visual"
+      id: 46
+      parent_id: 45
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.64
+            y: 0.4
+            z: 0.18
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 0.049999997
+          g: 0.6875
+          b: 0.72499996
+          a: 1.0
+        }
+        diffuse {
+          r: 0.049999997
+          g: 0.6875
+          b: 0.72499996
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+    visual {
+      name: "base_link_fixed_joint_lump__front_stripe_visual_1"
+      id: 47
+      parent_id: 45
+      cast_shadows: true
+      pose {
+        position {
+          x: 0.321
+          z: 0.02
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.004
+            y: 0.3
+            z: 0.045
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 1.0
+          g: 1.0
+          b: 1.0
+          a: 1.0
+        }
+        diffuse {
+          r: 1.0
+          g: 1.0
+          b: 1.0
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+    visual {
+      name: "base_link_fixed_joint_lump__parcel_tray_visual_2"
+      id: 48
+      parent_id: 45
+      cast_shadows: true
+      pose {
+        position {
+          x: -0.04
+          z: 0.185
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        box {
+          size {
+            x: 0.34
+            y: 0.3
+            z: 0.19
+          }
+        }
+      }
+      material {
+        ambient {
+          r: 1.0
+          g: 0.7125
+          b: 0.19999999
+          a: 1.0
+        }
+        diffuse {
+          r: 1.0
+          g: 0.7125
+          b: 0.19999999
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+    sensor {
+      name: "rgb_camera"
+      id: 51
+      parent_id: 45
+      type: "camera"
+      pose {
+        position {
+          x: 0.33
+          z: 0.16
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      camera {
+        horizontal_fov: 1.0471975512
+        image_size {
+          x: 320.0
+          y: 240.0
+        }
+        image_format: "RGB_INT8"
+        near_clip: 0.05
+        far_clip: 12.0
+        distortion {
+          center {
+            x: 0.5
+            y: 0.5
+          }
+        }
+      }
+    }
+    sensor {
+      name: "imu"
+      id: 52
+      parent_id: 45
+      type: "imu"
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      imu {
+        angular_velocity {
+          x_noise {
+          }
+          y_noise {
+          }
+          z_noise {
+          }
+        }
+        linear_acceleration {
+          x_noise {
+          }
+          y_noise {
+          }
+          z_noise {
+          }
+        }
+      }
+    }
+    sensor {
+      name: "lidar"
+      id: 53
+      parent_id: 45
+      type: "gpu_lidar"
+      pose {
+        position {
+          x: 0.2
+          z: 0.34
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      lidar {
+        horizontal_samples: 361
+        horizontal_resolution: 1.0
+        horizontal_min_angle: -3.141592653589793
+        horizontal_max_angle: 3.141592653589793
+        vertical_samples: 1
+        vertical_resolution: 1.0
+        range_min: 0.12
+        range_max: 8.0
+        range_resolution: 0.01
+        noise {
+          type: GAUSSIAN
+          stddev: 0.01
+        }
+      }
+    }
+  }
+  link {
+    id: 54
+    name: "left_wheel"
+    pose {
+      position {
+        x: 0.14000000000000012
+        y: 0.24
+        z: -0.1
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "left_wheel_visual"
+      id: 55
+      parent_id: 54
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          x: 0.7071067811865472
+          w: 0.7071067811865478
+        }
+      }
+      geometry {
+        type: CYLINDER
+        cylinder {
+          radius: 0.14
+          length: 0.06
+        }
+      }
+      material {
+        ambient {
+          r: 0.0875
+          g: 0.112500004
+          b: 0.14999999
+          a: 1.0
+        }
+        diffuse {
+          r: 0.0875
+          g: 0.112500004
+          b: 0.14999999
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+  link {
+    id: 57
+    name: "rear_support"
+    pose {
+      position {
+        x: -0.22999999999999998
+        z: -0.19
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "rear_support_visual"
+      id: 58
+      parent_id: 57
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          w: 1.0
+        }
+      }
+      geometry {
+        type: SPHERE
+        sphere {
+          radius: 0.05
+        }
+      }
+      material {
+        ambient {
+          r: 1.0
+          g: 1.0
+          b: 1.0
+          a: 1.0
+        }
+        diffuse {
+          r: 1.0
+          g: 1.0
+          b: 1.0
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+  link {
+    id: 60
+    name: "right_wheel"
+    pose {
+      position {
+        x: 0.14000000000000012
+        y: -0.24
+        z: -0.1
+      }
+      orientation {
+        w: 1.0
+      }
+    }
+    visual {
+      name: "right_wheel_visual"
+      id: 61
+      parent_id: 60
+      cast_shadows: true
+      pose {
+        position {
+        }
+        orientation {
+          x: 0.7071067811865472
+          w: 0.7071067811865478
+        }
+      }
+      geometry {
+        type: CYLINDER
+        cylinder {
+          radius: 0.14
+          length: 0.06
+        }
+      }
+      material {
+        ambient {
+          r: 0.0875
+          g: 0.112500004
+          b: 0.14999999
+          a: 1.0
+        }
+        diffuse {
+          r: 0.0875
+          g: 0.112500004
+          b: 0.14999999
+          a: 1.0
+        }
+        specular {
+          a: 1.0
+        }
+        emissive {
+          a: 1.0
+        }
+        lighting: true
+      }
+    }
+  }
+}
+light {
+  name: "sun"
+  type: DIRECTIONAL
+  pose {
+    position {
+      z: 8.0
+    }
+    orientation {
+      w: 1.0
+    }
+  }
+  diffuse {
+    r: 0.95
+    g: 0.95
+    b: 0.95
+    a: 1.0
+  }
+  specular {
+    r: 0.2
+    g: 0.2
+    b: 0.2
+    a: 1.0
+  }
+  attenuation_constant: 0.9
+  attenuation_linear: 0.01
+  attenuation_quadratic: 0.001
+  direction {
+    x: -0.4
+    y: 0.2
+    z: -0.9
+  }
+  range: 100.0
+  cast_shadows: true
+  id: 42
+  parent_id: 1
+  intensity: 1.0
+  visualize_visual: true
+}
+origin_visual: true

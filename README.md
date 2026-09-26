@@ -79,4 +79,20 @@ seconds unless refreshed. The desktop includes a live safety-state monitor.
 [Control and safety concepts](docs/concepts/firmware-safety.md) ·
 [Setup and reset commands](docs/setup.md#milestone-5-simulated-firmware-and-motor-safety) ·
 [M5 evidence](evidence/milestone-5/README.md).
-No mapping, localization, Nav2 or perception has been implemented.
+
+Milestone 6 adds SLAM Toolbox mapping and separate AMCL localization against a
+versioned occupancy grid, with M5 still controlling all motion:
+
+```bash
+docker compose --profile gui build robotics desktop
+./scripts/test-milestone-6.sh
+./scripts/launch-milestone-6.sh localization gui
+docker compose exec -T desktop /ros_entrypoint.sh python3 scripts/initialize_localization.py
+docker compose exec -T desktop /ros_entrypoint.sh python3 scripts/mapping_survey.py --profile localization
+```
+
+[Mapping/localization workflow](docs/setup.md#milestone-6-mapping-and-localization) ·
+[Concepts and limits](docs/concepts/mapping-localization.md) ·
+[ADR 0006](docs/decisions/0006-slam-toolbox-and-amcl.md) ·
+[M6 evidence](evidence/milestone-6/README.md).
+No global planning, waypoint navigation, behavior trees, perception or ML runs yet.

@@ -1,13 +1,13 @@
 # Development environment
 
-Milestones 1–4 use Docker Desktop on Apple Silicon, Ubuntu 24.04 ARM64,
+Milestones 1–6 use Docker Desktop on Apple Silicon, Ubuntu 24.04 ARM64,
 ROS 2 Jazzy, and Gazebo Harmonic. See [the decision](decisions/0001-ros-gazebo-environment.md).
 
 ## Prerequisites
 
 - Apple Silicon macOS with Docker Desktop and its Compose plugin already installed.
 - Start Docker Desktop and wait for `docker info` to succeed.
-- Internet access to Docker Hub, Ubuntu package archives, and packages.ros.org during build.
+- Internet access to Docker Hub, Ubuntu package archives, and repo.ros2.org during build.
 - This host has 16 GiB RAM and 156 GiB free; Docker currently has about 8 GiB RAM.
   Allow several GiB of disk for the image and build cache. No host ROS installation is needed.
 - On a different Mac where Docker is missing, installing it is a separate host setup step.
@@ -530,3 +530,163 @@ container. Do not enter keyboard commands during the test.
 See [firmware concepts and full contracts](concepts/firmware-safety.md),
 [ADR 0005](decisions/0005-encoder-pid-and-independent-motor-watchdog.md), and
 [M5 evidence](../evidence/milestone-5/README.md).
+
+## Milestone 6: mapping and localization
+
+Rebuild both images. M6 installs Jazzy SLAM Toolbox and only the Nav2 map,
+localization and lifecycle packages. The Dockerfile uses the official
+`https://repo.ros2.org/ubuntu/main` archive, retaining the pinned image's ROS
+signing key. This resolves this host network's 403/certificate failure for the
+original hostname; certificate and package-signature checks stay enabled.
+
+```bash
+docker compose --profile gui build robotics desktop
+./scripts/smoke-test.sh
+./scripts/test-milestone-2.sh
+./scripts/test-milestone-3.sh
+./scripts/test-milestone-4.sh
+./scripts/test-milestone-5.sh
+./scripts/test-milestone-6.sh
+```
+
+The M6 acceptance script creates a fresh mapping container, drives a bounded
+survey, saves a **new candidate map in its timestamped evidence directory**, then
+destroys that container. A second fresh container localizes against that exact
+candidate. It never overwrites `maps/delivery_room_v1/`. Bags, source/package
+manifests, graph audits, map quality and localization error accompany the run.
+Allow several minutes on this Mac's software renderer. A PASS requires the
+complete workflows, not just successful process startup.
+
+### Build and inspect a map
+
+First inspect `docker compose ps -a`. Starting an existing M5 container does not
+install M6 dependencies: Docker containers retain the image they were created
+from. Build the images once as above. The M6 GUI launcher then replaces only this
+project's `desktop` service with that image and the selected workflow. Use
+`docker compose exec` for all subsequent inspection and driving in that desktop;
+do not launch an additional simulator alongside it. Automated regression scripts
+use isolated disposable containers to establish independent startup conditions.
+
+```bash
+# A fresh M6 scene, SLAM Toolbox, RViz and M5 stamped keyboard teleop:
+./scripts/launch-milestone-6.sh mapping gui
+
+# In another host terminal, collect overlapping views with the finite tape:
+docker compose exec -T desktop /ros_entrypoint.sh python3 scripts/mapping_survey.py --profile mapping
+
+# Save a new version; choose an unused path on each attempt:
+docker compose exec -T desktop /ros_entrypoint.sh bash scripts/save-map.sh /workspace/maps/my_delivery_map/map
+```
+
+[Open the local desktop](http://localhost:6080/vnc.html?autoconnect=true&resize=scale).
+RViz's fixed frame is `map`; white is observed free space, black is occupied,
+grey is unknown. Green laser points should agree with mapped surfaces. The AMCL
+pose display is relevant only in localization mode. The map's `(0,0,0)` reference
+is the initial mapping rover pose, not Gazebo world zero. M6 raises only the two
+low cutaway walls to 0.8 m so the unchanged horizontal laser sees them.
+
+The tape starts only in the documented fresh scenario, and uses fixed velocity
+durations. It is repeatable teleoperation, not obstacle avoidance or navigation.
+Do not enter keyboard commands while it runs. It aborts on a firmware fault or
+stale clock/status and never clears e-stop. Stopping the process stops renewing
+the M5 command lease; `k` requests immediate braking. All M5 e-stop/reset commands
+above still apply. Relaunch to reset the whole graph and simulator clock.
+
+### Localize against the versioned map after a clean restart
+
+```bash
+# Recreates the desktop: fresh physics, wheel odometry and AMCL; no mapper.
+./scripts/launch-milestone-6.sh localization gui
+
+# Supply the operator's approximate pose near the known pickup area.
+# Defaults deliberately differ from the actual starting pose.
+docker compose exec -T desktop /ros_entrypoint.sh python3 scripts/initialize_localization.py --x 0.25 --y -0.20 --yaw 0.20
+
+# Small forward/reverse and turning observations let AMCL refine its estimate:
+docker compose exec -T desktop /ros_entrypoint.sh python3 scripts/mapping_survey.py --profile localization
+
+# Inspect the estimate, global correction and safety stop:
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic echo --once /amcl_pose
+docker compose exec -T desktop /ros_entrypoint.sh ros2 run tf2_ros tf2_echo map odom --ros-args -p use_sim_time:=true
+docker compose exec -T desktop /ros_entrypoint.sh ros2 topic echo --once /firmware/state
+```
+
+Stop `tf2_echo` with Ctrl-C. Before initialization, `map -> odom` is deliberately
+absent and RViz may report missing rover/laser transforms. The map itself is
+visible. RViz's **2D Pose Estimate** tool is an alternative to the initializer:
+click near the pickup-area map origin and drag the heading arrow along +x.
+The initializer's standard deviations are 0.25 m in x/y and 0.30 rad in yaw;
+it reads only clock and publishes that operator input once. No simulator pose
+is copied into it. AMCL's displayed covariance should shrink as scans agree with
+the saved map, but correctness is established separately by the acceptance oracle.
+
+AMCL's pose refers to `base_drive`, the axle frame 0.14 m ahead of `base_link`.
+At the original pickup pose, the axle is near `(0.14, 0)` in this map, while the
+initial chassis origin is `(0, 0)`. The default `(0.25, -0.20, 0.20)` prior is
+deliberately approximate. `map -> base_link` remains the chassis pose for TF
+inspection and acceptance. This frame choice prevents the differential motion
+model from interpreting the chassis's turning arc as unintended translation.
+
+Pass a different saved map as the third launcher argument:
+
+```bash
+./scripts/launch-milestone-6.sh localization gui /workspace/maps/my_delivery_map/map.yaml
+```
+
+Headless modes use the same stack: `./scripts/launch-milestone-6.sh mapping headless`
+or `./scripts/launch-milestone-6.sh localization headless`. They name their container
+`rover-m6`; run the same helper commands with
+`docker exec -it rover-m6 /ros_entrypoint.sh ...` from another terminal.
+All communicating processes must be inside that same container. Ctrl-C stops
+headless launch; `docker compose stop desktop` stops the GUI.
+
+### Record and replay measurements
+
+Acceptance records compressed MCAP bags without camera video to keep the useful
+mapping/localization evidence compact. For a manual capture, choose a new path:
+
+```bash
+docker compose exec desktop /ros_entrypoint.sh ros2 bag record --use-sim-time --include-unpublished-topics --qos-profile-overrides-path simulation/config/m6-record-qos.yaml -s mcap --storage-preset-profile zstd_fast -o /workspace/evidence/milestone-6/manual-bag --topics /clock /scan /odom /tf /tf_static /map /amcl_pose /initialpose /cmd_vel /wheel/encoders /firmware/state /motor/driver_state /robot_description
+```
+
+Reliable, transient-local QoS overrides retain the static map, robot description
+and fixed transforms even when recording begins long after launch.
+The unpublished-topic option lets the recorder subscribe to one-shot initial-pose
+input before its publisher appears. Acceptance also waits for that recorder
+subscription explicitly. Ctrl-C cleanly closes the bag.
+`ros2 bag info <bag-directory>` inspects it. Replay
+only in an isolated container/domain without simulator, firmware or estimators;
+use the recorded clock, not a second `--clock` source. A visualization-only replay
+can exclude commands and initial pose:
+
+```bash
+docker compose run --rm -T --no-deps -e ROS_DOMAIN_ID=43 robotics ros2 bag play /workspace/evidence/milestone-6/acceptance/mapping/bag --topics /clock /scan /odom /tf /tf_static /map /robot_description
+```
+
+### What M6 acceptance measures
+
+- `/map` is a valid occupancy grid from SLAM Toolbox or the saved-map server.
+- Received TF message GIDs resolve to a single expected publisher per edge;
+  `map -> odom` is dynamic and belongs only to the active estimator.
+- Estimator subscriptions and the native bridge match narrow allowlists. No
+  simulator pose is bridged. The test-only oracle does not drive or initialize
+  the estimator. M5 remains the sole `/cmd_vel` actuation consumer, with no DiffDrive;
+  rosbag may subscribe as a read-only observer.
+- Mapping observes >=90% of room interior (excluding a 10 cm buffer around the table),
+  covers >=90% of each wall within 15 cm, and has occupied-surface p95 error
+  <=15 cm. Compare to actual inner wall/table coordinates with the fixed initial
+  reference; no fitted alignment removes distortion.
+- A clean AMCL restart has no global transform before the approximate pose.
+  After the localization tape, ten final timestamp-matched samples must have
+  <15 cm position and <0.12 rad yaw error; x/y variance <0.04 m² and yaw variance
+  <0.0225 rad², all positive and finite. The saved files must remain unchanged.
+- After either tape, command timeout and stationary driver wheels verify the
+  inherited M5 safety path. Full fault coverage remains in M5 regressions.
+
+**Troubleshooting:** missing map means inspect lifecycle activation and `/scan`
+in `ros.log`; do not add a fake map transform. Doubled/bent walls suggest bad
+scan matches, time/extrinsic errors or insufficient overlap. A good-looking map
+is not a substitute for numerical checks. A low covariance at the wrong location
+can reflect symmetry; restart and supply a reasonable operator prior. In-place
+Gazebo time reset is unsupported. See [concepts and limitations](concepts/mapping-localization.md),
+[ADR 0006](decisions/0006-slam-toolbox-and-amcl.md), and [evidence](../evidence/milestone-6/README.md).

@@ -1,0 +1,35 @@
+parcel_tray:
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+base_link:
+  parent: 'odom'
+  broadcaster: 'default_authority'
+  rate: 50.100
+  most_recent_transform: 14.540000
+  oldest_transform: 4.520000
+  buffer_length: 10.020
+rear_support:
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 10000.000
+  most_recent_transform: 0.000000
+  oldest_transform: 0.000000
+  buffer_length: 0.000
+left_wheel:
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 50.100
+  most_recent_transform: 14.540000
+  oldest_transform: 4.520000
+  buffer_length: 10.020
+right_wheel:
+  parent: 'base_link'
+  broadcaster: 'default_authority'
+  rate: 50.100
+  most_recent_transform: 14.540000
+  oldest_transform: 4.520000
+  buffer_length: 10.020

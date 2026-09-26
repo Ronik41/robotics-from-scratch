@@ -1,0 +1,24 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1790383943.650926930] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1790383943.650948430] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1790383943.658686764] [rosbag2_recorder]: Starting recording to '/workspace/evidence/milestone-6/20260926T005202Z-acceptance-81678/mapping/bag'
+[INFO] [1790383943.661865597] [rosbag2_recorder]: Listening for topics...
+[INFO] [1790383943.662136764] [rosbag2_recorder]: Recording...
+[INFO] [1790383943.661934930] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1790383943.663413805] [rosbag2_recorder]: use_sim_time set, waiting for /clock before starting recording...
+[INFO] [1790383944.695441625] [rosbag2_recorder]: Sim time /clock found, starting recording.
+[INFO] [1790383944.698762291] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1790383944.703764166] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1790383944.706077833] [rosbag2_recorder]: Subscribed to topic '/cmd_vel'
+[INFO] [1790383944.707643625] [rosbag2_recorder]: Subscribed to topic '/firmware/state'
+[INFO] [1790383944.709518750] [rosbag2_recorder]: Subscribed to topic '/robot_description'
+[INFO] [1790383944.710453791] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1790383944.712442500] [rosbag2_recorder]: Subscribed to topic '/wheel/encoders'
+[INFO] [1790383944.715551166] [rosbag2_recorder]: Subscribed to topic '/map'
+[INFO] [1790383944.717154750] [rosbag2_recorder]: Subscribed to topic '/motor/driver_state'
+[INFO] [1790383944.719826416] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1790383944.721694166] [rosbag2_recorder]: Subscribed to topic '/odom'
+[INFO] [1790384045.892598922] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1790384045.894300005] [rosbag2_recorder]: Pausing recording.
+[INFO] [1790384045.894610463] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1790384045.917548463] [rosbag2_recorder]: Recording stopped
+[INFO] [1790384045.924030255] [rosbag2_recorder]: Event publisher thread: Exited

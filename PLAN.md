@@ -34,13 +34,17 @@ Implement a separate motor-control boundary: velocity PID, encoder feedback, sat
 
 **Verified 2026-09-25:** deterministic core, headless physics/fault checks and
 browser desktop acceptance passed. [Evidence](evidence/milestone-5/README.md).
-Milestone 6 has not started.
+Milestone 6 is verified below; see `STATUS.md`.
 
 ## 6. Mapping and localization
 
 Build a map, record data, and localize the rover without using simulator ground truth for autonomy.
 
 **Done when:** a repeatable mapping/localization demonstration is recorded.
+
+**Verified 2026-09-26:** fresh mapping and separate headless/desktop localization,
+map/TF/input/safety audits, M1–M5 regressions, saved map, MCAP bags and RViz evidence
+passed. [Evidence](evidence/milestone-6/README.md). Milestone 7 has not started.
 
 ## 7. Autonomous navigation
 

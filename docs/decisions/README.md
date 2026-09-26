@@ -7,3 +7,5 @@ Record durable choices here: the selected ROS/Gazebo workflow, frame conventions
 - [0003: Wheel-only odometry, TF ownership and ROS desktop](0003-wheel-feedback-and-tf.md)
 
 - [0004: Sensor contracts and simulation boundary](0004-sensor-contracts-and-simulation-boundary.md)
+- [0005: Encoder PID and independent motor watchdog](0005-encoder-pid-and-independent-motor-watchdog.md)
+- [0006: SLAM Toolbox mapping and separate AMCL localization](0006-slam-toolbox-and-amcl.md)

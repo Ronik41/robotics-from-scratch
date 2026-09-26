@@ -1,0 +1,80 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-26-00-59-09-244082-44e1440c7cfa-197
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [253]
+[INFO] [parameter_bridge-2]: process started with pid [254]
+[INFO] [robot_state_publisher-3]: process started with pid [255]
+[INFO] [python3-4]: process started with pid [256]
+[INFO] [python3-5]: process started with pid [257]
+[INFO] [map_server-6]: process started with pid [258]
+[INFO] [amcl-7]: process started with pid [259]
+[INFO] [lifecycle_manager-8]: process started with pid [260]
+[robot_state_publisher-3] [WARN] [1790384349.390377132] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1790384349.390486340] [robot_state_publisher]: Robot initialized
+[lifecycle_manager-8] [INFO] [1790384349.413199548] [m6_lifecycle_manager]: Creating
+[amcl-7] [INFO] [1790384349.418588465] [amcl]:
+[amcl-7] 	amcl lifecycle node launched.
+[amcl-7] 	Waiting on external lifecycle transitions to activate
+[amcl-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-7] [INFO] [1790384349.419173257] [amcl]: Creating
+[lifecycle_manager-8] [INFO] [1790384349.420699632] [m6_lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[map_server-6] [INFO] [1790384349.426364007] [map_server]:
+[map_server-6] 	map_server lifecycle node launched.
+[map_server-6] 	Waiting on external lifecycle transitions to activate
+[map_server-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-6] [INFO] [1790384349.426573757] [map_server]: Creating
+[lifecycle_manager-8] [INFO] [1790384349.586238048] [m6_lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-8] [INFO] [1790384349.586291340] [m6_lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[python3-1] [INFO] [1790384349.615414923] [sim_firmware]: Firmware limits: {"radius": 0.14, "track": 0.48, "max_speed": 4.0, "acceleration": 4.0, "torque": 2.0, "deadband": 0.04, "kp": 0.45, "ki": 0.8, "kd": 0.002, "integral_limit": 1.2, "command_timeout": 0.5, "feedback_timeout": 0.2, "wall_timeout": 1.0, "future_tolerance": 0.03}
+[python3-1] [INFO] [1790384349.616339548] [sim_firmware]: Safety state: WAIT_COMMAND
+[map_server-6] [INFO] [1790384349.750317257] [map_server]: Configuring
+[map_server-6] [INFO] [1790384349.750413298] [map_io]: Loading yaml file: /workspace/maps/delivery_room_v1/map.yaml
+[map_server-6] [INFO] [1790384349.751070882] [map_io]: resolution: 0.05
+[map_server-6] [INFO] [1790384349.751082965] [map_io]: origin[0]: -1.496
+[map_server-6] [INFO] [1790384349.751086048] [map_io]: origin[1]: -1.487
+[map_server-6] [INFO] [1790384349.751088632] [map_io]: origin[2]: 0
+[map_server-6] [INFO] [1790384349.751091465] [map_io]: free_thresh: 0.196
+[map_server-6] [INFO] [1790384349.751093923] [map_io]: occupied_thresh: 0.65
+[map_server-6] [INFO] [1790384349.751097048] [map_io]: mode: trinary
+[map_server-6] [INFO] [1790384349.751100132] [map_io]: negate: 0
+[map_server-6] [INFO] [1790384349.751520840] [map_io]: Loading image_file: /workspace/maps/delivery_room_v1/map.pgm
+[map_server-6] [INFO] [1790384349.752887007] [map_io]: Read map /workspace/maps/delivery_room_v1/map.pgm: 160 X 121 map @ 0.05 m/cell
+[lifecycle_manager-8] [INFO] [1790384349.759359882] [m6_lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-7] [INFO] [1790384349.759592507] [amcl]: Configuring
+[amcl-7] [INFO] [1790384349.759696382] [amcl]: initTransforms
+[amcl-7] [INFO] [1790384349.766064507] [amcl]: initPubSub
+[amcl-7] [INFO] [1790384349.774091882] [amcl]: Subscribed to map topic.
+[lifecycle_manager-8] [INFO] [1790384349.777618340] [m6_lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-6] [INFO] [1790384349.777964965] [map_server]: Activating
+[map_server-6] [INFO] [1790384349.778162215] [map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-7] [INFO] [1790384349.778316048] [amcl]: Received a 160 X 121 map @ 0.050 m/pix
+[lifecycle_manager-8] [INFO] [1790384349.882818590] [m6_lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-8] [INFO] [1790384349.882869465] [m6_lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-7] [INFO] [1790384349.883215632] [amcl]: Activating
+[amcl-7] [INFO] [1790384349.883282298] [amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-8] [INFO] [1790384349.986844424] [m6_lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-8] [INFO] [1790384349.986881257] [m6_lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-8] [INFO] [1790384349.986888049] [m6_lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[parameter_bridge-2] [INFO] [1790384350.438879715] [rover_bridge]: Creating GZ->ROS Bridge: [/world/delivery_room/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790384350.443332507] [rover_bridge]: Creating GZ->ROS Bridge: [/model/delivery_rover/joint_state (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790384350.452174007] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/lidar (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790384350.454328424] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/image (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790384350.458055465] [rover_bridge]: Creating GZ->ROS Bridge: [/sensors/camera/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1790384350.460974049] [rover_bridge]: Creating GZ->ROS Bridge: [/motor/driver_state (gz.msgs.StringMsg) -> /motor/driver_state (std_msgs/msg/String)] (Lazy 0)
+[python3-1] [INFO] [1790384351.464322341] [sim_firmware]: Safety state: CLOCK_STALLED
+[amcl-7] [INFO] [1790384351.988723591] [amcl]: createLaserObject
+[amcl-7] [WARN] [1790384352.931799258] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[amcl-7] [WARN] [1790384355.097550718] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[amcl-7] [WARN] [1790384357.295275052] [amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[amcl-7] [INFO] [1790384358.227559261] [amcl]: initialPoseReceived
+[amcl-7] [WARN] [1790384358.227700302] [amcl]: Failed to transform initial pose in time (Lookup would require extrapolation into the future.  Requested time 7.130000 but the latest data is at time 7.120000, when looking up transform from frame [base_drive] to frame [odom])
+[amcl-7] [INFO] [1790384358.227732636] [amcl]: Setting pose (7.130000): 0.250 -0.200 0.200
+[python3-1] [INFO] [1790384362.290897679] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384363.324003722] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384365.474932125] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384366.255612709] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384368.292975126] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384369.006108168] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384372.647594003] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384373.375499837] [sim_firmware]: Safety state: ACTIVE
+[python3-1] [INFO] [1790384376.978968255] [sim_firmware]: Safety state: IDLE
+[python3-1] [INFO] [1790384379.564452423] [sim_firmware]: Safety state: COMMAND_TIMEOUT

@@ -1,0 +1,57 @@
+{
+  "acceptance/mapping": {
+    "status": "PASS",
+    "all_messages_deserialized": true,
+    "counts": {
+      "/clock": 78969,
+      "/tf": 12925,
+      "/motor/driver_state": 1563,
+      "/wheel/encoders": 3948,
+      "/robot_description": 1,
+      "/tf_static": 1,
+      "/map": 102,
+      "/odom": 3947,
+      "/firmware/state": 1843,
+      "/scan": 790,
+      "/cmd_vel": 1807
+    }
+  },
+  "acceptance/localization": {
+    "status": "PASS",
+    "all_messages_deserialized": true,
+    "counts": {
+      "/clock": 24792,
+      "/map": 1,
+      "/tf": 2735,
+      "/tf_static": 1,
+      "/wheel/encoders": 1239,
+      "/odom": 1248,
+      "/scan": 248,
+      "/robot_description": 1,
+      "/motor/driver_state": 496,
+      "/firmware/state": 474,
+      "/initialpose": 1,
+      "/amcl_pose": 35,
+      "/cmd_vel": 330
+    }
+  },
+  "desktop-acceptance": {
+    "status": "PASS",
+    "all_messages_deserialized": true,
+    "counts": {
+      "/clock": 23630,
+      "/map": 1,
+      "/tf": 2578,
+      "/firmware/state": 637,
+      "/robot_description": 1,
+      "/tf_static": 1,
+      "/wheel/encoders": 1181,
+      "/scan": 237,
+      "/odom": 1180,
+      "/motor/driver_state": 466,
+      "/initialpose": 1,
+      "/amcl_pose": 35,
+      "/cmd_vel": 407
+    }
+  }
+}
